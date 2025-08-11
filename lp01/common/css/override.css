@@ -1,0 +1,23 @@
+/* Minimal safe overrides for fast local preview */
+:root {
+  --placeholder-bg: #fafafa;
+  --placeholder-border: #e5e5e5;
+}
+
+/* Ensure images reserve space even if missing */
+img { display: block; max-width: 100%; height: auto; }
+
+/* Fallback for elements that rely on background images */
+[style*="background"], [class*="bg"], [class*="_bg"], [class*="-bg"] {
+  background-color: var(--placeholder-bg);
+}
+
+/* Make dialogs and accordions usable without JS */
+dialog { border: 1px solid var(--placeholder-border); border-radius: 8px; }
+.accordion__panel[hidden] { display: none; }
+.accordion__toggle { cursor: pointer; }
+
+/* Prevent layout thrash if fonts fail to load */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans JP, sans-serif; }
+
+
