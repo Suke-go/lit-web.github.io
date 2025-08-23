@@ -79,7 +79,7 @@
   <header id="header" role="banner">
     <div class="header__inner">
       <div class="header__logo"><img src="lp01/common/img/logo.svg" width="320" height="64" alt="CAREER COACHING"></div>
-      <button type="button" class="header__button js-dialogOpen" data-modalId="dialogCampus"><span>無料体験申込み</span></button>
+      <button type="button" class="header__button js-dialogOpen" data-modalId="dialogCampus" data-modal-target="#dialogCampus" aria-controls="dialogCampus"><span>無料体験申込み</span></button>
     </div>
   </header>
   <!-- //////////////////////////////////////// header END -->
@@ -88,7 +88,7 @@
     <div class="modalDialog__inner">
       <div class="modalDialog__content">
         <div class="modalDialog__contentInner">
-          <button type="button" class="modalDialogClose js-dialogClose"><span>閉じめE/span></button>
+          <button type="button" class="modalDialogClose js-dialogClose" aria-controls="dialogCampus"><span>閉じめE/span></button>
           <p class="searchCampusModal__head">
             <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込み</span>
           </p>
@@ -136,7 +136,7 @@
       <div class="ctaButton">
         <div class="ctaButton__list">
           <div class="ctaButton__item -openCampus">
-            <button type="button" class="js-dialogOpen" data-modalId="dialogCampus">
+            <button type="button" class="js-dialogOpen" data-modalId="dialogCampus" data-modal-target="#dialogCampus" aria-controls="dialogCampus">
               <span class="ctaButton__inner">
                 <span>無料体騁E/span>
                 <span>申込み</span>
