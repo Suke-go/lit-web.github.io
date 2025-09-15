@@ -8,13 +8,37 @@
     - 「ポイント」：lead=要旨1文 / body=具体説明（抽象レイヤーを下げる）
     - 公式情報のトーンに揃え：全8回・1回40–60分・オンライン・2–3ヶ月・無料体験→申込
     - 画像は placeholder.svg へ（width/height維持でレイアウト不変）
-  ===============================================================================
-  -->
+  =============================================================================== -->
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5F65T4S8');
+  </script>
+  <!-- End Google Tag Manager -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no,address=no,email=no">
   <meta name="description" content="高校生向けオンラインコーチング。全8回・2〜3ヶ月で、自己理解から進路決定まで伴走します。無料体験あり。">
   <meta name="keywords" content="キャリアコーチング,高校生,進路,オンライン,自己理解,モチベーション,保護者">
+
+  <!-- OG_Tag start -->
+  <meta name="twitter:card" content="summary">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CAREER COACHING - 高校生向けオンラインコーチング">
+  <meta property="og:url" content="https://careercoaching.litable-edu.com">
+  <meta property="og:image" content="https://careercoaching.litable-edu.com/wp/wp-content/uploads/2023/06/キミが未来の-主役になるために-1.jpg">
+  <meta property="og:description" content="高校生向けオンラインコーチング。全8回・2〜3ヶ月で、自己理解から進路決定まで伴走します。無料体験あり。">
+  <meta property="og:site_name" content="CAREER COACHING">
+  <!-- OG_Tag end -->
 
   <title>CAREER COACHING - 高校生向けオンラインコーチング</title>
 
@@ -44,87 +68,20 @@
       window.alert("Internet Explorer11のサポートはしておりません。\nMicrosoft Edge, Google Chrome, Firefox 等をご利用ください。");
     }
   </script>
-  <script>
-    // FAQ content injection: overwrite questions and answers with finalized copy.
-    (function(){ function run(){
-      // Fix heading text if encoding broke it
-      var h = document.querySelector('#seqFaq .sectionTitle__inner span');
-      if (h) h.textContent = 'よくあるご質問';
-
-      var items = [
-        {
-          id: 'accordionFaq01',
-          q: 'Career Coaching ではどんなことをしますか？',
-          a: [
-            '<p>対話と質問を通じて考えを深め、本人の中にある答えを引き出す支援です。自己理解 → 将来像 → 行動計画の順で伴走し、主体的な進路選択を後押しします。</p>',
-            '<p>面談では、LPS（ライフ・プランニング・シート）を用いて過去の経験・価値観・得意／苦手を整理し、志望理由書や面接で語れる言葉に落とし込みます。</p>'
-          ]
-        },
-        {
-          id: 'accordionFaq02',
-          q: '料金はいくらですか？',
-          a: [
-            '<p>1回あたり 12,500円（税込）。1回は50〜60分です。</p>',
-            '<p>標準プランの目安は全8回（2〜3ヶ月）で、合計 100,000円（税込）。日程は部活・行事に合わせて柔軟に調整します。初回はオンラインの無料相談（15分）をご利用いただけます。</p>'
-          ]
-        },
-        {
-          id: 'accordionFaq03',
-          q: 'どのように受講しますか？',
-          a: [
-            '<p>Zoom を使用した1対1のオンラインセッションです。ネット環境があれば全国どこからでも参加できます（PC／タブレット／スマホ可）。</p>',
-            '<p>カメラとマイクのご用意を推奨します。対面をご希望の場合は一部地域で個別にご相談ください。</p>'
-          ]
-        },
-        {
-          id: 'accordionFaq04',
-          q: '保護者の同席はできますか？',
-          a: [
-            '<p>可能です。初回面談や節目の回のみ同席いただく形を推奨しています。</p>',
-            '<p>必要に応じて面談の要点や次回までの宿題を保護者さまにも共有しますが、あくまでご本人の主体性を最優先に進めます。</p>'
-          ]
-        },
-        {
-          id: 'accordionFaq05',
-          q: 'どんな人が対象ですか？',
-          a: [
-            '<p>主な対象は高校生・高専生・既卒の受験生です。中学生や大学生のキャリア相談にも対応可能です。</p>',
-            '<p>オンライン実施のため居住地は問いません（海外在住の方も可）。まずはお気軽にご相談ください。</p>'
-          ]
-        }
-      ];
-
-      items.forEach(function(item){
-        var panel = document.getElementById(item.id);
-        if(!panel) return;
-        var btn = document.querySelector('.accordion__toggle[aria-controls="'+item.id+'"]');
-        if (btn){
-          var span = btn.querySelector('span');
-          if (span) span.textContent = item.q;
-          var root = btn.closest && btn.closest('.accordion');
-          if (root){ root.classList.remove('-empty'); }
-        }
-        var inner = panel.querySelector('.accordion__panelInner') || panel;
-        inner.innerHTML = item.a.join('');
-      });
-      }
-      if (document.readyState === 'loading'){
-        document.addEventListener('DOMContentLoaded', run);
-      } else {
-        run();
-      }
-    })();
-  </script>
-  <!-- removed bad text-fix script -->
 </head>
 
 <body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5F65T4S8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <p class="skipItem anchorLink skip-link"><a href="#main">本文へ移動</a></p>
 
   <header id="header" role="banner">
     <div class="header__inner">
       <div class="header__logo"><img src="lp01/common/img/logo.svg" width="320" height="64" alt="CAREER COACHING ロゴ"></div>
-      <button type="button" class="header__button js-dialogOpen" data-modalId="dialogCampus"><span>&#x7121;&#x6599;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span></button>
+      <button type="button" class="header__button js-dialogOpen" data-modalId="dialogCampus"><span>無料体験申込み</span></button>
     </div>
   </header>
 
@@ -134,8 +91,8 @@
         <div class="modalDialog__contentInner">
           <button type="button" class="modalDialogClose js-dialogClose"><span>閉じる</span></button>
           <p class="searchCampusModal__head">
-            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込</span>
-            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込</span>
+            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込み</span>
+          </p>
           <div class="searchCampusModal__body">
             <div class="searchCampusModal__areaBlock">
               <div class="searchCampusModal__area">
@@ -146,11 +103,7 @@
                     <p class="-name">フォームで希望を送信</p>
                   </li>
                   <li class="searchCampusModal__areaItem">
-                    <p>Step2: 説明会の実施</p>
-                    <p class="-name"></p>
-                  </li>
-                  <li class="searchCampusModal__areaItem">
-                    <p>Step3: 無料体験</p>
+                    <p>Step2: 日程調整</p>
                     <p class="-name">コーチと面談日を決定</p>
                   </li>
                 </ul>
@@ -159,7 +112,7 @@
                 <p class="searchCampusModal__areaTitle">体験内容</p>
                 <ul class="searchCampusModal__areaList">
                   <li class="searchCampusModal__areaItem">
-                    <p>60分のコーチング</p>
+                    <p>40〜60分のコーチング</p>
                     <p class="-name">進路の悩みを言語化</p>
                   </li>
                   <li class="searchCampusModal__areaItem">
@@ -186,10 +139,17 @@
           <div class="ctaButton__item -openCampus">
             <button type="button" class="js-dialogOpen" data-modalId="dialogCampus">
               <span class="ctaButton__inner">
-                <span>保護者説明会</span>
-                <span>受付中</span>
+                <span>無料体験</span>
+                <span>申込み</span>
               </span>
             </button>
+          </div>
+          <div class="ctaButton__item -doc">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform?usp=sf_link" target="_blank">
+              <span class="ctaButton__inner">
+                <span>お申込み</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -199,14 +159,11 @@
           <div class="mainVisual__img">
             <div class="mainVisual__grid">
               <div class="mainVisual__gridItem -grid01 -toLeft">
-                <figure class="coachingOverview__figure -main">
-                  <picture>
+                <picture>
                   <source media="(min-width: 768px)" srcset="img/placeholder.svg">
                   <source media="(max-width: 768px)" srcset="img/placeholder.svg">
                   <img src="img/placeholder.svg" width="640" height="1120" alt="高校生イメージA（プレースホルダー）">
                 </picture>
-
-
               </div>
               <div class="mainVisual__gridItem -grid02 -toUp">
                 <picture>
@@ -286,89 +243,99 @@
 
           <div class="mainVisual__note">
             <p>※自己理解から進路決定まで、オンラインで伴走するプログラムです。</p>
-              </div>
-           </div>
-           </div>
           </div>
-         </section>
+        </section>
 
         <section class="seqLead" id="seqLead">
           <div class="seqLead__inner">
             <h2 class="seqLead__title">
-              <span>高校生のための</span>
+              <span>進路に悩む高校生のための</span>
               <span class="-strong -orange inview">キャリアコーチング</span>
+              <span class="-flexText">
+                <span class="-strong -icon -blue -support inview">全8回</span>
+                <span class="-strong -icon -green -teaching inview">6ステップを実践</span>
+              </span>
+              <span>オンラインプログラム</span>
             </h2>
 
-            <p class="seqLead__text">
-              大学生や社会人の就活でも使われるプロセスを高校生向けに最適化。<br class="-pcItem">
-              コーチの問いかけで思考を深め、2〜3ヶ月で「自分で語れる進路」へ導きます。
-            </p>
-
-            <div class="coachingOverview inview -fadeInUp" data-inview-rootMargin="-30% 0% -30% 0%">
-              <div class="coachingOverview__media">
-                <figure class="coachingOverview__figure -sub">
-                  <picture>
-                    <source type="image/webp" media="(min-width: 768px)" srcset="img/coaching.webp">
-                    <source type="image/webp" media="(max-width: 768px)" srcset="img/coaching.webp">
-                    <img src="img/coaching.png" width="1200" height="800" alt="オンライン（ビデオ通話）のコーチングイメージ" loading="lazy" decoding="async">
-                  </picture>
-                </figure>
-                <picture>
-                  <source media="(min-width: 768px)" srcset="img/coaching.png">
-                  <source media="(max-width: 768px)" srcset="img/coaching.png">
-                  <img src="img/coaching.png" width="1200" height="800" alt="キャリアコーチングの全体像">
-                </picture>
-              </div>
-              <div class="coachingOverview__content">
-                <h3 class="coachingOverview__lead">コーチングとは？</h3>
-                <p>子供のやりたいことを一緒に見つけてくれる<strong>人生の家庭教師です</strong></p>
-                <ul class="coachingOverview__list">
-                  <li><span class="-label">フェーズ1</span><span class="-text">将来像の明確化</span></li>
-                  <li><span class="-label">フェーズ2</span><span class="-text">行動計画・実際の行動</span></li>
-                </ul>
-                <p class="coachingOverview__note">全8回・6ステップで伴走しながら、目標達成まで寄り添います。</p>
-              </div>
+            <div class="buttonBox anchorLink">
+              <p class="buttonNote -sp2Line">無料体験でコーチングを<br class="-spItem">体験してみませんか</p>
+              <a href="#seqFaq" class="buttonA -anchorLink -sizeLL -hoverBlack"><span>よくあるご質問</span></a>
             </div>
+
+            <h2 class="seqLead__title">全8回・6ステップの<br>キャリアコーチング</h2>
+
             <div class="collaborationBlock inview" data-inview-rootMargin="-30% 0% -30% 0%">
               <div class="collaborationItem -gakken">
-                <h3 class="collaboration__title">Step1: 価値観の言語化</h3>
+                <h3 class="collaboration__title">Step1: 過去の棚卸し</h3>
                 <div class="collaboration__body">
                   <div class="collaboration__bodyIcon">
                     <img src="img/placeholder.svg" width="360" height="361" alt="過去の棚卸し（プレースホルダー）" loading="lazy">
                   </div>
                   <ul class="collaboration__bodyList listDisc -penType">
-                    <li>自分はどのようになりたいのかを言語化</li>
-                    <li>理想をかなえるための行動計画を決める</li>
-                    <li>未来への行動ができているか並走</li>
+                    <li>経験を振り返り、出来事→学びを整理</li>
+                    <li>好き・得意・価値観を可視化</li>
+                    <li>言葉にして共有できる状態へ</li>
                   </ul>
                 </div>
               </div>
 
               <div class="collaborationItem -clark">
-                <h3 class="collaboration__title">Step2: 行動計画を立てる</h3>
+                <h3 class="collaboration__title">Step2: 価値観の言語化</h3>
                 <div class="collaboration__body">
                   <div class="collaboration__bodyIcon">
                     <img src="img/placeholder.svg" width="360" height="361" alt="価値観の言語化（プレースホルダー）" loading="lazy">
                   </div>
                   <ul class="collaboration__bodyList listDisc -penType">
-                    <li>なりたい姿への行動をどうするか</li>
-                    <li>行動しながら得た気付きを言語化</li>
-                    <li>自分の将来像のアップデート</li>
+                    <li>将来像の仮説づくり（興味×強み）</li>
+                    <li>「なぜそれを選ぶか」を言語化</li>
+                    <li>次の一歩を具体化（行動計画）</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-
+            <p class="seqLead__text">
+              大学生や社会人の就活でも使われるプロセスを高校生向けに最適化。<br class="-pcItem">
+              コーチの問いかけで思考を深め、2〜3ヶ月で「自分で語れる進路」へ導きます。
+            </p>
           </div>
         </section>
-        </div>
-        
-            <div class="buttonBox anchorLink">
-              <p class="buttonNote -sp2Line">無料体験でコーチングを<br class="-spItem">体験してみませんか</p>
-              <a href="" class="buttonA -anchorLink -sizeLL -hoverBlack"><span>体験する</span></a>
-            </div>
 
+        <div class="searchCampus">
+          <div class="splide searchCampusSlider" role="group" aria-label="自動スライダー">
+            <div class="splide__track">
+              <div class="splide__list">
+                <div class="splide__slide"><img src="img/placeholder.svg" width="4817" height="1400" alt="サービスイメージ（プレースホルダー）" loading="lazy"></div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="searchCampus__button js-dialogOpen" data-modalId="dialogCampus">
+            <p class="searchCampus__buttonInner">
+              <span class="-small">まずは無料体験から！</span>
+              <span>無料体験申込み</span>
+            </p>
+          </button>
+        </div>
+
+        <section class="ctaBanner">
+          <h2 class="ctaBanner__title"><span class="-small">「進路に悩んでいる」なら</span>まずはお気軽にご相談ください</h2>
+          <div class="ctaBanner__list">
+            <div class="ctaBanner__listInner">
+              <div class="ctaBanner__item -openCampus">
+                <button type="button" class="js-dialogOpen" data-modalId="dialogOpenCampusLink">
+                  <span><span class="ctaBanner__label">コーチと直接話せる</span><br>無料体験・説明会</span>
+                </button>
+              </div>
+              <div class="ctaBanner__item -doc">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform?usp=sf_link" target="_blank">
+                  <span><span class="ctaBanner__label">簡単・無料</span><span class="-small">で</span>お申込み</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section class="seqPoint">
           <div class="seqPoint__inner">
@@ -376,8 +343,8 @@
               <span class="sectionTitle__inner">
                 <span class="-small">教えて！Career Coaching</span>
                 <span class="-img">
-                  <span class="-num">4</span><span class="screenReaderText">つの特徴</span>
-                  <img src="img/text_point.svg" width="230" height="43" alt="4つの強み" loading="lazy">
+                  <span class="-num">3</span><span class="screenReaderText">つの特徴</span>
+                  <img src="img/text_point.svg" width="230" height="43" alt="3つの特徴" loading="lazy">
                 </span>
               </span>
             </h2>
@@ -386,22 +353,23 @@
               <li class="pointItem -green inview -fadeInUp" data-inview-rootMargin="-30% 0% -30% 0%">
                 <h3 class="pointItem__head">
                   <span class="pointItem__headLabel">POINT<br><span class="-num">01</span></span>
-                  <p>高校生キャリアコーチングは学校の進路指導とは違うのですか？</p>
+                  <p>将来像を描き、学びに意味づけ</p>
                 </h3>
                 <div class="pointItem__lead">
                   <span class="pointItem__leadImg">
                     <picture>
                       <source media="(min-width: 768px)" srcset="img/placeholder.svg">
                       <source media="(max-width: 768px)" srcset="img/placeholder.svg">
-                      <img src="img/placeholder.svg" width="400" height="446" alt="Point 01" loading="lazy">
+                      <img src="img/placeholder.svg" width="400" height="446" alt="特徴1（プレースホルダー）" loading="lazy">
                     </picture>
                   </span>
-                  <p>はい。違います。</p>
+                  <p>過去・現在・未来をつなげて、今日の勉強に納得感を生む。</p>
                 </div>
                 <div class="pointItem__body">
                   <p>
-                    学校の進路指導は「現在の偏差値」をもとに、高校卒業後にどこへ行くかの短期的な進路を考えます。
-                    高校生キャリアコーチングでは「過去から今までの自分」をもとに、大学卒業後のキャリアまでを見据えながら、長期的な進路について熟考します。
+                    「過去の棚卸し→価値観の言語化→行動計画」の順で整理。<br class="-pcItem">
+                    科目選択や課外活動が将来像とどう結びつくかを一緒に言語化し、<br class="-pcItem">
+                    毎週の小さな行動に落とし込みます。
                   </p>
                 </div>
               </li>
@@ -409,115 +377,57 @@
               <li class="pointItem -brown inview -fadeInUp" data-inview-rootMargin="-30% 0% -30% 0%">
                 <h3 class="pointItem__head">
                   <span class="pointItem__headLabel">POINT<br><span class="-num">02</span></span>
-                  <p>なぜ塾ではなく高校生キャリアコーチングを選ぶの？</p>
+                  <p>「なんとなく」を具体化して前進</p>
                 </h3>
                 <div class="pointItem__lead">
                   <span class="pointItem__leadImg">
                     <picture>
                       <source media="(min-width: 768px)" srcset="img/placeholder.svg">
                       <source media="(max-width: 768px)" srcset="img/placeholder.svg">
-                      <img src="img/placeholder.svg" width="386" height="462" alt="Point 02" loading="lazy">
+                      <img src="img/placeholder.svg" width="386" height="462" alt="特徴2（プレースホルダー）" loading="lazy">
                     </picture>
                   </span>
-                  <p>学習を「やらされているもの」から「目標達成への手段」へと変えるためです。</p>
+                  <p>モヤモヤを「Why→What→How→When」で分解。</p>
                 </div>
                 <div class="pointItem__body">
                   <h4 class="pointItem__bodyText -pcCenter">
-                    高校生キャリアコーチングで将来の目標を明確にした後に塾に通うことで、そこでの学習効果を最大限に引き出せます。<br class="-pcItem">
-                    とりあえず塾に通うのではなく、まずは高校生キャリアコーチングを受けることがおすすめです。
+                    コーチの質問で考えを掘り下げ、<br class="-pcItem">
+                    仮説の進路→試す行動→振り返りのサイクルを回します。<br class="-pcItem">
+                    自分の言葉で説明できる状態を目指します。
                   </h4>
-                  <div class="point02-compare">
-                    <div class="point02-card -before">
-                      <div class="point02-label">コーチングを受けずに塾へ行く</div>
-                      <div class="point02-image">
-                        <picture>
-                          <source type="image/png" srcset="img/before_use.png">
-                          <img src="img/before_use.png" alt="Before coaching" loading="lazy" decoding="async">
-                        </picture>
-                      </div>
-                    </div>
-                    <div class="point02-card -after">
-                      <div class="point02-label">コーチングを受けて塾に行く</div>
-                      <div class="point02-image">
-                        <picture>
-                          <source type="image/png" srcset="img/after_use.png">
-                          <img src="img/after_use.png" alt="After coaching" loading="lazy" decoding="async">
-                        </picture>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </li>
 
               <li class="pointItem -purple inview -fadeInUp" data-inview-rootMargin="-30% 0% -30% 0%">
                 <h3 class="pointItem__head">
                   <span class="pointItem__headLabel">POINT<br><span class="-num">03</span></span>
-                  <p>サービスの流れは？</p>
+                  <p>1対1で、最後まで伴走</p>
                 </h3>
                 <div class="pointItem__lead">
                   <span class="pointItem__leadImg">
                     <picture>
                       <source media="(min-width: 768px)" srcset="img/placeholder.svg">
                       <source media="(max-width: 768px)" srcset="img/placeholder.svg">
-                      <img src="img/placeholder.svg" width="286" height="396" alt="Point 03" loading="lazy">
+                      <img src="img/placeholder.svg" width="286" height="396" alt="特徴3（プレースホルダー）" loading="lazy">
                     </picture>
                   </span>
-                  <p>大きく分けて3つのステップ「自己理解」「行動」「自立」に分かれます。</p>
+                  <p>答えを教えず、考える力を引き出します。</p>
                 </div>
                 <div class="pointItem__body">
-                  <ol class="pointSteps">
-                    <li>
-                      <p class="pointSteps__label">Step 1: 自己理解・LPS（ライフ・プランニング・シート）</p>
-                      <p class="pointSteps__text">文部科学省が作成した高校生のキャリア形成支援教材をもとに我々が作成したLPS（ライフ・プランニング・シート）を使い、自己理解を促します。LPSには、過去の成功体験、失敗体験、好きなこと、苦手なことなど、50以上の質問が含まれます。これにより、「なりたい姿」の輪郭を明確化し、将来像を仮置きします。</p>
-                    </li>
-                    <li>
-                      <p class="pointSteps__label">Step 2: 行動</p>
-                      <p class="pointSteps__text">仮置きした将来像と現在とのギャップを明確にし、目標達成に向けた具体的なアクションプランをコーチと共同で策定。進捗に合わせて定期的にフィードバックし、疑問や違和感にも寄り添いながら、目標・アクションを最適化します。</p>
-                    </li>
-                    <li>
-                      <p class="pointSteps__label">Step 3: 自立</p>
-                      <p class="pointSteps__text">目標と行動計画が明確になることで、受験勉強やキャリアのための行動が「やらされるもの」から「自ら進んで行うもの」へ。能動的な学習・行動こそが、学力向上やキャリア形成の鍵となります。</p>
-                    </li>
-                  </ol>
-                </div>
-              </li>
-
-              <li class="pointItem -green inview -fadeInUp" data-inview-rootMargin="-30% 0% -30% 0%">
-                <h3 class="pointItem__head">
-                  <span class="pointItem__headLabel">POINT<br><span class="-num">04</span></span>
-                  <p>高校生キャリアコーチングはどんな人に向いていますか？</p>
-                </h3>
-                <div class="pointItem__lead">
-                  <span class="pointItem__leadImg">
-                    <picture>
-                      <source media="(min-width: 768px)" srcset="img/placeholder.svg">
-                      <source media="(max-width: 768px)" srcset="img/placeholder.svg">
-                      <img src="img/placeholder.svg" width="286" height="396" alt="Point 04" loading="lazy">
-                    </picture>
-                  </span>
-                  <p>ほとんどの高校生に向いていると言えます。</p>
-                </div>
-                <div class="pointItem__body">
-                  <div class="pointItem__bodyText -pcCenter">
-                    <ul>
-                      <li>「将来やりたいことが見つからない…」</li>
-                      <li>「やりたいことがありすぎてどれを選択すればいいかわからない…」</li>
-                      <li>「本当はやりたいことがあるんだけれど、親にはなかなか言い出せない…」</li>
-                      <li>「受験勉強にイマイチ身が入らない…」</li>
-                    </ul>
-                    <p>もし一つでも当てはまるなら、高校生キャリアコーチングがあなたの未来を切り拓く手助けとなるでしょう。</p>
-                  </div>
+                  <p class="pointItem__bodyText -pcCenter -fontL">
+                    各回のテーマ設定・ふり返り・次のアクションを毎回明確に。<br class="-pcItem">
+                    必要に応じて保護者との連携も行い、合意形成を支援します。
+                  </p>
                 </div>
               </li>
             </ol>
           </div>
         </section>
-        
 
         <section class="seqVoice">
           <div class="seqVoice__inner">
             <h2 class="sectionTitle">
-              <span class="sectionTitle__inner"><span class="-small">参加者の</span><span>喜びの声</span></span>
+              <span class="sectionTitle__inner"><span class="-small">参加者の</span><span>リアルボイス</span></span>
             </h2>
 
             <ul class="voiceList">
@@ -557,10 +467,39 @@
           </div>
         </section>
 
-        <section class="ctaBanner">
-          <button type="button" class="js-dialogOpen" data-modalId="dialogCampus" aria-label="保護者説明会 実施中" style="display:block;border:0;background:transparent;padding:0;margin:0 auto;">
-            <img src="img/cta.png" alt="保護者説明会 実施中" style="display:block;max-width:100%;height:auto;margin:0 auto;">
+        <div class="searchCampus">
+          <div class="splide searchCampusSlider" role="group" aria-label="自動スライダー">
+            <div class="splide__track">
+              <div class="splide__list">
+                <div class="splide__slide"><img src="img/placeholder.svg" width="4817" height="1400" alt="サービスイメージ（プレースホルダー）" loading="lazy"></div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="searchCampus__button js-dialogOpen" data-modalId="dialogCampus">
+            <p class="searchCampus__buttonInner">
+              <span class="-small">まずは無料体験から！</span>
+              <span>無料体験申込み</span>
+            </p>
           </button>
+        </div>
+
+        <section class="ctaBanner">
+          <h2 class="ctaBanner__title"><span class="-small">「進路に悩んでいる」なら</span>まずはお気軽にご相談ください</h2>
+          <div class="ctaBanner__list">
+            <div class="ctaBanner__listInner">
+              <div class="ctaBanner__item -openCampus">
+                <button type="button" class="js-dialogOpen" data-modalId="dialogOpenCampusLink">
+                  <span><span class="ctaBanner__label">コーチと直接話せる</span><br>無料体験・説明会</span>
+                </button>
+              </div>
+              <div class="ctaBanner__item -doc">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform?usp=sf_link" target="_blank">
+                  <span><span class="ctaBanner__label">簡単・無料</span><span class="-small">で</span>お申込み</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section class="seqFaq" id="seqFaq">
@@ -669,136 +608,27 @@
       }, true);
     })();
 
-    // Accessible accordion: robust fallback to ensure panels open/close
-    // Works even if site JS doesn't manage the hidden attribute.
+    // Minimal accordion toggle if site JS not yet loaded
     (function(){
-      function setPanelVisibility(panel, show){
-        if(!panel) return;
-        if (show){
-          panel.removeAttribute('hidden');
-          // Force visible to avoid CSS collisions
-          panel.style.display = 'block';
-          panel.style.visibility = 'visible';
-          panel.style.maxHeight = 'none';
-          panel.style.height = 'auto';
-          panel.style.overflow = 'visible';
-        } else {
-          // Hide via both attribute and inline style to be safe
-          panel.setAttribute('hidden','');
-          panel.style.display = 'none';
-          panel.style.visibility = '';
-          panel.style.maxHeight = '';
-          panel.style.height = '';
-          panel.style.overflow = '';
-        }
-      }
-
       function toggle(ev){
         var btn = ev.currentTarget;
         var id = btn.getAttribute('aria-controls');
         var panel = id && document.getElementById(id);
         if(!panel) return;
         var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var next = !expanded;
-        btn.setAttribute('aria-expanded', String(next));
-        var root = btn.closest && btn.closest('.accordion');
-        if (root){
-          root.classList.toggle('is-open', next);
-        }
-        setPanelVisibility(panel, next);
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){ panel.setAttribute('hidden','until-found'); }
+        else { panel.removeAttribute('hidden'); }
       }
-
-      // Initialize default state from aria-expanded
-      function init(){
-        var toggles = document.querySelectorAll('.accordion__toggle[aria-controls]');
-        toggles.forEach(function(btn){
-          var id = btn.getAttribute('aria-controls');
-          var panel = id && document.getElementById(id);
-          var expanded = btn.getAttribute('aria-expanded') === 'true';
-          var root = btn.closest && btn.closest('.accordion');
-
-          // Detect empty answers and add a placeholder
-          if (panel){
-            var inner = panel.querySelector('.accordion__panelInner') || panel;
-            var text = (inner.textContent || '').replace(/\s+/g,'');
-            if (!text){
-              if (!inner.querySelector('.accordion__placeholder')){
-                var p = document.createElement('p');
-                p.className = 'accordion__placeholder';
-                p.textContent = '回答は準備中です。しばらくお待ちください。';
-                inner.appendChild(p);
-              }
-              if (root){ root.classList.add('-empty'); }
-            }
-          }
-
-          if (root){ root.classList.toggle('is-open', expanded); }
-          setPanelVisibility(panel, expanded);
-
-          // Add a direct click handler to avoid stopPropagation conflicts
-          btn.addEventListener('click', function(ev){
-            toggle({ currentTarget: btn });
-          });
-        });
-      }
-
       document.addEventListener('click', function(e){
         var el = e.target.closest && e.target.closest('.accordion__toggle');
         if(el) toggle({ currentTarget: el });
       });
-
-      if (document.readyState === 'loading'){
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
     })();
   </script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
   <script type='text/javascript' src="https://admin.accessdove.com/js/accessime.min.js"></script>
-
-  <footer id="footer">
-    <div class="footer__inner">
-      <div class="footer__logo"><a href="#"><img src="lp01/common/img/logo.svg" width="320" height="64" alt="CAREER COACHING ロゴ"></a></div>
-      
-      <p class="footer__copyright">&copy; Litable Inc.</p>
-    </div>
-    <p class="pagetop"><a href="#wrapper"><span>page top</span></a></p>
-  </footer>
-
-  <script>
-  (function() {
-    const themeSwitcher = document.querySelector('.theme-switcher');
-    if (!themeSwitcher) return;
-
-    const body = document.body;
-    const buttons = themeSwitcher.querySelectorAll('button');
-    const savedTheme = localStorage.getItem('theme');
-
-    function applyTheme(theme) {
-      body.className = theme === 'original' ? '' : theme;
-      localStorage.setItem('theme', theme);
-    }
-
-    if (savedTheme) {
-      applyTheme(savedTheme);
-    }
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const theme = button.dataset.theme;
-        applyTheme(theme);
-      });
-    });
-  })();
-  </script>
 </body>
 </html>
-
-
-
-
-
-
 

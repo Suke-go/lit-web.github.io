@@ -1,0 +1,15 @@
+﻿                <h3 class="pointItem__head">
+                  <span class="pointItem__headLabel">POINT<br><span class="-num">02</span></span>
+                  <p>なぜ塾ではなく高校生キャリアコーチングを選ぶの？</p>
+                </h3>
+                <div class="pointItem__lead">
+                  <span class="pointItem__leadImg">
+                    <picture>
+                      <source media="(min-width: 768px)" srcset="img/placeholder.svg">
+                      <source media="(max-width: 768px)" srcset="img/placeholder.svg">
+                      <img src="img/placeholder.svg" width="386" height="462" alt="Point 02" loading="lazy">
+                    </picture>
+                  </span>
+                  <p>学習を「やらされているもの」から「目標達成への手段」へと変えるためです。</p>
+                </div>
+                <div class="pointItem__body">

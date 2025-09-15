@@ -1,0 +1,13 @@
+﻿<div class="point02-compare">
+                    <div class="point02-card -before">
+                      <div class="point02-label">�R�[�`���O���󂯂�ɂȂ�ɏ�ւ����</div>
+                      <div class="point02-image">
+                        <picture>
+                          <source type="image/png" srcset="img/before_use.png">
+                          <img src="img/before_use.png" alt="Before coaching" loading="lazy" decoding="async">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="point02-card -after">
+                      <div class="point02-label">�R�[�`���O��󂯂�ĎQ�Ɛ����</div>
+                      

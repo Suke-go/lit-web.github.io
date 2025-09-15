@@ -1,0 +1,22 @@
+﻿  <script>
+    // Minimal text fixes to avoid mojibake for key CTAs
+    (function(){
+      function setText(sel, text){ var el=document.querySelector(sel); if(el) el.textContent=text; }
+      function run(){
+        setText('.header__button.js-dialogOpen span','無料体験申込');
+        setText('.searchCampusModal .searchCampusModal__head .-title','無料体験申込');
+        setText('.searchCampus__buttonInner span:nth-child(2)','無料体験申込');
+        var a=document.querySelector('.buttonBox a.buttonA.-anchorLink.-sizeLL.-hoverBlack span');
+        if(a) a.textContent='無料体験申込';
+        // enforce correct text with Unicode escapes
+        setText('.header__button.js-dialogOpen span','\\u7121\\u6599\\u4F53\\u9A13\\u7533\\u8FBC');
+        setText('.searchCampusModal .searchCampusModal__head .-title','\\u7121\\u6599\\u4F53\\u9A13\\u7533\\u8FBC');
+        setText('.searchCampus__buttonInner span:nth-child(2)','\\u7121\\u6599\\u4F53\\u9A13\\u7533\\u8FBC');
+        var a2=document.querySelector('.buttonBox a.buttonA.-anchorLink.-sizeLL.-hoverBlack span');
+        if(a2) a2.textContent='\\u7121\\u6599\\u4F53\\u9A13\\u7533\\u8FBC';
+        setText('.point02-card.-before .point02-label','\\u30B3\\u30FC\\u30C1\\u30F3\\u30B0\\u3092\\u53D7\\u3051\\u305A\\u306B\\u5858\\u3078\\u884C\\u304F');
+        setText('.point02-card.-after .point02-label','\\u30B3\\u30FC\\u30C1\\u30F3\\u30B0\\u3092\\u53D7\\u3051\\u3066\\u5858\\u306B\\u884C\\u304F');
+      }
+      if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+    })();
+  </script>

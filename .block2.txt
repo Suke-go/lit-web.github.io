@@ -1,0 +1,16 @@
+﻿  <script>
+    // Correct Japanese text assignment (overrides any escaped text)
+    (function(){
+      function setText(sel, text){ var el=document.querySelector(sel); if(el) el.textContent=text; }
+      function run(){
+        setText('.header__button.js-dialogOpen span','無料体験申込');
+        setText('.searchCampusModal .searchCampusModal__head .-title','無料体験申込');
+        setText('.searchCampus__buttonInner span:nth-child(2)','無料体験申込');
+        var a=document.querySelector('.buttonBox a.buttonA.-anchorLink.-sizeLL.-hoverBlack span');
+        if(a) a.textContent='無料体験申込';
+        setText('.point02-card.-before .point02-label','コーチングを受けずに塾へ行く');
+        setText('.point02-card.-after .point02-label','コーチングを受けて塾に行く');
+      }
+      if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+    })();
+  </script>
