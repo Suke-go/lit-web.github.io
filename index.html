@@ -134,8 +134,8 @@
         <div class="modalDialog__contentInner">
           <button type="button" class="modalDialogClose js-dialogClose"><span>閉じる</span></button>
           <p class="searchCampusModal__head">
-            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込</span>
-            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込</span>
+            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込み</span>
+            <span class="-label">CAREER COACHING</span><span class="-title">無料体験申込み</span>
           <div class="searchCampusModal__body">
             <div class="searchCampusModal__areaBlock">
               <div class="searchCampusModal__area">
@@ -197,7 +197,12 @@
       <article>
         <section class="mainVisual">
           <div class="mainVisual__img">
-            <div class="mainVisual__grid">
+            <picture>
+              <source media="(min-width: 768px)" srcset="img/hero.png">
+              <source media="(max-width: 768px)" srcset="img/hero.png">
+              <img src="img/hero.png" alt="Hero image">
+            </picture>
+            <div class="mainVisual__grid" style="display:none">
               <div class="mainVisual__gridItem -grid01 -toLeft">
                 <figure class="coachingOverview__figure -main">
                   <picture>
@@ -270,12 +275,12 @@
               <p class="mainVisual__speech -grid09">自分で選び<br>行動したい</p>
             </div>
 
-            <h1 class="mainVisual__title">
+            <h1 class="mainVisual__title" style="display:none">
               <span class="screenReaderText">ジブンに向き合う、ジブンを見つける</span>
               <span class="-noAnimImg"><img src="img/mv_title.webp" alt="ジブンに向き合う、ジブンを見つける"></span>
             </h1>
 
-            <p class="mainVisual__label">
+            <p class="mainVisual__label" style="display:none">
               <span class="mainVisual__labelImg"><img src="img/mv_label.svg" width="100" height="100" alt="キャリアコーチング"></span>
               <span class="mainVisual__labelText">
                 <span>全<span class="-num">8</span>回</span>
@@ -284,7 +289,7 @@
             </p>
           </div>
 
-          <div class="mainVisual__note">
+          <div class="mainVisual__note" style="display:none">
             <p>※自己理解から進路決定まで、オンラインで伴走するプログラムです。</p>
               </div>
            </div>
@@ -306,13 +311,6 @@
 
             <div class="coachingOverview inview -fadeInUp" data-inview-rootMargin="-30% 0% -30% 0%">
               <div class="coachingOverview__media">
-                <figure class="coachingOverview__figure -sub">
-                  <picture>
-                    <source type="image/webp" media="(min-width: 768px)" srcset="img/coaching.webp">
-                    <source type="image/webp" media="(max-width: 768px)" srcset="img/coaching.webp">
-                    <img src="img/coaching.png" width="1200" height="800" alt="オンライン（ビデオ通話）のコーチングイメージ" loading="lazy" decoding="async">
-                  </picture>
-                </figure>
                 <picture>
                   <source media="(min-width: 768px)" srcset="img/coaching.png">
                   <source media="(max-width: 768px)" srcset="img/coaching.png">
