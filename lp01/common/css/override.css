@@ -378,53 +378,39 @@ body.theme-palette-3 {
 .ctaBanner__pill {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
-  width: min(760px, 92%);
+  justify-content: center;
   background: #fff;
   color: var(--text, #111);
   border: 0;
   border-radius: 999px;
-  padding: clamp(12px, 2.5vw, 20px) clamp(16px, 3vw, 28px);
+  padding: 0;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
   cursor: pointer;
   transition: transform .06s ease, box-shadow .2s ease;
   position: relative;
+  overflow: hidden; /* rounded corners apply to inner image */
 }
 
 .ctaBanner__pill:hover { box-shadow: 0 8px 22px rgba(0,0,0,.12); }
 .ctaBanner__pill:active { transform: translateY(1px); }
 
-.ctaBanner__pillText {
-  flex: 1;
-  text-align: center;
-  font-weight: 800;
-  letter-spacing: .02em;
-  line-height: 1.2;
-  font-size: clamp(18px, 2.3vw, 24px);
-}
-.ctaBanner__pillText .-main { margin-right: .5em; }
-.ctaBanner__pillText .-sub { font-weight: 800; }
-
-.ctaBanner__arrow {
-  width: 0; height: 0;
-  border-left: 10px solid currentColor;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
+/* CTA image fits the pill */
+.ctaBanner__img {
+  display: block;
+  width: min(760px, 92vw);
+  height: auto;
 }
 
-.ctaBanner__badge {
-  position: absolute;
-  top: -10px;
-  left: 14px;
-  transform: translateY(-50%);
-  background: #e57f3d;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 12px 12px 12px 2px;
-  font-weight: 800;
-  font-size: clamp(10px, 1.9vw, 13px);
-  box-shadow: 0 2px 0 rgba(0,0,0,.08) inset, 0 4px 12px rgba(0,0,0,.12);
+/* visually hidden text for a11y */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
 }
+
+/* badge removed in image version; keep styles in case of fallback */
 
 @media (max-width: 767px) {
   .ctaBanner__pill { gap: 12px; }
@@ -442,18 +428,7 @@ body.theme-palette-3 {
 .pointItem__bodyText ul li { margin: 0.2em 0; }
 
 /* Point 02 custom layout -------------------------------------------------- */
-/* Make the lead area a full-width green banner and hide its image */
-.pointItem.-brown .pointItem__lead { display: grid; grid-template-columns: 1fr; align-items: center; }
-.pointItem.-brown .pointItem__leadImg { display: none !important; }
-.pointItem.-brown .pointItem__lead.-point02-banner,
-.pointItem.-brown .pointItem__lead { /* fallback if HTML not updated */
-  background: var(--LP-green, #62a593);
-  color: #fff;
-  border-radius: var(--border-radius-3, 12px);
-  padding: clamp(12px, 2.5vw, 22px);
-  box-shadow: 0 2px 0 0 var(--white-alpha-40) inset;
-}
-.pointItem.-brown .pointItem__lead p { color: #fff; font-weight: 800; margin: 0; line-height: 1.9; }
+/* Keep original lead styling (no color override). Only add compare cards. */
 
 /* Two-card comparison area */
 .point02-compare {

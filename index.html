@@ -116,6 +116,28 @@
       }
     })();
   </script>
+  <script>
+    // Minimal text fixes to avoid mojibake for key CTAs
+    (function(){
+      function setText(sel, text){ var el=document.querySelector(sel); if(el) el.textContent=text; }
+      function run(){
+        setText('.header__button.js-dialogOpen span','無料体験申込');
+        setText('.searchCampusModal .searchCampusModal__head .-title','無料体験申込');
+        setText('.searchCampus__buttonInner span:nth-child(2)','無料体験申込');
+        var a=document.querySelector('.buttonBox a.buttonA.-anchorLink.-sizeLL.-hoverBlack span');
+        if(a) a.textContent='無料体験申込';
+        // enforce correct text with Unicode escapes
+        setText('.header__button.js-dialogOpen span','無料体験申込');
+        setText('.searchCampusModal .searchCampusModal__head .-title','\\u7121\\u6599\\u4F53\\u9A13\\u7533\\u8FBC');
+        setText('.searchCampus__buttonInner span:nth-child(2)','無料体験申込');
+        var a2=document.querySelector('.buttonBox a.buttonA.-anchorLink.-sizeLL.-hoverBlack span');
+        if(a2) a2.textContent='\\u7121\\u6599\\u4F53\\u9A13\\u7533\\u8FBC';
+        setText('.point02-card.-before .point02-label','\\u30B3\\u30FC\\u30C1\\u30F3\\u30B0\\u3092\\u53D7\\u3051\\u305A\\u306B\\u5858\\u3078\\u884C\\u304F');
+        setText('.point02-card.-after .point02-label','\\u30B3\\u30FC\\u30C1\\u30F3\\u30B0\\u3092\\u53D7\\u3051\\u3066\\u5858\\u306B\\u884C\\u304F');
+      }
+      if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+    })();
+  </script>
 </head>
 
 <body>
@@ -428,7 +450,7 @@
                   </h4>
                   <div class="point02-compare">
                     <div class="point02-card -before">
-                      <div class="point02-label">�R�[�`���O���󂯂�ɂȂ�ɏ�ւ����</div>
+                      <div class="point02-label">コーチングを受けずに塾へ行く</div>
                       <div class="point02-image">
                         <picture>
                           <source type="image/png" srcset="img/before_use.png">
@@ -437,7 +459,7 @@
                       </div>
                     </div>
                     <div class="point02-card -after">
-                      <div class="point02-label">�R�[�`���O��󂯂�ĎQ�Ɛ����</div>
+                      <div class="point02-label">コーチングを受けて塾に行く</div>
                       <div class="point02-image">
                         <picture>
                           <source type="image/png" srcset="img/after_use.png">
@@ -557,33 +579,12 @@
           </div>
         </section>
 
-        <div class="searchCampus">
-          <div class="splide searchCampusSlider" role="group" aria-label="自動スライダー">
-            <div class="splide__track">
-              <div class="splide__list">
-                <div class="splide__slide"><img src="img/placeholder.svg" width="4817" height="1400" alt="サービスイメージ（プレースホルダー）" loading="lazy"></div>
-              </div>
-            </div>
-          </div>
-
-          <button type="button" class="searchCampus__button js-dialogOpen" data-modalId="dialogCampus">
-            <p class="searchCampus__buttonInner">
-              <span class="-small">まずは無料体験から！</span>
-              <span>無料体験申込み</span>
-            </p>
-          </button>
-        </div>
-
         <section class="ctaBanner -striped">
           <div class="ctaBanner__inner">
             <div class="ctaBanner__content">
               <button type="button" class="ctaBanner__pill js-dialogOpen" data-modalId="dialogCampus" aria-label="保護者説明会 実施中">
-                <span class="ctaBanner__badge" aria-hidden="true">今なら 入会金無料</span>
-                <span class="ctaBanner__pillText">
-                  <span class="-main">保護者説明会</span>
-                  <span class="-sub">実施中</span>
-                </span>
-                <span class="ctaBanner__arrow" aria-hidden="true"></span>
+                <img class="ctaBanner__img" src="cta.png" alt="保護者説明会 実施中">
+                <span class="sr-only">保護者説明会 実施中</span>
               </button>
             </div>
           </div>
@@ -821,3 +822,8 @@
   </script>
 </body>
 </html>
+
+
+
+
+
