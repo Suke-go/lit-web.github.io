@@ -1,23 +1,546 @@
-/* Minimal safe overrides for fast local preview */
-:root {
-  --placeholder-bg: #fafafa;
-  --placeholder-border: #e5e5e5;
+@charset "utf-8";
+
+/* Footer */
+#footer {
+  padding: 20px 0;
+  background: var(--grayscale-tint-95);
 }
 
-/* Ensure images reserve space even if missing */
-img { display: block; max-width: 100%; height: auto; }
-
-/* Fallback for elements that rely on background images */
-[style*="background"], [class*="bg"], [class*="_bg"], [class*="-bg"] {
-  background-color: var(--placeholder-bg);
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Make dialogs and accordions usable without JS */
-dialog { border: 1px solid var(--placeholder-border); border-radius: 8px; }
-.accordion__panel[hidden] { display: none; }
+.footer__logo img {
+  width: 180px;
+  height: auto;
+}
+
+.footer__copyright {
+  font-size: 12px;
+  color: var(--grayscale-tint-50);
+}
+
+.pagetop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.pagetop a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: var(--main-100);
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 50px;
+  font-size: 10px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.pagetop a:hover {
+  opacity: 0.8;
+}
+
+.pagetop span {
+  display: block;
+  font-size: 10px;
+}
+
+@media (max-width: 767px) {
+  .footer__inner {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Accordion (FAQ) minimal fixes */
 .accordion__toggle { cursor: pointer; }
+.accordion__panel[hidden] { display: none !important; }
+.accordion.is-open .accordion__panel {
+  display: block !important;
+  visibility: visible !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+.accordion.-empty .accordion__toggle { opacity: .85; }
+.accordion__placeholder { color: var(--grayscale-tint-50); font-size: 0.95em; }
 
-/* Prevent layout thrash if fonts fail to load */
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans JP, sans-serif; }
+/* Fix for extra spacing in the title */
+.seqLead__title span {
+  letter-spacing: normal;
+}
 
+/* Theme Switcher */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.theme-switcher p {
+  font-size: 12px;
+  color: var(--grayscale-tint-50);
+  margin: 0;
+}
+
+.theme-switcher button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--grayscale-tint-80);
+  cursor: pointer;
+  font-size: 12px;
+  background: #fff;
+}
+
+/* New Color Palettes */
+body.theme-palette-1 {
+  --main-100: #5A9BBE;
+  --sub-100: #88B04B;
+  --grayscale-100: #4A4A4A;
+  --LP-blue: #5A9BBE;
+  --LP-yellow: #F0E68C;
+}
+
+body.theme-palette-2 {
+  --main-100: #D8A788;
+  --sub-100: #A3B86C;
+  --grayscale-100: #5A5A5A;
+  --LP-blue: #D8A788;
+  --LP-yellow: #F5DEB3;
+}
+
+body.theme-palette-3 {
+  --main-100: #8EA4D2;
+  --sub-100: #B4D6C3;
+  --grayscale-100: #6B7280;
+  --LP-blue: #8EA4D2;
+  --LP-yellow: #E6E6FA;
+}
+
+/* Approach Section ------------------------------------------------------- */
+.approachSection {
+  background: var(--background-4);
+  padding: clamp(40px, 6vw, 96px) 20px;
+}
+
+.approachSection__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.approachSection .sectionTitle {
+  text-align: center;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+.approachSection__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 40px);
+  align-items: end;
+}
+
+.approachSection__icon {
+  color: var(--grayscale-100);
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+
+.approachSection__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.approachSection__steps li {
+  background: var(--LP-light-blue);
+  color: var(--text);
+  border-radius: var(--border-radius-3);
+  padding: 14px 16px;
+  box-shadow: 0 2px 0 0 var(--white-alpha-40) inset, 0 2px 6px var(--sub-alpha-10);
+  font-weight: 600;
+}
+
+.approachSection__steps li + li { margin-top: 10px; }
+.approachSection__steps li.-strong { font-weight: 800; }
+
+/* staircase effect */
+.approachSection__steps.-left li:nth-child(1) { width: 66%; margin-left: 16px; }
+.approachSection__steps.-left li:nth-child(2) { width: 82%; margin-left: 8px; }
+.approachSection__steps.-left li:nth-child(3) { width: 100%; margin-left: 0; }
+
+.approachSection__steps.-right li:nth-child(1) { width: 100%; margin-right: 0; }
+.approachSection__steps.-right li:nth-child(2) { width: 82%; margin-left: auto; margin-right: 8px; }
+.approachSection__steps.-right li:nth-child(3) { width: 66%; margin-left: auto; margin-right: 16px; }
+
+.approachSection__note {
+  text-align: center;
+  margin-top: clamp(20px, 3vw, 40px);
+}
+.approachSection__note .-lead {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+}
+
+@media (max-width: 767px) {
+  .approachSection__grid { grid-template-columns: 1fr; }
+  .approachSection__icon { text-align: center; }
+  .approachSection__steps.-left li,
+  .approachSection__steps.-right li { width: 100%; margin-left: 0; margin-right: 0; }
+}
+
+/* Coaching Overview: description paragraph sizing */
+.coachingOverview__content > p:first-of-type {
+  font-size: clamp(16px, 2.2vw, 18px);
+  line-height: 1.9;
+  color: var(--grayscale-100, #333);
+  margin: 0 0 clamp(12px, 2vw, 16px);
+}
+/* Seq Lead: Coaching Overview (replaces 6-step layout) ------------------- */
+#seqLead .collaborationBlock { display: none; }
+
+.coachingOverview {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(16px, 3vw, 40px);
+  align-items: center;
+  margin-top: clamp(16px, 3vw, 32px);
+  margin-bottom: clamp(16px, 3vw, 32px);
+}
+
+.coachingOverview__media picture,
+.coachingOverview__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-4, 16px);
+  box-shadow: 0 6px 18px var(--sub-alpha-15, rgba(0,0,0,.08));
+}
+
+/* Two-image layout: main + sub (overlay) */
+.coachingOverview__media { position: relative; }
+.coachingOverview__figure { margin: 0; position: relative; }
+.coachingOverview__figure.-sub {
+  position: absolute;
+  width: clamp(160px, 40%, 420px);
+  bottom: clamp(8px, 2vw, 16px);
+  right: clamp(8px, 2vw, 16px);
+  z-index: 2;
+}
+.coachingOverview__badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .02em;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+@media (max-width: 767px) {
+  .coachingOverview__figure.-sub {
+    width: clamp(140px, 52%, 320px);
+    bottom: clamp(8px, 3vw, 18px);
+    right: clamp(8px, 3vw, 18px);
+  }
+}
+
+.coachingOverview__content {
+  background: var(--background-2, #fff);
+  border: 1px solid var(--white-alpha-20, rgba(0,0,0,.06));
+  border-radius: var(--border-radius-4, 16px);
+  padding: clamp(16px, 3vw, 28px);
+  box-shadow: 0 2px 0 0 var(--white-alpha-40) inset, 0 6px 24px var(--sub-alpha-10, rgba(0,0,0,.06));
+}
+
+.coachingOverview__lead {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 800;
+  line-height: 1.45;
+  margin: 0 0 clamp(12px, 2vw, 16px);
+}
+
+.coachingOverview__list {
+  list-style: none;
+  margin: 0 0 clamp(12px, 2vw, 16px);
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.coachingOverview__list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  background: var(--LP-light-blue, #eaf6ff);
+  border-radius: var(--border-radius-3, 12px);
+  padding: 10px 12px;
+  font-weight: 700;
+}
+
+.coachingOverview__list .-label {
+  display: inline-block;
+  min-width: 5.5em;
+  padding: 4px 8px;
+  text-align: center;
+  color: #fff;
+  background: var(--main-100, #0aa);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+
+.coachingOverview__list .-text {
+  font-size: clamp(16px, 2.3vw, 18px);
+}
+
+.coachingOverview__note {
+  margin: clamp(8px, 1.6vw, 12px) 0 0;
+  color: var(--grayscale-tint-40, #666);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+@media (max-width: 767px) {
+  .coachingOverview { grid-template-columns: 1fr; }
+}
+
+/* Point Section tweaks --------------------------------------------------- */
+/* Left-align text across the points */
+.seqPoint .pointItem__bodyText,
+.seqPoint .pointItem__body > p,
+.seqPoint .pointItem__lead p { text-align: left; }
+/* Ensure legacy center modifier does not override */
+.pointItem__bodyText.-pcCenter { text-align: left; }
+
+/* Comfortable reading width and spacing */
+.seqPoint .pointItem__lead p,
+.seqPoint .pointItem__body p,
+.seqPoint .pointItem__bodyText { max-width: 68ch; line-height: 1.9; }
+.seqPoint .pointItem__lead p { margin: 0; font-weight: 700; }
+.seqPoint .pointItem { margin-top: clamp(16px, 3vw, 28px) !important; }
+
+/* CTA Banner (new striped design) --------------------------------------- */
+.ctaBanner.-striped {
+  position: relative;
+  padding: clamp(16px, 4vw, 32px) 0;
+  overflow: hidden;
+  background: var(--grayscale-tint-97, #f8f8f8);
+}
+
+.ctaBanner.-striped::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* multi-color stripes inspired by provided design */
+  background: linear-gradient(
+    90deg,
+    #e69a6a 0%, #e69a6a 10%,
+    #f1d27a 10%, #f1d27a 22%,
+    #8bbcab 22%, #8bbcab 34%,
+    #d6a6c2 34%, #d6a6c2 46%,
+    #cc988b 46%, #cc988b 58%,
+    #c46bdd 58%, #c46bdd 70%,
+    #76a7d8 70%, #76a7d8 82%,
+    #8ab1da 82%, #8ab1da 100%
+  );
+  opacity: .8;
+}
+
+.ctaBanner.-striped .ctaBanner__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.ctaBanner__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.ctaBanner__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  width: min(760px, 92%);
+  background: #fff;
+  color: var(--text, #111);
+  border: 0;
+  border-radius: 999px;
+  padding: clamp(12px, 2.5vw, 20px) clamp(16px, 3vw, 28px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  cursor: pointer;
+  transition: transform .06s ease, box-shadow .2s ease;
+  position: relative;
+}
+
+.ctaBanner__pill:hover { box-shadow: 0 8px 22px rgba(0,0,0,.12); }
+.ctaBanner__pill:active { transform: translateY(1px); }
+
+.ctaBanner__pillText {
+  flex: 1;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  font-size: clamp(18px, 2.3vw, 24px);
+}
+.ctaBanner__pillText .-main { margin-right: .5em; }
+.ctaBanner__pillText .-sub { font-weight: 800; }
+
+.ctaBanner__arrow {
+  width: 0; height: 0;
+  border-left: 10px solid currentColor;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+.ctaBanner__badge {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  transform: translateY(-50%);
+  background: #e57f3d;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 12px 12px 12px 2px;
+  font-weight: 800;
+  font-size: clamp(10px, 1.9vw, 13px);
+  box-shadow: 0 2px 0 rgba(0,0,0,.08) inset, 0 4px 12px rgba(0,0,0,.12);
+}
+
+@media (max-width: 767px) {
+  .ctaBanner__pill { gap: 12px; }
+  .ctaBanner__badge { left: 12px; top: -8px; }
+}
+
+/* Lists inside point body: bullets + left alignment */
+.pointItem__bodyText ul {
+  list-style: disc;
+  margin: 0.4em 0 0.8em;
+  padding-left: 1.2em;
+  text-align: left;
+  display: block;
+}
+.pointItem__bodyText ul li { margin: 0.2em 0; }
+
+/* Point 02 custom layout -------------------------------------------------- */
+/* Make the lead area a full-width green banner and hide its image */
+.pointItem.-brown .pointItem__lead { display: grid; grid-template-columns: 1fr; align-items: center; }
+.pointItem.-brown .pointItem__leadImg { display: none !important; }
+.pointItem.-brown .pointItem__lead.-point02-banner,
+.pointItem.-brown .pointItem__lead { /* fallback if HTML not updated */
+  background: var(--LP-green, #62a593);
+  color: #fff;
+  border-radius: var(--border-radius-3, 12px);
+  padding: clamp(12px, 2.5vw, 22px);
+  box-shadow: 0 2px 0 0 var(--white-alpha-40) inset;
+}
+.pointItem.-brown .pointItem__lead p { color: #fff; font-weight: 800; margin: 0; line-height: 1.9; }
+
+/* Two-card comparison area */
+.point02-compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(12px, 3vw, 28px);
+  margin-top: clamp(16px, 3vw, 28px);
+}
+
+.point02-card {
+  position: relative;
+  background: var(--grayscale-tint-97, #f8f8f8);
+  border: 1px solid var(--grayscale-tint-80, #d1d1d2);
+  border-radius: var(--border-radius-4, 16px);
+  padding: 12px;
+  padding-top: 56px; /* space for label */
+  min-height: clamp(220px, 30vw, 340px);
+  box-shadow: 0 2px 0 0 var(--white-alpha-40) inset, 0 4px 16px rgba(0,0,0,.05);
+}
+
+.point02-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: var(--grayscale-100, #333);
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.point02-image {
+  height: calc(100% - 12px);
+  background: var(--grayscale-tint-98, #fafafa);
+  border: 1px solid var(--grayscale-tint-85, #ddd);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.point02-image img { max-width: 92%; max-height: 92%; object-fit: contain; display: block; }
+
+@media (max-width: 767px) {
+  .point02-compare { grid-template-columns: 1fr; }
+}
+
+/* Step list styling inside Point 03 */
+.pointSteps { list-style: none; margin: 0.2em 0 0.8em; padding: 0; display: grid; gap: 10px; }
+.pointSteps__label { font-weight: 800; margin: 0 0 2px; }
+.pointSteps__text { margin: 0; max-width: 68ch; line-height: 1.9; }
+
+@media (max-width: 767px) {
+  .seqPoint .pointItem__lead p,
+  .seqPoint .pointItem__body p,
+  .seqPoint .pointItem__bodyText,
+  .pointSteps__text { max-width: 100%; }
+}
+
+/* Optional additional color variant for the 4th point */
+.pointItem.-navy .pointItem__head { color: var(--LP-blue, #4F6D8A); }
+.pointItem.-navy .pointItem__headLabel { border-color: var(--LP-blue, #4F6D8A); }
+.pointItem.-navy .pointItem__lead { background-color: var(--LP-blue, #4F6D8A); }
+
+.approachSection {
+  background: var(--background-4);
+  padding: clamp(40px, 6vw, 96px) 20px;
+}
+.approachSection__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Helpers (minimal and non-conflicting)
+----------------------------------------------------------------------------- */
+
+/* PC/SP visibility helpers for <br> controls used in copy */
+@media (max-width: 767px) {
+  br.-pcItem { display: none !important; }
+  br.-spItem { display: inline !important; }
+}
+
+@media (min-width: 768px) {
+  br.-pcItem { display: inline !important; }
+  br.-spItem { display: none !important; }
+}
+/* (dup cleanup) approachSection rules are defined above; removed duplicate block */
