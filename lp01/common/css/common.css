@@ -3038,7 +3038,7 @@ ul.error + * {
 }
 @media screen and (min-width: 768px) {
   .ctaButton {
-    top: 38%;
+    top: 32%;
     right: 0;
     transform: translateY(-50%);
     border-radius: 0.08rem 0 0 0.08rem;
