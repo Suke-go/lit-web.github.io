@@ -74,10 +74,10 @@
   --LP-blue: #0062ff;
   --LP-yellow: #fff000;
   --accent: var(--sub-100);
-  --background-1: #efeef4;
-  --background-2: #efeef4;
-  --background-3: #f3f0eb;
-  --background-4: #f3f5fc;
+  --background-1: #f6f7f9;
+  --background-2: #f4f6f7;
+  --background-3: #f5f2f3;
+  --background-4: #f1f4f8;
   --border: #d9d9d9;
   --border-dark: var(--main-tint-70);
   --gray: var(--grayscale-tint-50);
@@ -100,10 +100,12 @@
   --LP-baloon-light-blue: #3d95a6;
   --LP-baloon-orange: #d15830;
   --LP-baloon-yellow: #be791a;
-  --bg-base: #f7f8f8;
-  --bg-dot-color: rgba(8, 131, 175, 0.18);
-  --bg-dot-size: 52px;
-  --bg-dot-radius: 2px;
+  --bg-base: #f8f9fb;
+  --bg-dot-color-1: rgba(8, 131, 175, 0.16);
+  --bg-dot-color-2: rgba(46, 143, 117, 0.12);
+  --bg-dot-color-3: rgba(215, 83, 101, 0.12);
+  --bg-dot-size: 60px;
+  --bg-dot-radius: 1.8px;
 }
 @media screen and (min-width: 768px), print {
   :root {
@@ -379,18 +381,27 @@ body {
   background-image:
     radial-gradient(
       circle,
-      var(--bg-dot-color) var(--bg-dot-radius),
+      var(--bg-dot-color-1) var(--bg-dot-radius),
       transparent calc(var(--bg-dot-radius) + 1px)
     ),
     radial-gradient(
       circle,
-      var(--bg-dot-color) var(--bg-dot-radius),
+      var(--bg-dot-color-2) var(--bg-dot-radius),
+      transparent calc(var(--bg-dot-radius) + 1px)
+    ),
+    radial-gradient(
+      circle,
+      var(--bg-dot-color-3) var(--bg-dot-radius),
       transparent calc(var(--bg-dot-radius) + 1px)
     );
-  background-size: var(--bg-dot-size) var(--bg-dot-size);
+  background-size:
+    var(--bg-dot-size) var(--bg-dot-size),
+    var(--bg-dot-size) var(--bg-dot-size),
+    var(--bg-dot-size) var(--bg-dot-size);
   background-position:
     0 0,
-    calc(var(--bg-dot-size) / 2) calc(var(--bg-dot-size) / 2);
+    calc(var(--bg-dot-size) / 2) calc(var(--bg-dot-size) / 2),
+    calc(var(--bg-dot-size) * 0.75) calc(var(--bg-dot-size) / 4);
   -webkit-text-size-adjust: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -3025,14 +3036,21 @@ ul.error + * {
   background: var(--white-100);
   transition: background 0.25s ease-out;
 }
-@media screen and (min-width: 768px), print {
+@media screen and (min-width: 768px) {
   .ctaButton {
-    top: 50%;
+    top: 38%;
     right: 0;
     transform: translateY(-50%);
     border-radius: 0.08rem 0 0 0.08rem;
     border: 1px solid var(--LP-text);
     border-right: none;
+  }
+}
+@media print {
+  .ctaButton {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
   }
 }
 @media screen and (max-width: 767px) {
