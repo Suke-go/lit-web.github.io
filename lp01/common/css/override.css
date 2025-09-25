@@ -564,18 +564,35 @@ body.theme-palette-3 {
   white-space: nowrap;
 }
 
-/* Comfortable reading width and spacing */
-.seqPoint .pointItem__lead p,
-.seqPoint .pointItem__body p,
-.seqPoint .pointItem__bodyText { max-width: 68ch; line-height: 1.9; }
-.seqPoint .pointItem__lead p { margin: 0; font-weight: 700; }
-.seqPoint .pointItem { margin-top: clamp(16px, 3vw, 28px) !important; }
+/* Balance head/lead/body spacing */
+.seqPoint .pointItem {
+  --seq-point-padding-x: clamp(24px, 4vw, 40px);
+  --seq-point-padding-y: clamp(18px, 3vw, 28px);
+  margin-top: clamp(16px, 3vw, 28px) !important;
+}
+.seqPoint .pointItem__head {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 20px);
+  padding: var(--seq-point-padding-y) var(--seq-point-padding-x);
+  margin: 0;
+}
+.seqPoint .pointItem__head::after { display: none; }
+.seqPoint .pointItem__head p {
+  margin: 0;
+  color: var(--LP-text, #1a1f36);
+}
 .seqPoint .pointItem__lead {
   position: static;
   display: flex;
   align-items: center;
   gap: clamp(16px, 2.5vw, 32px);
-  padding: clamp(18px, 3vw, 28px) clamp(24px, 4vw, 40px);
+  border-radius: 0;
+  padding: var(--seq-point-padding-y) var(--seq-point-padding-x);
+}
+.seqPoint .pointItem__lead p {
+  margin: 0;
+  font-weight: 700;
 }
 .seqPoint .pointItem__leadMedia {
   margin: 0;
@@ -588,8 +605,64 @@ body.theme-palette-3 {
   width: 100%;
   height: auto;
 }
-.seqPoint .pointItem__leadText {
-  flex: 1 1 auto;
+.seqPoint .pointItem__leadText { flex: 1 1 auto; }
+.seqPoint .pointItem__body {
+  padding: clamp(28px, 5vw, 48px) var(--seq-point-padding-x) clamp(36px, 6vw, 56px);
+}
+.seqPoint .pointItem.-green .pointItem__body { display: block; }
+
+.seqPoint .pointItem__media {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3.5vw, 48px);
+}
+
+.seqPoint .pointItem__mediaText {
+  flex: 1 1 0;
+}
+
+.seqPoint .pointItem__mediaText p {
+  margin: 0;
+}
+
+.seqPoint .pointItem__mediaText p + p {
+  margin-top: 1.2em;
+}
+
+.seqPoint .pointItem__mediaImage {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.seqPoint .pointItem__mediaImage img {
+  display: block;
+  max-width: min(360px, 100%);
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .seqPoint .pointItem__media {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .seqPoint .pointItem__mediaImage {
+    width: 100%;
+  }
+
+  .seqPoint .pointItem__mediaImage img {
+    max-width: 100%;
+  }
+}
+
+
+/* Comfortable reading width */
+.seqPoint .pointItem__lead p,
+.seqPoint .pointItem__body > p,
+.seqPoint .pointItem__body p,
+.seqPoint .pointItem__bodyText {
+  max-width: 68ch;
+  line-height: 1.9;
 }
 
 /* Lists inside point body: bullets + left alignment */
@@ -601,6 +674,27 @@ body.theme-palette-3 {
   display: block;
 }
 .pointItem__bodyText ul li { margin: 0.2em 0; }
+
+@media (max-width: 767px) {
+  .seqPoint .pointItem {
+    --seq-point-padding-x: clamp(16px, 6vw, 24px);
+    --seq-point-padding-y: clamp(14px, 5vw, 22px);
+  }
+  .seqPoint .pointItem__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(8px, 3vw, 12px);
+  }
+  .seqPoint .pointItem__lead {
+    display: block;
+    padding: var(--seq-point-padding-y) var(--seq-point-padding-x);
+  }
+  .seqPoint .pointItem__leadMedia {
+    width: clamp(180px, 60vw, 260px);
+    margin: 0 auto clamp(12px, 4vw, 20px);
+  }
+  .pointSteps__text { max-width: 100%; }
+}
 
 /* Point 02 custom layout -------------------------------------------------- */
 /* Keep original lead styling (no color override). Only add compare cards. */
@@ -665,7 +759,7 @@ body.theme-palette-3 {
   .pointSteps__text { max-width: 100%; }
   .seqPoint .pointItem__lead {
     display: block;
-    padding: clamp(16px, 5vw, 24px);
+    padding: var(--seq-point-padding-y) var(--seq-point-padding-x);
   }
   .seqPoint .pointItem__leadMedia {
     width: clamp(180px, 60vw, 260px);
