@@ -109,166 +109,269 @@
 /* Hero Section ----------------------------------------------------------- */
 .heroSection {
   position: relative;
-  padding: clamp(64px, 10vw, 140px) 0;
-  background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 45%, #f5fbff 100%);
-  overflow: hidden;
+  padding: 50px 0 72px;
+  overflow: visible;
+  background: transparent;
 }
-.heroSection::before {
-  content: "";
-  position: absolute;
-  inset: -10% -10% auto;
-  height: 65%;
-  background: radial-gradient(circle at top left, rgba(8, 131, 175, 0.18), transparent 55%),
-    radial-gradient(circle at 30% 80%, rgba(244, 200, 90, 0.25), transparent 60%);
-  pointer-events: none;
-}
+
 .heroSection::after {
   content: none;
 }
 .heroSection__inner {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 6vw, 60px);
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.3fr);
-  align-items: center;
-  gap: clamp(32px, 6vw, 80px);
-}
-.heroSection__copy {
-  display: grid;
-  gap: clamp(16px, 2vw, 28px);
-}
-.heroSection__eyebrow {
-  margin: 0;
-  font-size: clamp(13px, 1.8vw, 16px);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--main-100, #0883af);
-}
-.heroSection__title {
-  margin: 0;
-  font-size: clamp(28px, 4vw, 46px);
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--grayscale-100, #202020);
-}
-.heroSection__text {
-  margin: 0;
-  font-size: clamp(15px, 2vw, 18px);
-  line-height: 1.8;
-  color: var(--grayscale-tint-40, #565b64);
-  max-width: 42ch;
-}
-.heroSection__actions {
+  padding: 64px 80px 56px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-.heroSection__btn {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 14px 26px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.02em;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-}
-.heroSection__btn span {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.heroSection__btn.-primary {
-  background: var(--main-100, #0883af);
-  color: #fff;
-  box-shadow: 0 18px 40px rgba(8, 131, 175, 0.25);
-}
-.heroSection__btn.-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 48px rgba(8, 131, 175, 0.3);
-}
-.heroSection__btn.-ghost {
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--main-100, #0883af);
-  border: 2px solid rgba(8, 131, 175, 0.25);
-  backdrop-filter: blur(4px);
-}
-.heroSection__btn.-ghost:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-2px);
+  justify-content: space-between;
+  gap: 48px;
 }
 .heroSection__visual {
-  position: relative;
+  flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: clamp(20px, 3.5vw, 36px);
 }
-.heroSection__visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: clamp(22px, 3.5vw, 40px);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.95), rgba(8, 131, 175, 0.2));
-  box-shadow: 0 28px 44px -26px rgba(8, 39, 68, 0.6);
-  z-index: -2;
-}
+.heroSection__visual::before,
 .heroSection__visual::after {
-  content: "";
-  position: absolute;
-  inset: auto 10% -22% 10%;
-  height: clamp(110px, 18vw, 220px);
-  background: radial-gradient(circle, rgba(8, 131, 175, 0.25) 0%, rgba(8, 131, 175, 0) 72%);
-  filter: blur(2px);
-  z-index: -1;
+  content: none;
+}
+.heroSection__frame {
+  position: relative;
+  display: inline-flex;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(47, 25, 9, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 28px 42px rgba(47, 25, 9, 0.12);
+}
+.heroSection__frame::before,
+.heroSection__frame::after {
+  content: none;
 }
 .heroSection__visual img {
-  width: min(100%, 680px);
+  display: block;
+  width: clamp(320px, 60vw, 880px);
   height: auto;
-  border-radius: clamp(22px, 3.8vw, 44px);
-  border: clamp(6px, 1vw, 12px) solid rgba(255, 255, 255, 0.95);
-  filter: drop-shadow(0 24px 42px rgba(12, 65, 93, 0.28));
+  border-radius: 16px;
+  border: 0;
+  filter: none;
+}
+.heroSection__badge {
+  flex: 0 0 auto;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: #ffffff;
+  border: 1px solid rgba(47, 25, 9, 0.28);
+  border-radius: 20px;
+  padding: 24px 18px;
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 1.5vw, 18px);
+  letter-spacing: 0.16em;
+  color: #2f1909;
+  box-shadow: 0 24px 32px rgba(47, 25, 9, 0.12);
+}
+
+@media (max-width: 1280px) {
+  .heroSection {
+    padding: 80px 0 64px;
+  }
+  .heroSection::before {
+    margin: 0 24px;
+  }
+  .heroSection__inner {
+    padding: 52px 56px 48px;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 1024px) {
+  .heroSection {
+    padding: 72px 0 56px;
+  }
+  .heroSection::before {
+    margin: 0 16px;
+    border-radius: 12px;
+  }
   .heroSection__inner {
-    grid-template-columns: 1fr;
-    text-align: center;
+    padding: 44px 32px 40px;
+    gap: 32px;
   }
-  .heroSection__copy {
-    justify-items: center;
+  .heroSection__frame {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 20px 32px rgba(47, 25, 9, 0.1);
   }
-  .heroSection__text {
-    max-width: 48ch;
-  }
-  .heroSection__actions {
-    justify-content: center;
+  .heroSection__badge {
+    border-radius: 16px;
+    padding: 20px 14px;
+    letter-spacing: 0.12em;
   }
 }
 
 @media (max-width: 767px) {
   .heroSection {
-    padding: clamp(48px, 14vw, 88px) 0;
+    padding: 48px 0 40px;
+  }
+  .heroSection::before {
+    margin: 0;
+    border-radius: 0;
+  }
+  .heroSection__inner {
+    flex-direction: column;
+    padding: 32px 20px 36px;
+    gap: 24px;
   }
   .heroSection__visual {
-    padding: clamp(10px, 5vw, 18px);
+    width: 100%;
+  }
+  .heroSection__frame {
+    padding: 12px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 16px 28px rgba(47, 25, 9, 0.12);
   }
   .heroSection__visual img {
-    width: min(100%, 400px);
-  }
-  .heroSection__btn {
     width: 100%;
-    justify-content: center;
+    max-width: 520px;
+    border-radius: 12px;
   }
+  .heroSection__badge {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    align-self: center;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    box-shadow: 0 12px 20px rgba(47, 25, 9, 0.12);
+  }
+}
+
+/* CTA adjustments -------------------------------------------------------- */
+.buttonBox__media,
+.ctaBanner__media {
+  display: block;
+}
+
+.ctaBanner { padding-top: 0; }
+
+.buttonBox__image {
+  display: block;
+  width: min(100%, 420px);
+  margin: 0 auto;
+  height: auto;
+}
+
+.ctaBanner__button {
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.ctaBanner__image {
+  display: block;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .heroSection {
+    padding: 32px 0 24px;
+  }
+
+  * + .buttonBox {
+    margin-top: 0.36rem;
+  }
+
+  .seqPoint {
+    padding-top: 0.56rem;
+  }
+
+  .seqVoice {
+    padding: 0.6rem 0;
+  }
+
+  .ctaBanner { padding-top: 0; }
+
+  .ctaBanner__title + * {
+    margin-top: 0.24rem;
+  }
+
+  .seqFaq {
+    padding: 0.6rem 0 0;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .buttonBox__image {
+    width: min(100%, 240px);
+  }
+
+  .ctaBanner__image {
+    width: min(100%, 1200px);
+  }
+
+  .sectionTitle.-point .sectionTitle__pointImage {
+    width: min(100%, 220px);
+  }
+
+  .ctaButton {
+    top: 75vh;
+    right: 16px;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    padding: 0;
+    transform: translateY(-50%);
+    border: 1px solid var(--LP-text);
+    border-radius: 999px;
+    box-shadow: 0 8px 16px rgba(8, 39, 68, 0.12);
+  }
+
+  .ctaButton__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ctaButton__item button {
+    padding: 6px 12px;
+    min-height: auto;
+    font-size: 0.12rem;
+    letter-spacing: 0.01rem;
+  }
+
+  .ctaButton__item button::before {
+    display: none;
+  }
+
+  .ctaButton__inner {
+    flex-direction: row;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 767px) {
+  .voiceItem__head img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.seqLead {
+  padding: 0;
 }
 
 /* Accordion (FAQ) minimal fixes */
@@ -529,12 +632,22 @@ body.theme-palette-3 {
 }
 
 /* Point Section tweaks --------------------------------------------------- */
+.sectionTitle.-point .sectionTitle__pointImage {
+  display: block;
+  width: clamp(260px, 48vw, 360px);
+  max-width: 100%;
+  margin: 0 auto;
+}
 /* Left-align text across the points */
 .seqPoint .pointItem__bodyText,
 .seqPoint .pointItem__body > p,
 .seqPoint .pointItem__lead p { text-align: left; }
 /* Ensure legacy center modifier does not override */
-.pointItem__bodyText.-pcCenter { text-align: left; }
+.pointItem__bodyText.-pcCenter {
+  text-align: left;
+  max-width: none;
+  width: 100%;
+}
 
 /* Replace SVG title tag with live text */
 .sectionTitle.-point .sectionTitle__inner .-img {
@@ -665,6 +778,10 @@ body.theme-palette-3 {
   line-height: 1.9;
 }
 
+.seqPoint .pointItem__bodyText.-pcCenter {
+  max-width: none;
+}
+
 /* Lists inside point body: bullets + left alignment */
 .pointItem__bodyText ul {
   list-style: disc;
@@ -748,15 +865,28 @@ body.theme-palette-3 {
 }
 
 /* Step list styling inside Point 03 */
-.pointSteps { list-style: none; margin: 0.2em 0 0.8em; padding: 0; display: grid; gap: 10px; }
-.pointSteps__label { font-weight: 800; margin: 0 0 2px; }
-.pointSteps__text { margin: 0; max-width: 68ch; line-height: 1.9; }
+.pointSteps {
+  list-style: none;
+  margin: 0.2em 0 0.8em;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr);
+}
+.pointSteps li { display: grid; gap: clamp(6px, 1vw, 12px); }
+.pointSteps__label { font-weight: 800; margin: 0; }
+.pointSteps__text { margin: 0; line-height: 1.9; }
+
+.seqPoint p.pointSteps__label,
+.seqPoint p.pointSteps__text {
+  max-width: none;
+  width: 100%;
+}
 
 @media (max-width: 767px) {
   .seqPoint .pointItem__lead p,
   .seqPoint .pointItem__body p,
-  .seqPoint .pointItem__bodyText,
-  .pointSteps__text { max-width: 100%; }
+  .seqPoint .pointItem__bodyText { max-width: 100%; }
   .seqPoint .pointItem__lead {
     display: block;
     padding: var(--seq-point-padding-y) var(--seq-point-padding-x);
@@ -806,3 +936,9 @@ body.theme-palette-3 {
   br.-spItem { display: none !important; }
 }
 /* (dup cleanup) approachSection rules are defined above; removed duplicate block */
+.heroSection > img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0 auto;
+}

@@ -376,30 +376,14 @@ body {
   font-family: YakuHanRP, "Zen Maru Gothic", serif;
   font-size: 160%;
   background-color: var(--bg-base);
-  background-image:
-    radial-gradient(
-      circle,
-      var(--bg-dot-color-1) var(--bg-dot-radius),
-      transparent calc(var(--bg-dot-radius) + 1px)
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
     ),
-    radial-gradient(
-      circle,
-      var(--bg-dot-color-2) var(--bg-dot-radius),
-      transparent calc(var(--bg-dot-radius) + 1px)
-    ),
-    radial-gradient(
-      circle,
-      var(--bg-dot-color-3) var(--bg-dot-radius),
-      transparent calc(var(--bg-dot-radius) + 1px)
-    );
-  background-size:
-    var(--bg-dot-size) var(--bg-dot-size),
-    var(--bg-dot-size) var(--bg-dot-size),
-    var(--bg-dot-size) var(--bg-dot-size);
-  background-position:
-    0 0,
-    calc(var(--bg-dot-size) / 2) calc(var(--bg-dot-size) / 2),
-    calc(var(--bg-dot-size) * 0.75) calc(var(--bg-dot-size) / 4);
+    url(../../../img/back.png);
+  background-repeat: no-repeat, repeat;
+  background-size: cover, auto;
+  background-position: center top, center top;
   -webkit-text-size-adjust: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
