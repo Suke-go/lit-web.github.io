@@ -848,6 +848,12 @@ body.theme-palette-3 {
   box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
+.point02-card.-after .point02-label {
+  background: linear-gradient(90deg, var(--main-100, #0883af), var(--sub-100, #2e8f75));
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(8, 131, 175, 0.28);
+}
+
 .point02-image {
   height: calc(100% - 12px);
   background: var(--grayscale-tint-98, #fafafa);

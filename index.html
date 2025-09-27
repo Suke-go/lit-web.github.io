@@ -16,21 +16,14 @@
     <title>CAREER COACHING - 高校生向けオンラインコーチング</title>
 
     <!-- icon start -->
-
     <link rel="shortcut icon" href="common/img/favicon.ico" />
-
     <link rel="apple-touch-icon" href="common/img/apple-touch-icon.png" />
-
     <link rel="icon" type="image/png" href="common/img/android-chrome.png" />
-
     <!-- icon end -->
 
     <!-- font start -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       rel="preload"
       as="style"
@@ -46,7 +39,6 @@
     />
 
     <!-- font end -->
-
     <!-- yakuhan font start -->
 
     <link
@@ -78,56 +70,41 @@
       (function () {
         function run() {
           // Fix heading text if encoding broke it
-
           var h = document.querySelector("#seqFaq .sectionTitle__inner span");
-
           if (h) h.textContent = "よくあるご質問";
-
           var items = [
             {
               id: "accordionFaq01",
-
               q: "Career Coaching ではどんなことをしますか？",
-
               a: [
                 "<p>対話と質問を通じて考えを深め、本人の中にある答えを引き出す支援です。自己理解 → 将来像 → 行動計画の順で伴走し、主体的な進路選択を後押しします。</p>",
-
                 "<p>面談では、LPS（ライフ・プランニング・シート）を用いて過去の経験・価値観・得意／苦手を整理し、志望理由書や面接で語れる言葉に落とし込みます。</p>",
               ],
             },
 
             {
               id: "accordionFaq02",
-
               q: "料金はいくらですか？",
-
               a: [
                 "<p>1回あたり 12,500円（税込）。1回は50〜60分です。</p>",
-
                 "<p>標準プランの目安は全8回（2〜3ヶ月）で、合計 100,000円（税込）。日程は部活・行事に合わせて柔軟に調整します。初回はオンラインの無料相談（15分）をご利用いただけます。</p>",
               ],
             },
 
             {
               id: "accordionFaq03",
-
               q: "どのように受講しますか？",
-
               a: [
                 "<p>Zoom を使用した1対1のオンラインセッションです。ネット環境があれば全国どこからでも参加できます（PC／タブレット／スマホ可）。</p>",
-
                 "<p>カメラとマイクのご用意を推奨します。対面をご希望の場合は一部地域で個別にご相談ください。</p>",
               ],
             },
 
             {
               id: "accordionFaq04",
-
               q: "保護者の同席はできますか？",
-
               a: [
                 "<p>可能です。初回面談や節目の回のみ同席いただく形を推奨しています。</p>",
-
                 "<p>必要に応じて面談の要点や次回までの宿題を保護者さまにも共有しますが、あくまでご本人の主体性を最優先に進めます。</p>",
               ],
             },
@@ -144,27 +121,21 @@
 
           items.forEach(function (item) {
             var panel = document.getElementById(item.id);
-
             if (!panel) return;
-
             var btn = document.querySelector(
               '.accordion__toggle[aria-controls="' + item.id + '"]',
             );
 
             if (btn) {
               var span = btn.querySelector("span");
-
               if (span) span.textContent = item.q;
-
               var root = btn.closest && btn.closest(".accordion");
-
               if (root) {
                 root.classList.remove("-empty");
               }
             }
 
             var inner = panel.querySelector(".accordion__panelInner") || panel;
-
             inner.innerHTML = item.a.join("");
           });
         }
@@ -349,14 +320,21 @@
           </section>
 
           <div class="buttonBox anchorLink">
-            <picture class="buttonBox__media">
-              <source media="(max-width: 767px)" srcset="img/cta1.svg" />
-              <img
-                class="buttonBox__image"
-                src="img/cta1.svg"
-                alt="保護者説明会 実施中"
-              />
-            </picture>
+            <a
+              href="#dialogCampus"
+              class="js-dialogOpen"
+              data-modalId="dialogCampus"
+              aria-label="保護者説明会 実施中"
+            >
+              <picture class="buttonBox__media">
+                <source media="(max-width: 767px)" srcset="img/cta1.svg" />
+                <img
+                  class="buttonBox__image"
+                  src="img/cta1.svg"
+                  alt="保護者説明会 実施中"
+                />
+              </picture>
+            </a>
           </div>
 
           <section class="seqPoint">
@@ -423,7 +401,6 @@
                     <span class="pointItem__headLabel"
                       >POINT<br /><span class="-num">02</span></span
                     >
-
                     <p>なぜ塾ではなく高校生キャリアコーチングを選ぶの？</p>
                   </h3>
 
@@ -497,7 +474,6 @@
                     <span class="pointItem__headLabel"
                       >POINT<br /><span class="-num">03</span></span
                     >
-
                     <p>サービスの流れは？</p>
                   </h3>
 
@@ -605,17 +581,15 @@
                   <div class="voiceItem__head">
                     <img
                       src="lp01/common/img/voice_student1.png"
-                      width="240"
-                      height="240"
+                      width="150"
+                      height="150"
                       alt="生徒の声"
                       loading="lazy"
                     />
-
                     <span class="-name">Mさん（高校生）</span>
                   </div>
 
                   <h3 class="voiceItem__title">勉強の意味がつながった</h3>
-
                   <p class="voiceItem__text">
                     進路の仮説を立ててから、日々の勉強に目的ができました。週ごとの行動計画と振り返りで、少しずつ前に進めています。
                   </p>
@@ -628,8 +602,8 @@
                   <div class="voiceItem__head">
                     <img
                       src="lp01/common/img/voice_student2.png"
-                      width="240"
-                      height="240"
+                      width="150"
+                      height="150"
                       alt="生徒の声"
                       loading="lazy"
                     />
@@ -648,8 +622,8 @@
                   <div class="voiceItem__head">
                     <img
                       src="lp01/common/img/voice_mother.png"
-                      width="240"
-                      height="240"
+                      width="150"
+                      height="150"
                       alt="保護者の声"
                       loading="lazy"
                     />
@@ -658,7 +632,6 @@
                   </div>
 
                   <h3 class="voiceItem__title">主体性が行動に表れた</h3>
-
                   <p class="voiceItem__text">
                     進路の話ができるようになり、行動が継続。家庭でも次の一歩を自分から提案してくれるようになりました。
                   </p>
