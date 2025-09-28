@@ -380,7 +380,7 @@ body {
       rgba(255, 255, 255, 0.8),
       rgba(255, 255, 255, 0.8)
     ),
-    url(../../../img/back.png);
+    url(../img/back.png);
   background-repeat: no-repeat, repeat;
   background-size: cover, auto;
   background-position: center top, center top;
@@ -2810,7 +2810,7 @@ ul.error + * {
 }
 @media screen and (min-width: 768px), print {
   .ctaBanner__list {
-    background-image: url(img/bg_cta.svg);
+    background-image: url(../img/bg_cta.svg);
     background-size: 15.36rem auto;
     background-repeat: repeat;
     background-position: 0 0;
@@ -2818,7 +2818,7 @@ ul.error + * {
 }
 @media screen and (max-width: 767px) {
   .ctaBanner__list {
-    background-image: url(img/bg_cta@sp.svg);
+    background-image: url(../img/bg_cta@sp.svg);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: 0 0;
@@ -2953,7 +2953,7 @@ ul.error + * {
 .ctaBanner__item.-openCampus button > span:not([class])::before {
   width: 1.66rem;
   aspect-ratio: 1.5090909091;
-  background-image: url(img/cta_opencampus.svg);
+  background-image: url(../img/cta_opencampus.svg);
 }
 @media screen and (max-width: 767px) {
   .ctaBanner__item.-openCampus button > span:not([class])::before {
@@ -2963,7 +2963,7 @@ ul.error + * {
 .ctaBanner__item.-doc a > span:not([class])::before {
   width: 0.92rem;
   aspect-ratio: 0.8363636364;
-  background-image: url(img/cta_doc.svg);
+  background-image: url(../img/cta_doc.svg);
 }
 @media screen and (max-width: 767px) {
   .ctaBanner__item.-doc a > span:not([class])::before {
@@ -5002,10 +5002,10 @@ body.-dialogNoSupport dialog.fixed {
   }
 }
 .sectionTitle::before {
-  background-image: url(img/icon_title_left.svg);
+  background-image: url(../img/icon_title_left.svg);
 }
 .sectionTitle::after {
-  background-image: url(img/icon_title_right.svg);
+  background-image: url(../img/icon_title_right.svg);
 }
 .sectionTitle.-point {
   font-size: 0.48rem;
@@ -5226,7 +5226,7 @@ body.-dialogNoSupport dialog.fixed {
   }
 }
 .seqLead__title .-strong.-icon.-support::before {
-  background-image: url(img/icon_support.webp);
+  background-image: url(../img/icon_support.webp);
 }
 @media screen and (max-width: 767px) {
   .seqLead__title .-strong.-icon.-support {
@@ -5234,7 +5234,7 @@ body.-dialogNoSupport dialog.fixed {
   }
 }
 .seqLead__title .-strong.-icon.-teaching::before {
-  background-image: url(img/icon_teaching.webp);
+  background-image: url(../img/icon_teaching.webp);
 }
 .seqLead__title .-strong.-icon::after {
   width: calc(100% - 0.92rem);
