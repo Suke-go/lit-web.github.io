@@ -1138,3 +1138,27 @@ body.theme-palette-3 {
     justify-content: center;
   }
 }
+.ctaYokoBanner {
+  position: fixed;
+  top: clamp(96px, 12vh, 180px);
+  right: clamp(8px, 2vw, 24px);
+  width: min(25vw, 320px);
+  z-index: 150;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.ctaYokoBanner img {
+  display: block;
+  width: 20%;
+  height: auto;
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .ctaYokoBanner {
+    display: none;
+  }
+}
