@@ -178,6 +178,14 @@
 
 }
 
+#header + #main .heroSection--fullscreen:first-child {
+
+  margin-top: 0 !important;
+
+  padding-top: 0 !important;
+
+}
+
 
 
 .heroSection--fullscreen > img {
@@ -419,6 +427,16 @@
     max-height: 100%;
 
     position: absolute;
+
+  }
+
+
+
+  /* Remove main padding when heroSection--fullscreen exists */
+
+  #main:has(.heroSection--fullscreen) {
+
+    padding-bottom: 0 !important;
 
   }
 
@@ -1443,27 +1461,38 @@ p,
   opacity: 0.6;
 }
 
+/* Force hidden panels to be hidden */
+.seqFaq .accordion__panel[hidden],
 .accordion__panel[hidden] {
   display: none !important;
   visibility: hidden !important;
+  opacity: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
 }
 
-.accordion.is-open .accordion__panel {
+/* Force visible panels to be visible when accordion is open */
+.seqFaq .accordion.is-open .accordion__panel:not([hidden]),
+.accordion.is-open .accordion__panel:not([hidden]) {
   display: block !important;
   visibility: visible !important;
+  opacity: 1 !important;
   max-height: none !important;
   height: auto !important;
   overflow: visible !important;
 }
 
-.accordion__panel:not([hidden]) {
-  display: block !important;
-  visibility: visible !important;
+/* Default: panels without hidden should be hidden unless accordion is open */
+.seqFaq .accordion:not(.is-open) .accordion__panel,
+.accordion:not(.is-open) .accordion__panel {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 /* Override common.css accordion styles */
 .accordion__wrap .accordion .accordion__panel[hidden] {
   display: none !important;
+  visibility: hidden !important;
 }
 
 .accordion.-empty .accordion__toggle { opacity: .85; }

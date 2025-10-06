@@ -836,6 +836,23 @@
         );
       })();
 
+      // CRITICAL: Remove all accordion event listeners from common.js
+      (function() {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            console.log("=== REMOVING COMMON.JS ACCORDION HANDLERS ===");
+            var toggles = document.querySelectorAll(".accordion__toggle[aria-controls]");
+            toggles.forEach(function(oldBtn) {
+              var newBtn = oldBtn.cloneNode(true);
+              if (oldBtn.parentNode) {
+                oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+              }
+            });
+            console.log("Removed handlers from", toggles.length, "buttons");
+          }, 10);
+        });
+      })();
+
       // Accessible accordion: robust fallback to ensure panels open/close
 
       // Works even if site JS doesn't manage the hidden attribute.
@@ -843,6 +860,8 @@
       (function () {
         function setPanelVisibility(panel, show) {
           if (!panel) return;
+
+          console.log("setPanelVisibility:", panel.id, "show:", show, "current hidden:", panel.hasAttribute("hidden"));
 
           if (show) {
             panel.removeAttribute("hidden");
@@ -858,6 +877,8 @@
             panel.style.height = "";
 
             panel.style.overflow = "";
+
+            console.log("After showing:", panel.id, "hidden attr:", panel.hasAttribute("hidden"), "computed display:", window.getComputedStyle(panel).display);
           } else {
             // Hide via hidden attribute only
 
@@ -874,6 +895,8 @@
             panel.style.height = "";
 
             panel.style.overflow = "";
+
+            console.log("After hiding:", panel.id, "hidden attr:", panel.hasAttribute("hidden"));
           }
         }
 
@@ -920,11 +943,19 @@
 
             var panel = id && document.getElementById(id);
 
-            var expanded = btn.getAttribute("aria-expanded") === "true";
+            // FORCE: Read from HTML attribute, default to false if not set
+            var expandedAttr = btn.getAttribute("aria-expanded");
+            var expanded = expandedAttr === "true";
+
+            // FORCE: Reset to false if something changed it
+            if (expandedAttr !== "false" && expandedAttr !== "true") {
+              btn.setAttribute("aria-expanded", "false");
+              expanded = false;
+            }
 
             var root = btn.closest && btn.closest(".accordion");
 
-            console.log("Accordion: Setting up", id, "expanded:", expanded);
+            console.log("Accordion: Setting up", id, "aria-expanded attr:", expandedAttr, "expanded:", expanded, "panel hidden:", panel && panel.hasAttribute("hidden"));
 
             // Detect empty answers and add a placeholder
 
@@ -951,15 +982,22 @@
               }
             }
 
+            // Force initial state: closed by default
             if (root) {
-              root.classList.toggle("is-open", expanded);
+              if (expanded) {
+                root.classList.add("is-open");
+              } else {
+                root.classList.remove("is-open");
+              }
             }
 
+            // Always set panel visibility based on aria-expanded
             setPanelVisibility(panel, expanded);
 
             // Add a direct click handler to avoid stopPropagation conflicts
 
             btn.addEventListener("click", function (ev) {
+              ev.stopPropagation();
               toggle({ currentTarget: btn });
             });
 
@@ -977,11 +1015,35 @@
           toggle({ currentTarget: el });
         });
 
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", init);
-        } else {
-          init();
-        }
+        // Initialize AFTER common.js and cleanup script
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            console.log("=== INITIALIZING CUSTOM ACCORDION ===");
+            init();
+
+            // FORCE: Reset all accordions to closed state
+            setTimeout(function() {
+              console.log("FORCE: Resetting all accordions to closed state");
+              var toggles = document.querySelectorAll(".accordion__toggle[aria-controls]");
+              toggles.forEach(function(btn) {
+                var id = btn.getAttribute("aria-controls");
+                var panel = id && document.getElementById(id);
+                var root = btn.closest && btn.closest(".accordion");
+
+                // Force closed state
+                btn.setAttribute("aria-expanded", "false");
+                if (root) {
+                  root.classList.remove("is-open");
+                }
+                if (panel) {
+                  panel.setAttribute("hidden", "");
+                  panel.style.display = "";
+                }
+                console.log("FORCE: Reset", id, "to closed");
+              });
+            }, 50);
+          }, 20);
+        });
       })();
     </script>
 
