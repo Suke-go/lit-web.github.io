@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(cat:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix layout and interaction issues\n\n- Fix header: move to top of page with position fixed for persistent display\n- Fix hero section: remove sticky positioning and padding/margin conflicts\n- Fix hero section mobile: optimize image display with object-fit contain\n- Fix seqLead spacing: add proper padding between header and content\n- Fix seqSiteLinks title: update styling for better prominence\n- Fix FAQ accordion: resolve inline style conflicts preventing open/close\n- Add debugging logs for accordion functionality\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

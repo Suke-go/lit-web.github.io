@@ -166,6 +166,18 @@
 
 }
 
+.heroSection--fullscreen + * {
+
+  margin-top: 0 !important;
+
+}
+
+* + .heroSection--fullscreen {
+
+  margin-top: 0 !important;
+
+}
+
 
 
 .heroSection--fullscreen > img {
