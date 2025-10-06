@@ -5127,6 +5127,7 @@ body.-dialogNoSupport dialog.fixed {
   text-align: center;
   display: block;
   margin-block-end: calc(0rem + var(--leading-trim));
+  padding-top: 1rem;
 }
 @media screen and (min-width: 768px), print {
   .seqLead__title {
