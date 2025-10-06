@@ -153,6 +153,9 @@
             var inner = panel.querySelector(".accordion__panelInner") || panel;
             inner.innerHTML = item.a.join("");
           });
+
+          // Trigger accordion re-initialization after content is loaded
+          window.dispatchEvent(new Event('faqContentLoaded'));
         }
 
         if (document.readyState === "loading") {
@@ -235,6 +238,27 @@
     </dialog>
 
     <div id="wrapper">
+      <header id="header" role="banner">
+        <div class="header__inner">
+          <div class="header__logo">
+            <img
+              src="lp01/common/img/logo.svg"
+              width="320"
+              height="64"
+              alt="CAREER COACHING ロゴ"
+            />
+          </div>
+
+          <button
+            type="button"
+            class="header__button js-dialogOpen"
+            data-modalId="dialogCampus"
+          >
+            <span>&#x7121;&#x6599;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span>
+          </button>
+        </div>
+      </header>
+
       <main id="main" role="main">
         <article>
           <section class="heroSection heroSection--fullscreen">
@@ -253,27 +277,6 @@
           <div class="ctaYokoBanner">
             <img src="lp01/common/img/cta_yoko.svg" alt="無料体験お申し込みはこちら" />
           </div>
-
-          <header id="header" role="banner">
-            <div class="header__inner">
-              <div class="header__logo">
-                <img
-                  src="lp01/common/img/logo.svg"
-                  width="320"
-                  height="64"
-                  alt="CAREER COACHING ロゴ"
-                />
-              </div>
-
-              <button
-                type="button"
-                class="header__button js-dialogOpen"
-                data-modalId="dialogCampus"
-              >
-                <span>&#x7121;&#x6599;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span>
-              </button>
-            </div>
-          </header>
 
           <section class="seqLead" id="seqLead">
             <div class="seqLead__inner">
@@ -808,23 +811,6 @@
               </div>
             </div>
           </section>
-                    <section class="ctaBanner">
-            <button
-              type="button"
-              class="ctaBanner__button js-dialogOpen"
-              data-modalId="dialogCampus"
-              aria-label="保護者説明会 実施中"
-            >
-              <picture class="ctaBanner__media">
-                <source media="(max-width: 767px)" srcset="lp01/common/img/cta2.svg" />
-                <img
-                  class="ctaBanner__image"
-                  src="lp01/common/img/cta2.svg"
-                  alt="保護者説明会 実施中"
-                />
-              </picture>
-            </button>
-          </section>
         </article>
       </main>
     </div>
@@ -861,23 +847,25 @@
           if (show) {
             panel.removeAttribute("hidden");
 
-            // Force visible to avoid CSS collisions
+            // Clear all inline styles to let CSS take over
 
-            panel.style.display = "block";
+            panel.style.display = "";
 
-            panel.style.visibility = "visible";
+            panel.style.visibility = "";
 
-            panel.style.maxHeight = "none";
+            panel.style.maxHeight = "";
 
-            panel.style.height = "auto";
+            panel.style.height = "";
 
-            panel.style.overflow = "visible";
+            panel.style.overflow = "";
           } else {
-            // Hide via both attribute and inline style to be safe
+            // Hide via hidden attribute only
 
             panel.setAttribute("hidden", "");
 
-            panel.style.display = "none";
+            // Clear inline styles
+
+            panel.style.display = "";
 
             panel.style.visibility = "";
 
@@ -896,11 +884,16 @@
 
           var panel = id && document.getElementById(id);
 
-          if (!panel) return;
+          if (!panel) {
+            console.log("Accordion: Panel not found for", id);
+            return;
+          }
 
           var expanded = btn.getAttribute("aria-expanded") === "true";
 
           var next = !expanded;
+
+          console.log("Accordion: Toggling", id, "from", expanded, "to", next);
 
           btn.setAttribute("aria-expanded", String(next));
 
@@ -920,6 +913,8 @@
             ".accordion__toggle[aria-controls]",
           );
 
+          console.log("Accordion: Initializing", toggles.length, "accordions");
+
           toggles.forEach(function (btn) {
             var id = btn.getAttribute("aria-controls");
 
@@ -928,6 +923,8 @@
             var expanded = btn.getAttribute("aria-expanded") === "true";
 
             var root = btn.closest && btn.closest(".accordion");
+
+            console.log("Accordion: Setting up", id, "expanded:", expanded);
 
             // Detect empty answers and add a placeholder
 
@@ -965,13 +962,19 @@
             btn.addEventListener("click", function (ev) {
               toggle({ currentTarget: btn });
             });
+
+            btn.dataset.seqAccordionBound = "1";
           });
         }
 
         document.addEventListener("click", function (e) {
           var el = e.target.closest && e.target.closest(".accordion__toggle");
 
-          if (el) toggle({ currentTarget: el });
+          if (!el) return;
+
+          if (el.dataset && el.dataset.seqAccordionBound === "1") return;
+
+          toggle({ currentTarget: el });
         });
 
         if (document.readyState === "loading") {
@@ -1029,7 +1032,7 @@
     <section class="seqSiteLinks" id="seqSiteLinks">
       <div class="seqSiteLinks__inner">
         <div class="seqSiteLinks__head">
-          <h2 class="seqSiteLinks__eyebrow">関連ページ</h2>
+          <h2 class="seqSiteLinks__title">関連ページ</h2>
           <p class="seqSiteLinks__text">高校生キャリアコーチングの詳細情報や会社概要を、それぞれの公式サイトでご確認いただけます。</p>
         </div>
         <div class="seqSiteLinks__grid">
@@ -1052,7 +1055,23 @@
         </div>
       </div>
     </section>
-
+    <section class="ctaBanner">
+      <button
+        type="button"
+        class="ctaBanner__button js-dialogOpen"
+        data-modalId="dialogCampus"
+        aria-label="保護者説明会 実施中"
+      >
+        <picture class="ctaBanner__media">
+          <source media="(max-width: 767px)" srcset="lp01/common/img/cta2.svg" />
+          <img
+            class="ctaBanner__image"
+            src="lp01/common/img/cta2.svg"
+            alt="保護者説明会 実施中"
+          />
+        </picture>
+      </button>
+    </section>
     <footer id="footer">
       <div class="footer__inner">
         <div class="footer__logo">
