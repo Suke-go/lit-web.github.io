@@ -178,37 +178,47 @@ body.is-header-solid .headerNav__link::after {
   }
 
   .header__inner {
-    padding: 14px 20px;
-    flex-wrap: wrap;
+    padding: 12px 16px;
+    flex-wrap: nowrap;
     justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header__logo {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .header__nav {
-    order: 3;
-    width: 100%;
-    justify-content: flex-start;
-    margin-top: 8px;
+    display: none;
   }
 
-  .headerNav {
-    gap: 16px;
-  }
-
-  .headerNav__link {
-    font-size: 14px;
+  .header__button {
+    padding: 8px 16px;
+    box-shadow: 0 10px 22px rgba(9, 87, 154, 0.22);
   }
 
   .headerCta {
-    gap: 10px;
+    gap: 8px;
   }
 
   .headerCta__badge {
-    font-size: 0.82em;
-    padding: 0.2em 0.7em;
+    font-size: 0.78em;
+    padding: 0.18em 0.6em;
   }
 
   .headerCta__label {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .heroSection--fullscreen {
+    height: min(100dvh, 640px);
+    min-height: 520px;
+  }
+
+  .heroSection--fullscreen > img {
+    object-position: center 18%;
   }
 }
 
