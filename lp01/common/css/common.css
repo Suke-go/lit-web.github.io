@@ -1712,6 +1712,8 @@ ul.error + * {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--spacer-4);
+  flex-wrap: wrap;
 }
 @media screen and (min-width: 768px), print {
   .header__inner {
@@ -1719,15 +1721,19 @@ ul.error + * {
     margin-right: auto;
     margin-left: auto;
     max-width: 15.36rem;
+    gap: var(--spacer-7);
+    flex-wrap: nowrap;
   }
 }
 @media screen and (max-width: 767px) {
   .header__inner {
     padding: 0.24rem 0.14rem 0.28rem 0.16rem;
+    gap: var(--spacer-3);
   }
 }
 .header__logo {
   width: 3.2rem;
+  order: 1;
 }
 @media screen and (max-width: 767px) {
   .header__logo {
@@ -1736,6 +1742,61 @@ ul.error + * {
 }
 .header__logo img {
   width: 100%;
+}
+.header__nav {
+  order: 3;
+  flex: 1 1 100%;
+  width: 100%;
+  margin-top: var(--spacer-2);
+}
+@media screen and (min-width: 768px), print {
+  .header__nav {
+    order: 2;
+    flex: 1 1 auto;
+    width: auto;
+    margin-top: 0;
+  }
+}
+.headerNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacer-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media screen and (min-width: 768px), print {
+  .headerNav {
+    justify-content: center;
+    gap: var(--spacer-6);
+    overflow: visible;
+  }
+}
+.headerNav__item {
+  flex: 0 0 auto;
+}
+.headerNav__link {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--LP-text);
+  text-decoration: none;
+  padding: var(--spacer-1) var(--spacer-2);
+  border-radius: var(--border-radius-1);
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+@media screen and (min-width: 768px), print {
+  .headerNav__link {
+    font-size: var(--font-size-md);
+  }
+}
+.headerNav__link:focus-visible,
+.headerNav__link:hover {
+  background-color: rgba(240, 165, 84, 0.16);
+  color: var(--LP-orange);
 }
 .header__button {
   font: inherit;
@@ -1749,6 +1810,8 @@ ul.error + * {
   border: 1px solid var(--LP-text);
   background: var(--LP-light-yellow);
   transition: background 0.25s ease-out;
+  order: 2;
+  margin-left: auto;
 }
 @media screen and (max-width: 767px) {
   .header__button {
@@ -1930,7 +1993,8 @@ ul.error + * {
 .-qaType .accordion {
   position: relative;
 }
-.-qaType .accordion.-open .accordion__toggle {
+.-qaType .accordion.-open .accordion__toggle,
+.-qaType .accordion.is-open .accordion__toggle {
   background-color: #fae8e6;
 }
 .-qaType .accordion .accordion__toggle {
@@ -2138,6 +2202,7 @@ ul.error + * {
   right: 0.32rem;
   translate: 0 -50%;
   z-index: 1;
+  transition: rotate 0.25s ease-out, opacity 0.25s ease-out;
 }
 @media screen and (max-width: 767px) {
   .accordion__toggle > span:not([class])::after,
@@ -2149,15 +2214,22 @@ ul.error + * {
 }
 .accordion__toggle > span:not([class])::after {
   rotate: -90deg;
-  transition: rotate 0.25s ease-out;
+  opacity: 1;
 }
 .accordion__wrap:not(.-simpleType):not(.-qaType)
   .accordion.-open
   .accordion__toggle {
   background: var(--LP-light-yellow);
 }
-.accordion.-open .accordion__toggle > span:not([class])::after {
+.accordion__wrap:not(.-simpleType):not(.-qaType)
+  .accordion.is-open
+  .accordion__toggle {
+  background: var(--LP-light-yellow);
+}
+.accordion.-open .accordion__toggle > span:not([class])::after,
+.accordion.is-open .accordion__toggle > span:not([class])::after {
   rotate: 0deg;
+  opacity: 0;
 }
 .accordion__toggle .-small {
   font-size: 0.16rem;

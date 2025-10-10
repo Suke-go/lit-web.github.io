@@ -2,132 +2,214 @@
 
 
 
-/* Header - Sticky after hero section */
+/* Header - translucent over hero, solid after */
 
 #header {
-
   position: sticky;
-
   top: 0;
-
-  background: #ffffff;
-
-  box-shadow: 0 2px 16px rgba(15, 39, 65, 0.08);
-
-  z-index: 100;
-
+  z-index: 120;
   width: 100%;
-
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  color: #0f4678;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-
+body.is-header-solid #header {
+  background-color: #ffffff;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  box-shadow: 0 12px 32px rgba(15, 69, 120, 0.12);
+  border-bottom-color: rgba(15, 69, 120, 0.08);
+}
 
 .ctaYokoBanner {
-
   display: none;
-
 }
-
-
 
 .header__inner {
-
   max-width: 1200px;
-
   margin: 0 auto;
-
-  padding: clamp(16px, 2vw, 24px) clamp(20px, 3vw, 40px);
-
+  padding: clamp(14px, 2vw, 24px) clamp(20px, 3vw, 40px);
   display: flex;
-
-  justify-content: space-between;
-
   align-items: center;
-
-  gap: 20px;
-
+  gap: clamp(16px, 3vw, 48px);
+  color: inherit;
 }
 
-
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
 
 .header__logo img {
-
   display: block;
-
-  height: auto;
-
-  max-width: 100%;
-
+  height: clamp(38px, 5vw, 52px);
+  width: auto;
 }
 
+.header__nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
 
+.headerNav {
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.headerNav__link {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(15, 70, 130, 0.85);
+  padding: 6px 4px;
+  background-color: transparent;
+  font-size: clamp(14px, 1.2vw, 16px);
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.headerNav__link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 18px;
+  height: 2px;
+  background: rgba(15, 99, 174, 0.85);
+  border-radius: 999px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.headerNav__link:focus-visible,
+.headerNav__link:hover {
+  color: #0f63ae;
+  background-color: transparent;
+}
+
+.headerNav__link:focus-visible::after,
+.headerNav__link:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
+}
+
+body.is-header-solid .headerNav__link {
+  color: rgba(15, 63, 115, 0.88);
+}
+
+body.is-header-solid .headerNav__link::after {
+  background: rgba(15, 99, 174, 0.9);
+}
 
 .header__button {
-
   flex-shrink: 0;
-
-  padding: clamp(10px, 1.5vw, 14px) clamp(20px, 3vw, 32px);
-
-  background: var(--main-100, #0883af);
-
-  color: #ffffff;
-
   border: none;
-
   border-radius: 999px;
-
-  font-weight: 700;
-
-  font-size: clamp(14px, 2vw, 16px);
-
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f63ae;
+  box-shadow: 0 12px 26px rgba(9, 87, 154, 0.2);
+  padding: clamp(10px, 1.5vw, 14px) clamp(18px, 3vw, 32px);
   cursor: pointer;
-
-  transition: all 0.3s ease;
-
-  box-shadow: 0 4px 12px rgba(8, 131, 175, 0.2);
-
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  font-weight: 700;
+  font-size: clamp(14px, 1.6vw, 16px);
 }
 
-
-
+.header__button:focus-visible,
 .header__button:hover {
-
-  background: var(--grayscale-100, #14212f);
-
   transform: translateY(-2px);
-
-  box-shadow: 0 6px 16px rgba(8, 131, 175, 0.3);
-
+  box-shadow: 0 16px 32px rgba(9, 87, 154, 0.28);
+  background: rgba(255, 255, 255, 1);
 }
 
+.headerCta {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 1.2vw, 14px);
+  font-size: clamp(13px, 1.5vw, 16px);
+}
 
+.headerCta__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em 1em;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00a6ff 0%, #37d3ff 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.88em;
+  letter-spacing: 0.06em;
+  box-shadow: 0 8px 18px rgba(0, 152, 255, 0.38);
+}
+
+.headerCta__label {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0f63ae;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .header__inner {
+    gap: clamp(12px, 2vw, 24px);
+  }
+
+  .headerNav {
+    gap: clamp(12px, 2vw, 24px);
+  }
+
+  .headerCta__badge {
+    padding: 0.22em 0.8em;
+  }
+}
 
 @media (max-width: 767px) {
+  #header {
+    background: linear-gradient(180deg, #57b9ff 0%, #6ac6ff 100%);
+  }
 
   .header__inner {
-
-    padding: 16px 20px;
-
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
-
-
-  .header__logo img {
-
-    max-width: 200px;
-
+  .header__nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 8px;
   }
 
-
-
-  .header__button {
-
-    padding: 10px 16px;
-
-    font-size: 13px;
-
+  .headerNav {
+    gap: 16px;
   }
 
+  .headerNav__link {
+    font-size: 14px;
+  }
+
+  .headerCta {
+    gap: 10px;
+  }
+
+  .headerCta__badge {
+    font-size: 0.82em;
+    padding: 0.2em 0.7em;
+  }
+
+  .headerCta__label {
+    font-size: 14px;
+  }
 }
 
 
@@ -3045,51 +3127,50 @@ body.theme-palette-3 {
 
 }
 
-.ctaYokoBanner {
-
-  position: fixed;
-
-  top: clamp(96px, 12vh, 180px);
-
-  right: clamp(8px, 2vw, 24px);
-
-  width: min(25vw, 320px);
-
-  z-index: 150;
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  align-items: flex-start;
-
-  pointer-events: none;
-
-}
-
-
-
-.ctaYokoBanner img {
-
-  display: block;
-
-  width: 20%;
-
-  height: auto;
-
-  pointer-events: auto;
-
-}
-
-
-
-@media (max-width: 767px) {
+@media (min-width: 768px) {
 
   .ctaYokoBanner {
 
-    display: none;
+    position: fixed;
+
+    top: clamp(96px, 12vh, 180px);
+
+    right: clamp(8px, 2vw, 24px);
+
+    width: min(25vw, 320px);
+
+    z-index: 150;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: flex-start;
+
+    pointer-events: none;
+
+  }
+
+
+
+  .ctaYokoBanner a {
+
+    display: block;
+
+    pointer-events: auto;
+
+  }
+
+
+
+  .ctaYokoBanner img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
 
   }
 
 }
-

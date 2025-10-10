@@ -248,13 +248,32 @@
               alt="CAREER COACHING ロゴ"
             />
           </div>
+          <nav class="header__nav" aria-label="サイト内ナビゲーション">
+            <ul class="headerNav">
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="#sectionCoaching">コーチングとは</a>
+              </li>
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="#sectionPoints">４つのポイント</a>
+              </li>
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="#sectionVoices">参加者の声</a>
+              </li>
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="#seqFaq">よくある質問</a>
+              </li>
+            </ul>
+          </nav>
 
           <button
             type="button"
             class="header__button js-dialogOpen"
             data-modalId="dialogCampus"
           >
-            <span>&#x7121;&#x6599;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span>
+            <span class="headerCta">
+              <span class="headerCta__badge">&#x7121;&#x6599;</span>
+              <span class="headerCta__label">&#x8AAC;&#x660E;&#x4F1A;&#x30FB;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span>
+            </span>
           </button>
         </div>
       </header>
@@ -275,7 +294,9 @@
           </section>
 
           <div class="ctaYokoBanner">
-            <img src="lp01/common/img/cta_yoko.svg" alt="無料体験お申し込みはこちら" />
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform" target="_blank" rel="noopener">
+              <img src="lp01/common/img/cta_yoko.svg" alt="" />
+            </a>
           </div>
 
           <section class="seqLead" id="seqLead">
@@ -293,10 +314,11 @@
                 コーチの問いかけで自分を振り返り、次の目標に向かって走り出す瞬間まで導きます。
               </p>
 
-              <div
-                class="coachingOverview inview -fadeInUp"
-                data-inview-rootMargin="-30% 0% -30% 0%"
-              >
+          <div
+            class="coachingOverview inview -fadeInUp"
+            id="sectionCoaching"
+            data-inview-rootMargin="-30% 0% -30% 0%"
+          >
                 <div class="coachingOverview__media">
                   <picture>
                     <source
@@ -337,9 +359,6 @@
                       >
                     </li>
                   </ul>
-                  <p class="coachingOverview__note">
-                    全8回・3ステップで伴走しながら、目標達成まで寄り添います。
-                  </p>
                 </div>
               </div>
             </div>
@@ -363,7 +382,7 @@
             </a>
           </div>
 
-          <section class="seqPoint">
+          <section class="seqPoint" id="sectionPoints">
             <div class="seqPoint__inner">
               <h2 class="sectionTitle -point">
                 <img
@@ -590,7 +609,7 @@
             </div>
           </section>
 
-          <section class="seqVoice">
+          <section class="seqVoice" id="sectionVoices">
             <div class="seqVoice__inner">
               <h2 class="sectionTitle">
                 <span class="sectionTitle__inner"
@@ -657,9 +676,9 @@
                     <span class="-name">S様（保護者）</span>
                   </div>
 
-                  <h3 class="voiceItem__title">主体性が行動に表れた</h3>
+                  <h3 class="voiceItem__title">進路について本音で話し合えた</h3>
                   <p class="voiceItem__text">
-                    進路の話ができるようになり、行動が継続。家庭でも次の一歩を自分から提案してくれるようになりました。
+                    主体性が行動に表れるようになりました。特に進路の話をできるようになり、目標に向けて一緒に行動を継続しています。勉強以外でも次の一歩を自分から提案してくれるようになりました。
                   </p>
                 </li>
               </ul>
@@ -667,12 +686,21 @@
           </section>
           
           <div class="buttonBox anchorLink">
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform?usp=sf_link"
-                  target="_blank"
-                  class="buttonA -anchorLink -white -sizeM -hoverBlack js-dialogClose"
-                  ><span>お申込みフォーム</span></a
-                >
+            <a
+              href="#dialogCampus"
+              class="js-dialogOpen"
+              data-modalId="dialogCampus"
+              aria-label="保護者説明会 実施中"
+            >
+              <picture class="buttonBox__media">
+                <source media="(max-width: 767px)" srcset="lp01/common/img/cta1.svg" />
+                <img
+                  class="buttonBox__image"
+                  src="lp01/common/img/cta1.svg"
+                  alt="保護者説明会 実施中"
+                />
+              </picture>
+            </a>
           </div>
 
           <section class="seqFaq" id="seqFaq">
