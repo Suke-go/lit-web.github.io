@@ -11,8 +11,8 @@
   width: 100%;
   background: linear-gradient(
     180deg,
-    rgba(19, 115, 206, 0.48) 0%,
-    rgba(19, 115, 206, 0.28) 42%,
+    rgba(19, 115, 206, 0.56) 0%,
+    rgba(19, 115, 206, 0.32) 44%,
     rgba(19, 115, 206, 0) 100%
   );
   box-shadow: none;
@@ -28,16 +28,94 @@
 }
 
 body.is-header-solid #header {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(255, 255, 255, 0.85);
   color: #0f4678;
-  backdrop-filter: blur(0);
-  -webkit-backdrop-filter: blur(0);
-  box-shadow: 0 12px 32px rgba(15, 69, 120, 0.12);
-  border-bottom: 1px solid rgba(15, 69, 120, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 36px rgba(15, 69, 120, 0.14);
+  border-bottom: 1px solid rgba(15, 69, 120, 0.12);
 }
 
 .ctaYokoBanner {
   display: none;
+}
+
+.ctaYokoBanner__link {
+  display: block;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.ctaYokoBanner__link:focus-visible {
+  outline: none;
+}
+
+.ctaYokoBanner__link:focus-visible .ctaYokoBanner__card {
+  transform: translateY(-2px);
+  box-shadow:
+    0 26px 50px rgba(10, 129, 179, 0.3),
+    0 0 0 3px rgba(10, 129, 179, 0.3);
+}
+
+.ctaYokoBanner__card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 22px 46px rgba(10, 129, 179, 0.26);
+  overflow: hidden;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.ctaYokoBanner__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px 14px;
+  color: #0a81b3;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ctaYokoBanner__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.ctaYokoBanner__headline {
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.4;
+}
+
+.ctaYokoBanner__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: #0a81b3;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: clamp(13px, 0.95vw, 14px);
+  letter-spacing: 0.08em;
+}
+
+.ctaYokoBanner__arrow {
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) {
+  .ctaYokoBanner__link:hover .ctaYokoBanner__card,
+  .ctaYokoBanner__link:focus-visible .ctaYokoBanner__card {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 54px rgba(10, 129, 179, 0.32);
+  }
 }
 
 .header__inner {
@@ -64,11 +142,6 @@ body.is-header-solid #header {
   text-decoration: none;
 }
 
-.header__logo picture {
-  display: inline-flex;
-  align-items: center;
-}
-
 .header__logo img {
   display: block;
   height: clamp(42px, 5vw, 56px);
@@ -89,11 +162,11 @@ body.is-header-solid #header {
   position: relative;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.92);
+  color: inherit;
   padding: 6px 4px;
   background-color: transparent;
   font-size: clamp(14px, 1.2vw, 16px);
-  text-shadow: 0 4px 12px rgba(8, 48, 98, 0.38);
+  text-shadow: none;
   transition: color 0.25s ease, opacity 0.25s ease, text-shadow 0.25s ease;
 }
 
@@ -112,26 +185,54 @@ body.is-header-solid #header {
   opacity: 0;
 }
 
-.headerNav__link:focus-visible,
-.headerNav__link:hover {
+body:not(.is-header-solid) .headerNav__link {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 4px 12px rgba(8, 48, 98, 0.38);
+}
+
+body:not(.is-header-solid) .headerNav__link:focus-visible,
+body:not(.is-header-solid) .headerNav__link:hover {
   color: #ffffff;
   text-shadow: 0 6px 16px rgba(9, 58, 118, 0.45);
   background-color: transparent;
 }
 
-.headerNav__link:focus-visible::after,
-.headerNav__link:hover::after {
+body:not(.is-header-solid) .headerNav__link:focus-visible::after,
+body:not(.is-header-solid) .headerNav__link:hover::after {
   opacity: 1;
   transform: translateX(-50%) scaleX(1);
 }
 
 body.is-header-solid .headerNav__link {
-  color: rgba(15, 63, 115, 0.88);
+  color: rgba(17, 63, 115, 0.92);
+  text-shadow: none;
+}
+
+body.is-header-solid .headerNav__link:focus-visible,
+body.is-header-solid .headerNav__link:hover {
+  color: #0b4a80;
   text-shadow: none;
 }
 
 body.is-header-solid .headerNav__link::after {
-  background: rgba(15, 99, 174, 0.9);
+  background: rgba(15, 99, 174, 0.85);
+}
+
+body.is-header-solid .headerNav__link:focus-visible::after,
+body.is-header-solid .headerNav__link:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
+}
+
+body.is-header-solid .headerCta__label {
+  color: #0f4678;
+  text-shadow: none;
+}
+
+body.is-header-solid .headerCta__badge {
+  background: rgba(15, 99, 174, 0.12);
+  color: #0f4678;
+  box-shadow: 0 10px 22px rgba(15, 69, 120, 0.12);
 }
 
 .header__button {
@@ -141,11 +242,11 @@ body.is-header-solid .headerNav__link::after {
   background: linear-gradient(115deg, #008dff 0%, #37d3ff 100%);
   color: #ffffff;
   box-shadow: 0 18px 34px rgba(0, 121, 228, 0.3);
-  padding: clamp(12px, 2vw, 16px) clamp(26px, 4.4vw, 44px);
+  padding: clamp(10px, 1.6vw, 14px) clamp(20px, 2.6vw, 30px);
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
   font-weight: 700;
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: clamp(13px, 1.3vw, 15px);
   display: inline-flex;
   align-items: center;
   outline: none;
@@ -161,21 +262,23 @@ body.is-header-solid .headerNav__link::after {
 .headerCta {
   display: inline-flex;
   align-items: center;
-  gap: clamp(10px, 1.4vw, 18px);
-  font-size: clamp(13px, 1.5vw, 16px);
+  gap: clamp(6px, 1vw, 14px);
+  font-size: clamp(12px, 1.3vw, 14px);
 }
 
 .headerCta__badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25em 1em;
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 0.2em 0.8em;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.94);
   color: #0094ff;
   font-weight: 700;
-  font-size: 0.88em;
-  letter-spacing: 0.06em;
+  font-size: 0.82em;
+  letter-spacing: 0.045em;
   box-shadow: 0 10px 24px rgba(0, 121, 228, 0.25);
 }
 
@@ -185,6 +288,16 @@ body.is-header-solid .headerNav__link::after {
   color: #ffffff;
   text-shadow: 0 4px 12px rgba(9, 58, 118, 0.35);
   white-space: nowrap;
+}
+
+@media (max-width: 1280px) {
+  .headerCta {
+    gap: clamp(6px, 0.8vw, 10px);
+  }
+
+  .header__button {
+    padding-inline: clamp(18px, 2.8vw, 26px);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -2882,13 +2995,7 @@ body.theme-palette-3 {
 
 .seqSiteLinks__card {
 
-  position: sticky;
-
-  top: 0;
-
-  left: 0;
-
-  right: 0;
+  position: static;
 
   display: flex;
 
@@ -3170,17 +3277,17 @@ body.theme-palette-3 {
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
 
   .ctaYokoBanner {
 
     position: fixed;
 
-    top: clamp(96px, 12vh, 180px);
+    bottom: clamp(28px, 6vh, 64px);
 
     right: clamp(8px, 2vw, 24px);
 
-    width: min(25vw, 320px);
+    width: clamp(240px, 24vw, 320px);
 
     z-index: 150;
 
@@ -3188,32 +3295,14 @@ body.theme-palette-3 {
 
     justify-content: flex-end;
 
-    align-items: flex-start;
+    align-items: flex-end;
 
     pointer-events: none;
 
   }
 
-
-
-  .ctaYokoBanner a {
-
-    display: block;
-
-    pointer-events: auto;
-
-  }
-
-
-
-  .ctaYokoBanner img {
-
-    display: block;
-
-    width: 100%;
-
-    height: auto;
-
+  .pagetop {
+    display: none;
   }
 
 }

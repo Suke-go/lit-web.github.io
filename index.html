@@ -242,15 +242,15 @@
         <div class="header__inner">
           <div class="header__logo">
             <a class="header__logoLink" href="#wrapper" aria-label="CAREER COACHING トップに戻る">
-              <picture>
-                <source media="(min-width: 768px)" srcset="lp01/common/img/logo-white.svg" />
-                <img
-                  src="lp01/common/img/logo.svg"
-                  width="320"
-                  height="64"
-                  alt="CAREER COACHING ロゴ"
-                />
-              </picture>
+              <img
+                class="header__logoImage"
+                src="lp01/common/img/logo.svg"
+                data-logo-default="lp01/common/img/logo.svg"
+                data-logo-hero="lp01/common/img/logo-white.svg"
+                width="320"
+                height="64"
+                alt="CAREER COACHING ロゴ"
+              />
             </a>
           </div>
           <nav class="header__nav" aria-label="サイト内ナビゲーション">
@@ -299,8 +299,44 @@
           </section>
 
           <div class="ctaYokoBanner">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform" target="_blank" rel="noopener">
-              <img src="lp01/common/img/cta_yoko.svg" alt="" />
+            <a
+              class="ctaYokoBanner__link"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="ctaYokoBanner__card">
+                <span class="ctaYokoBanner__top">
+                  <span class="ctaYokoBanner__icon" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 40 40"
+                      width="40"
+                      height="40"
+                      role="presentation"
+                      focusable="false"
+                    >
+                      <g fill="none" stroke="#0A81B3" stroke-width="2" stroke-linecap="round">
+                        <rect
+                          x="6"
+                          y="9"
+                          width="28"
+                          height="24"
+                          rx="4"
+                          ry="4"
+                        />
+                        <path d="M12 6v6M28 6v6M6 16h28" />
+                        <circle cx="20" cy="24" r="5" />
+                        <path d="M20 24l2.5 2.5" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span class="ctaYokoBanner__headline">保護者説明会受付中</span>
+                </span>
+                <span class="ctaYokoBanner__bottom">
+                  <span class="ctaYokoBanner__ctaText">詳しくはこちら</span>
+                  <span class="ctaYokoBanner__arrow" aria-hidden="true">›</span>
+                </span>
+              </span>
             </a>
           </div>
 
@@ -1196,13 +1232,29 @@
         var hero = document.querySelector(".heroSection--fullscreen");
         var threshold = 0;
         var ticking = false;
+        var heroClass = "is-header-hero";
+        var solidClass = "is-header-solid";
+        var logo = header.querySelector(".header__logoImage");
+        var defaultLogo = logo ? logo.getAttribute("data-logo-default") : "";
+        var heroLogo = logo ? logo.getAttribute("data-logo-hero") : "";
+        var desktopMedia = window.matchMedia("(min-width: 768px)");
 
         function applyState() {
-          var shouldBeSolid = window.scrollY > threshold;
-          var hasClass = root.classList.contains("is-header-solid");
+          var heroActive = window.scrollY <= threshold;
 
-          if (shouldBeSolid !== hasClass) {
-            root.classList.toggle("is-header-solid", shouldBeSolid);
+          root.classList.toggle(heroClass, heroActive);
+          root.classList.toggle(solidClass, !heroActive);
+          updateLogo(heroActive);
+        }
+
+        function updateLogo(heroActive) {
+          if (!logo) return;
+
+          var isDesktop = desktopMedia.matches;
+          var targetSrc = heroActive && isDesktop ? heroLogo : defaultLogo;
+
+          if (targetSrc && logo.getAttribute("src") !== targetSrc) {
+            logo.setAttribute("src", targetSrc);
           }
         }
 
@@ -1227,7 +1279,18 @@
 
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", recalc);
+        if (desktopMedia.addEventListener) {
+          desktopMedia.addEventListener("change", function () {
+            updateLogo(window.scrollY <= threshold);
+          });
+        } else if (desktopMedia.addListener) {
+          desktopMedia.addListener(function () {
+            updateLogo(window.scrollY <= threshold);
+          });
+        }
 
+        root.classList.add(heroClass);
+        updateLogo(true);
         recalc();
       })();
     </script>
@@ -1241,13 +1304,18 @@
         const body = document.body;
 
         const buttons = themeSwitcher.querySelectorAll("button");
+        const themeClasses = ["theme-palette-1", "theme-palette-2"];
 
         const savedTheme = localStorage.getItem("theme");
 
         function applyTheme(theme) {
-          body.className = theme === "original" ? "" : theme;
+          themeClasses.forEach((themeClass) => body.classList.remove(themeClass));
 
-          localStorage.setItem("theme", theme);
+          if (theme && theme !== "original" && themeClasses.includes(theme)) {
+            body.classList.add(theme);
+          }
+
+          localStorage.setItem("theme", theme || "original");
         }
 
         if (savedTheme) {
