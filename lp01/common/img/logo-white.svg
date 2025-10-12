@@ -1,0 +1,20 @@
+<svg width="300" height="60" viewBox="0 0 300 66" overflow="visible"
+    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Litable Career Coaching header logo (Variant A white)">
+      <!-- mark -->
+      <g transform="translate(6,8)">
+        <rect x="0" y="22" width="48" height="8" rx="3.5" fill="#FFFFFF" />
+        <rect x="7" y="30" width="6" height="20" rx="3" fill="#FFFFFF" />
+        <rect x="35" y="30" width="6" height="20" rx="3" fill="#FFFFFF" />
+        <path d="M4,56 C16,44 32,44 44,56" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+        <g transform="translate(24,10)">
+          <path d="M0,-8 L2,-2 L8,0 L2,2 L0,8 L-2,2 L-8,0 L-2,-2 Z" fill="#FFFFFF"/>
+        </g>
+      </g>
+      <!-- logotype -->
+      <g transform="translate(68,12)" fill="#FFFFFF">
+        <text x="0" y="24" font-family="Inter, 'Noto Sans JP', system-ui, -apple-system, Segoe UI, Roboto"
+              font-size="28" font-weight="800" letter-spacing="0.2" dominant-baseline="alphabetic">Litable</text>
+        <text x="0" y="42" font-family="Inter, 'Noto Sans JP', system-ui, -apple-system, Segoe UI, Roboto"
+              font-size="13" font-weight="700" opacity="0.95" dominant-baseline="alphabetic">Career Coaching</text>
+      </g>
+    </svg>

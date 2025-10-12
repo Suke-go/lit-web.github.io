@@ -241,12 +241,17 @@
       <header id="header" role="banner">
         <div class="header__inner">
           <div class="header__logo">
-            <img
-              src="lp01/common/img/logo.svg"
-              width="320"
-              height="64"
-              alt="CAREER COACHING ロゴ"
-            />
+            <a class="header__logoLink" href="#wrapper" aria-label="CAREER COACHING トップに戻る">
+              <picture>
+                <source media="(min-width: 768px)" srcset="lp01/common/img/logo-white.svg" />
+                <img
+                  src="lp01/common/img/logo.svg"
+                  width="320"
+                  height="64"
+                  alt="CAREER COACHING ロゴ"
+                />
+              </picture>
+            </a>
           </div>
           <nav class="header__nav" aria-label="サイト内ナビゲーション">
             <ul class="headerNav">
@@ -1181,6 +1186,51 @@
         <a href="#wrapper"><span>page top</span></a>
       </p>
     </footer>
+
+    <script>
+      (function () {
+        var root = document.body;
+        var header = document.getElementById("header");
+        if (!root || !header) return;
+
+        var hero = document.querySelector(".heroSection--fullscreen");
+        var threshold = 0;
+        var ticking = false;
+
+        function applyState() {
+          var shouldBeSolid = window.scrollY > threshold;
+          var hasClass = root.classList.contains("is-header-solid");
+
+          if (shouldBeSolid !== hasClass) {
+            root.classList.toggle("is-header-solid", shouldBeSolid);
+          }
+        }
+
+        function recalc() {
+          var heroHeight = hero ? hero.offsetHeight : 0;
+          threshold =
+            heroHeight > 0
+              ? heroHeight * 0.55
+              : Math.max(window.innerHeight * 0.25, header.offsetHeight * 2);
+          applyState();
+        }
+
+        function onScroll() {
+          if (ticking) return;
+
+          ticking = true;
+          window.requestAnimationFrame(function () {
+            applyState();
+            ticking = false;
+          });
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", recalc);
+
+        recalc();
+      })();
+    </script>
 
     <script>
       (function () {
