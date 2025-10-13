@@ -423,9 +423,9 @@ body.is-header-solid #header {
 
   right: calc(clamp(24px, 7vw, 120px) + 30px);
 
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 40px));
 
-  width: clamp(300px, 36vw, 560px);
+  width: clamp(360px, 43.2vw, 672px);
 
   max-width: 100%;
 
@@ -441,9 +441,17 @@ body.is-header-solid #header {
 
   .heroSection__words {
 
-    right: calc(clamp(12px, 4vw, 24px) + 30px);
+    right: calc(clamp(12px, 5vw, 32px) + 10px);
 
-    width: clamp(240px, 70vw, 400px);
+    width: 32.5vw;
+
+    max-width: none;
+
+    min-width: 0;
+
+    top: 42%;
+
+    transform: translateY(-50%);
 
   }
 
@@ -639,13 +647,23 @@ body.is-header-solid #header {
 
   .heroSection--fullscreen {
 
-    height: 100vh;
+    height: auto;
 
-    height: 100svh; /* Small viewport height for better mobile support */
+    min-height: 0;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    padding-top: 0;
+
+    margin-top: 0 !important;
 
   }
 
   .heroSection__bg {
+
+    position: relative;
 
     width: 100%;
 
@@ -653,17 +671,21 @@ body.is-header-solid #header {
 
     object-fit: contain;
 
-    object-position: center;
+    object-position: top center;
 
-    top: 50%;
+    top: 0;
 
-    left: 50%;
+    left: 0;
 
-    transform: translate(-50%, -50%);
+    transform: none;
 
-    max-height: 100%;
+    max-height: none;
 
-    position: absolute;
+    opacity: 1;
+
+    transform-origin: center top;
+
+    animation: none;
 
   }
 
