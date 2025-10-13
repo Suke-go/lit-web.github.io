@@ -112,7 +112,7 @@ body.is-header-solid #header {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: clamp(18px, 2.4vw, 28px) clamp(32px, 4vw, 56px);
+  padding: var(--header-padding-block) clamp(32px, 4vw, 56px);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -186,6 +186,30 @@ body.is-header-solid #header {
 .headerNav__link:hover::after {
   opacity: 1;
   transform: translateX(-50%) scaleX(1);
+}
+
+@media screen and (min-width: 768px) {
+  body.is-header-hero #header {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+  body.is-header-hero .headerNav__link {
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  }
+
+  body.is-header-hero .headerNav__link::after {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  body.is-header-hero .headerNav__link:focus-visible,
+  body.is-header-hero .headerNav__link:hover {
+    color: #ffffff;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.28);
+  }
 }
 
 .header__button {
@@ -370,24 +394,15 @@ body.is-header-solid #header {
 }
 
 #header + #main .heroSection--fullscreen:first-child {
-
   margin-top: 0 !important;
-
   padding-top: 0 !important;
-
 }
 
-@media screen and (min-width: 1024px) {
-
-  .heroSection--fullscreen {
-
-    margin-top: calc(-1 * (clamp(18px, 2.4vw, 28px) * 2 + clamp(42px, 5vw, 56px))) !important;
-
+@media screen and (min-width: 768px) {
+  #header + #main .heroSection--fullscreen:first-child {
+    margin-top: calc(-1 * var(--header-height)) !important;
   }
-
 }
-
-
 
 .heroSection__bg {
 
@@ -843,7 +858,10 @@ body.is-header-solid #header {
 
   --section-gap: var(--space-lg);
 
-
+  /* Header dimensions */
+  --header-padding-block: clamp(18px, 2.4vw, 28px);
+  --header-logo-height: clamp(42px, 5vw, 56px);
+  --header-height: calc(var(--header-padding-block) * 2 + var(--header-logo-height));
 
   /* Typography Scale */
 
@@ -2453,6 +2471,12 @@ body.theme-palette-3 {
 
 }
 
+.seqPoint .pointItem.-purple .pointItem__body {
+
+  padding-top: clamp(18px, 4.5vw, 38px);
+
+}
+
 .seqPoint .pointItem.-green .pointItem__body { display: block; }
 
 
@@ -2770,6 +2794,14 @@ body.theme-palette-3 {
   gap: 10px;
 
   grid-template-columns: minmax(0, 1fr);
+
+}
+
+.seqPoint .pointItem.-purple .pointSteps {
+
+  width: 100%;
+
+  max-width: 64ch;
 
 }
 
