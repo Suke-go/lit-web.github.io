@@ -112,7 +112,7 @@ body.is-header-solid #header {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: clamp(18px, 2.4vw, 28px) clamp(32px, 4vw, 56px);
+  padding: var(--header-padding-block) clamp(32px, 4vw, 56px);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -186,6 +186,30 @@ body.is-header-solid #header {
 .headerNav__link:hover::after {
   opacity: 1;
   transform: translateX(-50%) scaleX(1);
+}
+
+@media screen and (min-width: 768px) {
+  body.is-header-hero #header {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+  body.is-header-hero .headerNav__link {
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  }
+
+  body.is-header-hero .headerNav__link::after {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  body.is-header-hero .headerNav__link:focus-visible,
+  body.is-header-hero .headerNav__link:hover {
+    color: #ffffff;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.28);
+  }
 }
 
 .header__button {
@@ -316,7 +340,7 @@ body.is-header-solid #header {
     min-height: 520px;
   }
 
-  .heroSection--fullscreen > img {
+  .heroSection__bg {
     object-position: center 18%;
   }
 }
@@ -370,26 +394,17 @@ body.is-header-solid #header {
 }
 
 #header + #main .heroSection--fullscreen:first-child {
-
   margin-top: 0 !important;
-
   padding-top: 0 !important;
-
 }
 
-@media screen and (min-width: 1024px) {
-
-  .heroSection--fullscreen {
-
-    margin-top: calc(-1 * (clamp(18px, 2.4vw, 28px) * 2 + clamp(42px, 5vw, 56px))) !important;
-
+@media screen and (min-width: 768px) {
+  #header + #main .heroSection--fullscreen:first-child {
+    margin-top: calc(-1 * var(--header-height)) !important;
   }
-
 }
 
-
-
-.heroSection--fullscreen > img {
+.heroSection__bg {
 
   position: absolute;
 
@@ -410,6 +425,50 @@ body.is-header-solid #header {
   opacity: 0;
 
   transform: scale(1.08);
+
+  z-index: 0;
+
+}
+
+.heroSection__words {
+
+  position: absolute;
+
+  top: 50%;
+
+  right: calc(clamp(24px, 7vw, 120px) + 30px);
+
+  transform: translateY(calc(-50% - 40px));
+
+  width: clamp(360px, 43.2vw, 672px);
+
+  max-width: 100%;
+
+  height: auto;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+}
+
+@media (max-width: 767px) {
+
+  .heroSection__words {
+
+    right: calc(clamp(12px, 5vw, 32px) + 10px);
+
+    width: 32.5vw;
+
+    max-width: none;
+
+    min-width: 0;
+
+    top: 42%;
+
+    transform: translateY(-50%);
+
+  }
 
 }
 
@@ -603,13 +662,23 @@ body.is-header-solid #header {
 
   .heroSection--fullscreen {
 
-    height: 100vh;
+    height: auto;
 
-    height: 100svh; /* Small viewport height for better mobile support */
+    min-height: 0;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    padding-top: 0;
+
+    margin-top: 0 !important;
 
   }
 
-  .heroSection--fullscreen > img {
+  .heroSection__bg {
+
+    position: relative;
 
     width: 100%;
 
@@ -617,17 +686,21 @@ body.is-header-solid #header {
 
     object-fit: contain;
 
-    object-position: center;
+    object-position: top center;
 
-    top: 50%;
+    top: 0;
 
-    left: 50%;
+    left: 0;
 
-    transform: translate(-50%, -50%);
+    transform: none;
 
-    max-height: 100%;
+    max-height: none;
 
-    position: absolute;
+    opacity: 1;
+
+    transform-origin: center top;
+
+    animation: none;
 
   }
 
@@ -723,7 +796,7 @@ body.is-header-solid #header {
 
 
 
-  .heroSection--fullscreen > img {
+  .heroSection__bg {
 
     opacity: 1;
 
@@ -785,7 +858,10 @@ body.is-header-solid #header {
 
   --section-gap: var(--space-lg);
 
-
+  /* Header dimensions */
+  --header-padding-block: clamp(18px, 2.4vw, 28px);
+  --header-logo-height: clamp(42px, 5vw, 56px);
+  --header-height: calc(var(--header-padding-block) * 2 + var(--header-logo-height));
 
   /* Typography Scale */
 
@@ -1514,6 +1590,8 @@ p,
   .seqFaq {
 
     padding: 0.6rem 0 0;
+
+    margin-bottom: 20px;
 
   }
 
@@ -2393,6 +2471,12 @@ body.theme-palette-3 {
 
 }
 
+.seqPoint .pointItem.-purple .pointItem__body {
+
+  padding-top: clamp(18px, 4.5vw, 38px);
+
+}
+
 .seqPoint .pointItem.-green .pointItem__body { display: block; }
 
 
@@ -2713,6 +2797,14 @@ body.theme-palette-3 {
 
 }
 
+.seqPoint .pointItem.-purple .pointSteps {
+
+  width: 100%;
+
+  max-width: 64ch;
+
+}
+
 .pointSteps li { display: grid; gap: clamp(6px, 1vw, 12px); }
 
 .pointSteps__label { font-weight: 800; margin: 0; }
@@ -2839,7 +2931,7 @@ body.theme-palette-3 {
 
 /* (dup cleanup) approachSection rules are defined above; removed duplicate block */
 
-.heroSection > img {
+.heroSection:not(.heroSection--fullscreen) > .heroSection__bg {
 
   position: sticky;
 
@@ -2849,7 +2941,7 @@ body.theme-palette-3 {
 
   right: 0;
 
-  z-index: 1;
+  z-index: 0;
 
   display: block;
 
@@ -2961,7 +3053,7 @@ body.theme-palette-3 {
 
 .seqSiteLinks__card {
 
-  position: static;
+  position: relative;
 
   display: flex;
 
