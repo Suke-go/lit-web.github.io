@@ -440,7 +440,7 @@ body.is-header-solid #header {
 
   transform: translateY(calc(-50% - 40px));
 
-  width: clamp(360px, 43.2vw, 672px);
+  width: clamp(120px, 14.4vw, 224px);
 
   max-width: 100%;
 
@@ -453,23 +453,14 @@ body.is-header-solid #header {
 }
 
 @media (max-width: 767px) {
-
   .heroSection__words {
-
     right: calc(clamp(12px, 5vw, 32px) + 10px);
-
-    width: 32.5vw;
-
+    width: clamp(40px, 10.8vw, 224px);
     max-width: none;
-
     min-width: 0;
-
     top: 42%;
-
     transform: translateY(-50%);
-
   }
-
 }
 
 
@@ -500,13 +491,15 @@ body.is-header-solid #header {
 
 .heroScrollIndicator {
 
+  --hero-scroll-indicator-scale: 1;
+
   position: absolute;
 
   bottom: clamp(48px, 8vh, 88px);
 
   left: 50%;
 
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(var(--hero-scroll-indicator-scale, 1));
 
   display: flex;
 
@@ -584,7 +577,7 @@ body.is-header-solid #header {
 
     opacity: 0;
 
-    transform: translateX(-50%) translateY(24px);
+    transform: translateX(-50%) translateY(24px) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
@@ -592,7 +585,7 @@ body.is-header-solid #header {
 
     opacity: 1;
 
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
@@ -604,31 +597,31 @@ body.is-header-solid #header {
 
   0% {
 
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
   25% {
 
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-10px) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
   50% {
 
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
   75% {
 
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(10px) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
   100% {
 
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(var(--hero-scroll-indicator-scale, 1));
 
   }
 
@@ -718,7 +711,9 @@ body.is-header-solid #header {
 
   .heroScrollIndicator {
 
-    bottom: clamp(24px, 6vh, 48px);
+    bottom: clamp(12px, 5vh, 36px);
+
+    --hero-scroll-indicator-scale: 0.8;
 
   }
 
@@ -748,7 +743,7 @@ body.is-header-solid #header {
 
   .heroScrollIndicator {
 
-    bottom: 16px;
+    bottom: 12px;
 
     gap: 8px;
 
@@ -812,7 +807,7 @@ body.is-header-solid #header {
 
     opacity: 1;
 
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(var(--hero-scroll-indicator-scale, 1));
 
     animation: none;
 
@@ -2258,6 +2253,7 @@ body.theme-palette-3 {
 .coachingOverview__list .-text {
 
   font-size: clamp(16px, 2.3vw, 18px);
+  color: #ffffff;
 
 }
 
