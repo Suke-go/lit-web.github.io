@@ -1606,9 +1606,21 @@ p,
 
 
 
+  .ctaBanner__button {
+
+    width: 120%;
+
+    margin: 0 -10%;
+
+  }
+
+
+
   .ctaBanner__image {
 
-    width: min(100%, 1200px);
+    width: 100%;
+
+    max-width: none;
 
   }
 
