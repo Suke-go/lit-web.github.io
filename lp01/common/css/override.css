@@ -1598,6 +1598,12 @@ p,
 
 @media (max-width: 767px) {
 
+  body {
+
+    overflow-x: hidden;
+
+  }
+
   .buttonBox__image {
 
     width: min(100%, 240px);
@@ -1621,6 +1627,22 @@ p,
     width: 100%;
 
     max-width: none;
+
+  }
+
+
+
+  .ctaBanner {
+
+    overflow: hidden;
+
+  }
+
+
+
+  .heroScrollIndicator {
+
+    display: none;
 
   }
 
