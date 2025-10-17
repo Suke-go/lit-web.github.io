@@ -718,7 +718,7 @@ body.is-header-solid #header {
 
   .heroScrollIndicator {
 
-    bottom: clamp(32px, 7vh, 56px);
+    bottom: clamp(24px, 6vh, 48px);
 
   }
 
@@ -748,7 +748,7 @@ body.is-header-solid #header {
 
   .heroScrollIndicator {
 
-    bottom: 24px;
+    bottom: 16px;
 
     gap: 8px;
 
