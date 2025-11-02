@@ -3394,3 +3394,720 @@ body.theme-palette-3 {
   }
 
 }
+
+/* Trial reservation section */
+.trialReserve {
+
+  background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 55%, #ffffff 100%);
+
+  padding: clamp(56px, 8vw, 96px) clamp(16px, 6vw, 64px);
+
+  margin: clamp(48px, 7vw, 96px) 0 0;
+
+}
+
+.trialReserve__inner {
+
+  max-width: 960px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  gap: clamp(24px, 4vw, 40px);
+
+}
+
+.trialReserve__head {
+
+  display: grid;
+
+  gap: clamp(12px, 2.4vw, 20px);
+
+  text-align: center;
+
+}
+
+.trialReserve__lead {
+
+  font-size: clamp(16px, 2vw, 20px);
+
+  line-height: 1.7;
+
+  color: rgba(15, 70, 120, 0.9);
+
+}
+
+.trialReserve__form {
+
+  display: grid;
+
+  gap: clamp(16px, 2.6vw, 24px);
+
+  background-color: #ffffff;
+
+  padding: clamp(24px, 4vw, 36px);
+
+  border-radius: 20px;
+
+  box-shadow: 0 24px 48px rgba(15, 70, 120, 0.12);
+
+  border: 1px solid rgba(15, 70, 120, 0.08);
+
+}
+
+.trialReserve__field {
+
+  display: grid;
+
+  gap: 8px;
+
+}
+
+.trialReserve__label {
+
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+
+  color: #0f4678;
+
+  font-size: clamp(14px, 1.8vw, 16px);
+
+}
+
+.trialReserve__input,
+
+.trialReserve__select {
+
+  appearance: none;
+
+  border: 1px solid rgba(15, 70, 120, 0.18);
+
+  border-radius: 12px;
+
+  padding: 14px clamp(14px, 2vw, 18px);
+
+  font-size: clamp(15px, 1.9vw, 17px);
+
+  line-height: 1.4;
+
+  background-color: #f8fbff;
+
+  color: #0c2f47;
+
+  transition:
+
+    border-color 0.2s ease,
+
+    box-shadow 0.2s ease,
+
+    background-color 0.2s ease;
+
+}
+
+.trialReserve__input:focus,
+
+.trialReserve__select:focus {
+
+  outline: none;
+
+  border-color: #1373ce;
+
+  background-color: #ffffff;
+
+  box-shadow: 0 0 0 4px rgba(19, 115, 206, 0.16);
+
+}
+
+.trialReserve__input:disabled,
+
+.trialReserve__select:disabled {
+
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  background-color: #f0f4f9;
+
+}
+
+.trialReserve__submit {
+
+  grid-column: 1 / -1;
+
+  justify-self: stretch;
+
+  background: linear-gradient(135deg, #1373ce 0%, #0f58a8 100%);
+
+  color: #ffffff;
+
+  border: none;
+
+  border-radius: 999px;
+
+  padding: clamp(14px, 2.6vw, 18px);
+
+  font-weight: 700;
+
+  font-size: clamp(16px, 2.2vw, 18px);
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+
+}
+
+.trialReserve__submit:hover {
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 16px 32px rgba(19, 115, 206, 0.28);
+
+}
+
+.trialReserve__submit:disabled,
+
+.trialReserve__submit[aria-disabled="true"] {
+
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+
+}
+
+.trialReserve__field--contact {
+
+  grid-column: 1 / -1;
+
+}
+
+.trialReserve__choices {
+
+  display: grid;
+
+  gap: clamp(12px, 2vw, 16px);
+
+}
+
+.trialReserve__choice {
+
+  display: grid;
+
+  grid-template-columns: auto 1fr;
+
+  gap: 14px;
+
+  align-items: center;
+
+  padding: clamp(14px, 2.2vw, 18px);
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(15, 70, 120, 0.14);
+
+  background: rgba(248, 251, 255, 0.9);
+
+  box-shadow: 0 12px 24px rgba(15, 70, 120, 0.08);
+
+  transition:
+
+    border-color 0.25s ease,
+
+    box-shadow 0.25s ease,
+
+    background-color 0.25s ease;
+
+  cursor: pointer;
+
+}
+
+.trialReserve__choice input[type="radio"] {
+
+  width: clamp(18px, 2vw, 20px);
+
+  height: clamp(18px, 2vw, 20px);
+
+  accent-color: #1373ce;
+
+}
+
+.trialReserve__choice span {
+
+  display: grid;
+
+  gap: 6px;
+
+  color: #0c2f47;
+
+}
+
+.trialReserve__choice strong {
+
+  font-size: clamp(15px, 1.9vw, 17px);
+
+  font-weight: 700;
+
+  letter-spacing: 0.03em;
+
+}
+
+.trialReserve__choice small {
+
+  font-size: clamp(12px, 1.6vw, 14px);
+
+  color: rgba(15, 47, 71, 0.72);
+
+  line-height: 1.5;
+
+}
+
+.trialReserve__choice:focus-within,
+
+.trialReserve__choice:hover {
+
+  border-color: rgba(19, 115, 206, 0.45);
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow: 0 18px 36px rgba(19, 115, 206, 0.18);
+
+}
+
+.slotPicker {
+
+  display: grid;
+
+  gap: clamp(16px, 2.6vw, 24px);
+
+  padding: clamp(18px, 3vw, 26px);
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(19, 115, 206, 0.12);
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+
+    0 24px 48px rgba(15, 70, 120, 0.12);
+
+}
+
+.slotPicker__nav {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: clamp(16px, 3vw, 24px);
+
+}
+
+.slotPicker__navLabel {
+
+  font-weight: 700;
+
+  font-size: clamp(16px, 2.2vw, 20px);
+
+  letter-spacing: 0.04em;
+
+  color: #0f4678;
+
+}
+
+.slotPicker__navBtn {
+
+  border: none;
+
+  width: clamp(36px, 4vw, 44px);
+
+  height: clamp(36px, 4vw, 44px);
+
+  border-radius: 50%;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: linear-gradient(135deg, #1373ce 0%, #0f58a8 100%);
+
+  color: #ffffff;
+
+  font-size: clamp(18px, 2.4vw, 22px);
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 24px rgba(19, 115, 206, 0.28);
+
+  transition:
+
+    transform 0.2s ease,
+
+    box-shadow 0.2s ease,
+
+    opacity 0.2s ease;
+
+}
+
+.slotPicker__navBtn:disabled {
+
+  opacity: 0.35;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+
+}
+
+.slotPicker__navBtn:not(:disabled):hover {
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 18px 32px rgba(19, 115, 206, 0.34);
+
+}
+
+.slotPicker__body {
+
+  display: grid;
+
+  gap: clamp(12px, 2vw, 18px);
+
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+}
+
+.slotPicker__empty {
+
+  margin: 0;
+
+  text-align: center;
+
+  font-weight: 600;
+
+  font-size: clamp(14px, 1.8vw, 16px);
+
+  color: rgba(15, 47, 71, 0.74);
+
+}
+
+.slotPicker__selection {
+
+  margin: 0;
+
+  font-size: clamp(13px, 1.7vw, 15px);
+
+  color: rgba(15, 70, 120, 0.75);
+
+  text-align: center;
+
+  display: none;
+
+}
+
+.slotPicker__selection.is-visible {
+
+  display: block;
+
+}
+
+.slotDay {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  padding: clamp(16px, 2.6vw, 22px);
+
+  border-radius: 18px;
+
+  border: 1px solid rgba(15, 70, 120, 0.1);
+
+  background: rgba(255, 255, 255, 0.92);
+
+  box-shadow: 0 18px 36px rgba(15, 70, 120, 0.12);
+
+  min-height: 164px;
+
+}
+
+.slotDay--empty {
+
+  background: rgba(245, 248, 252, 0.88);
+
+  border-style: dashed;
+
+}
+
+.slotDay--selected {
+
+  border-color: rgba(19, 115, 206, 0.46);
+
+  box-shadow: 0 22px 44px rgba(19, 115, 206, 0.28);
+
+}
+
+.slotDay__head {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-weight: 700;
+
+  color: #0f4678;
+
+}
+
+.slotDay__dow {
+
+  font-size: clamp(14px, 1.8vw, 16px);
+
+  letter-spacing: 0.08em;
+
+}
+
+.slotDay__date {
+
+  font-size: clamp(16px, 2.3vw, 20px);
+
+  letter-spacing: 0.06em;
+
+}
+
+.slotDay__slots {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+}
+
+.slotDay__slot {
+
+  border: 1px solid rgba(19, 115, 206, 0.16);
+
+  background: rgba(239, 248, 255, 0.92);
+
+  color: #0f4678;
+
+  border-radius: 999px;
+
+  padding: 8px 16px;
+
+  font-size: clamp(14px, 1.8vw, 16px);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+
+    background-color 0.2s ease,
+
+    color 0.2s ease,
+
+    border-color 0.2s ease,
+
+    box-shadow 0.2s ease;
+
+}
+
+.slotDay__slot:hover,
+
+.slotDay__slot:focus-visible {
+
+  border-color: rgba(19, 115, 206, 0.45);
+
+  box-shadow: 0 0 0 3px rgba(19, 115, 206, 0.28);
+
+}
+
+.slotDay__slot.is-selected {
+
+  background: linear-gradient(135deg, #1373ce 0%, #0f58a8 100%);
+
+  color: #ffffff;
+
+  border-color: transparent;
+
+  box-shadow: 0 12px 24px rgba(19, 115, 206, 0.35);
+
+}
+
+.slotDay__noSlot {
+
+  margin: 0;
+
+  font-weight: 600;
+
+  color: rgba(15, 47, 71, 0.5);
+
+  font-size: clamp(13px, 1.7vw, 15px);
+
+}
+
+.trialReserve__result {
+
+  text-align: center;
+
+  font-weight: 600;
+
+  font-size: clamp(15px, 2vw, 17px);
+
+  line-height: 1.5;
+
+  margin: 0 auto;
+
+  max-width: 720px;
+
+}
+
+.trialReserve__result[hidden] {
+
+  display: none !important;
+
+}
+
+.trialReserve__result--success {
+
+  color: #117a4c;
+
+}
+
+.trialReserve__result--error {
+
+  color: #c83b2b;
+
+}
+
+.trialReserve__result--warning {
+
+  color: #b36a00;
+
+}
+
+.trialReserve__privacy {
+
+  text-align: center;
+
+  font-size: clamp(13px, 1.7vw, 15px);
+
+  color: rgba(17, 42, 59, 0.72);
+
+  line-height: 1.6;
+
+}
+
+@media (min-width: 680px) {
+
+  .trialReserve__form {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: clamp(20px, 4vw, 32px);
+
+  }
+
+  .trialReserve__field--full {
+
+    grid-column: 1 / -1;
+
+  }
+
+  .trialReserve__choices {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  }
+
+  .slotPicker__body {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  }
+
+  .trialReserve__submit {
+
+    justify-self: center;
+
+    max-width: 320px;
+
+  }
+
+}
+
+@media (min-width: 900px) {
+
+  .slotPicker__body {
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  }
+
+}
+
+@media (min-width: 1100px) {
+
+  .slotPicker__body {
+
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+
+  }
+
+}
+
+@media (max-width: 679px) {
+
+  .trialReserve__submit {
+
+    width: 100%;
+
+  }
+
+  .trialReserve__choices {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .slotPicker__body {
+
+    grid-auto-flow: column;
+
+    grid-auto-columns: minmax(210px, 1fr);
+
+    overflow-x: auto;
+
+    padding-bottom: 6px;
+
+    scroll-snap-type: x proximity;
+
+    grid-template-columns: none;
+
+  }
+
+  .slotDay {
+
+    scroll-snap-align: start;
+
+  }
+
+}

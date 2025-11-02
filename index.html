@@ -267,6 +267,9 @@
               <!-- <li class="headerNav__item">
                 <a class="headerNav__link" href="#seqFaq">よくある質問</a>
               </li> -->
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="#trialReserveSection">無料体験予約</a>
+              </li>
             </ul>
           </nav>
 
@@ -887,6 +890,133 @@
               </div>
             </div>
           </section>
+
+          <section
+            class="trialReserve"
+            id="trialReserveSection"
+            data-gas-endpoint="https://script.google.com/macros/s/AKfycbymlN_DLqUAx_ws3xIdRmz141wc5U7_yUbi8jLhfgICVE8tCDbBVZdCHVg3ZsD0Y-Qs/exec"
+          >
+            <div class="trialReserve__inner">
+              <div class="trialReserve__head">
+                <h2 class="sectionTitle">
+                  <span class="sectionTitle__inner">
+                    <span>無料体験予約（30分オンライン）</span>
+                  </span>
+                </h2>
+                <p class="trialReserve__lead">
+                  ご希望の枠をお選びください。確定後すぐに参加用のGoogle Meetリンクをメールでお送りします。
+                </p>
+              </div>
+
+              <form id="trialForm" class="trialReserve__form">
+                <div class="trialReserve__field">
+                  <label class="trialReserve__label" for="trialName">お名前</label>
+                  <input
+                    id="trialName"
+                    class="trialReserve__input"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+
+                <div class="trialReserve__field">
+                  <label class="trialReserve__label" for="trialEmail">メールアドレス</label>
+                  <input
+                    id="trialEmail"
+                    class="trialReserve__input"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                  />
+                </div>
+
+                <div class="trialReserve__field">
+                  <label class="trialReserve__label" for="trialTel">電話番号</label>
+                  <input
+                    id="trialTel"
+                    class="trialReserve__input"
+                    name="tel"
+                    type="tel"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    required
+                  />
+                </div>
+
+                <div class="trialReserve__field trialReserve__field--full">
+                  <span class="trialReserve__label">希望日時（30分枠）</span>
+                  <div class="slotPicker" id="slotPicker" aria-live="polite">
+                    <div class="slotPicker__nav" aria-hidden="true">
+                      <button
+                        type="button"
+                        class="slotPicker__navBtn slotPicker__navBtn--prev"
+                        id="slotPrevWeek"
+                        aria-label="前の週を表示"
+                        disabled
+                      >
+                        <span aria-hidden="true">‹</span>
+                      </button>
+                      <div class="slotPicker__navLabel" id="slotWeekLabel">
+                        読み込み中…
+                      </div>
+                      <button
+                        type="button"
+                        class="slotPicker__navBtn slotPicker__navBtn--next"
+                        id="slotNextWeek"
+                        aria-label="次の週を表示"
+                        disabled
+                      >
+                        <span aria-hidden="true">›</span>
+                      </button>
+                    </div>
+                    <div class="slotPicker__body" id="slotPickerBody">
+                      <p class="slotPicker__empty">読み込み中です…</p>
+                    </div>
+                    <p class="slotPicker__selection" id="slotSelectionStatus" aria-live="polite"></p>
+                  </div>
+                  <input type="hidden" name="slotISO" id="slotISO" />
+                </div>
+
+                <fieldset class="trialReserve__field trialReserve__field--contact">
+                  <legend class="trialReserve__label">希望する説明形式</legend>
+                  <div class="trialReserve__choices" role="radiogroup" aria-label="希望する説明形式">
+                    <label class="trialReserve__choice">
+                      <input
+                        type="radio"
+                        name="contactMethod"
+                        value="meet"
+                        checked
+                      />
+                      <span>
+                        <strong>オンライン（Google Meet）</strong>
+                        <small>画面共有を使って詳しくご案内します</small>
+                      </span>
+                    </label>
+                    <label class="trialReserve__choice">
+                      <input type="radio" name="contactMethod" value="phone" />
+                      <span>
+                        <strong>電話での説明を希望する</strong>
+                        <small>担当コーチからお電話差し上げます</small>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <button id="submitBtn" class="trialReserve__submit" type="submit">
+                  この時間で予約する
+                </button>
+              </form>
+
+              <p id="resultMsg" class="trialReserve__result" aria-live="polite" hidden></p>
+
+              <p class="trialReserve__privacy">
+                入力いただいた情報は日程調整および当日のご案内以外の目的では利用しません。
+              </p>
+            </div>
+          </section>
         </article>
       </main>
     </div>
@@ -910,6 +1040,637 @@
           },
           true,
         );
+      })();
+
+      // Trial reservation form logic
+      (function () {
+        var section = document.getElementById("trialReserveSection");
+        if (!section) return;
+
+        var endpoint =
+          (section.dataset && section.dataset.gasEndpoint) || "";
+        var form = document.getElementById("trialForm");
+        var slotPickerBody = document.getElementById("slotPickerBody");
+        var slotWeekLabel = document.getElementById("slotWeekLabel");
+        var slotSelectionStatus = document.getElementById(
+          "slotSelectionStatus",
+        );
+        var prevWeekBtn = document.getElementById("slotPrevWeek");
+        var nextWeekBtn = document.getElementById("slotNextWeek");
+        var slotHiddenInput = document.getElementById("slotISO");
+        var submitBtn = document.getElementById("submitBtn");
+        var resultMsg = document.getElementById("resultMsg");
+        var STATUS_MODIFIERS = ["success", "error", "warning"];
+        var DOW = ["日", "月", "火", "水", "木", "金", "土"];
+
+        if (
+          !form ||
+          !slotPickerBody ||
+          !slotWeekLabel ||
+          !slotSelectionStatus ||
+          !prevWeekBtn ||
+          !nextWeekBtn ||
+          !slotHiddenInput ||
+          !submitBtn ||
+          !resultMsg
+        ) {
+          return;
+        }
+
+        var slotState = {
+          weeks: [],
+          currentWeek: 0,
+          selectedSlotISO: "",
+        };
+
+        function pad(num) {
+          return num < 10 ? "0" + num : "" + num;
+        }
+
+        function applyStatus(status) {
+          STATUS_MODIFIERS.forEach(function (name) {
+            resultMsg.classList.toggle(
+              "trialReserve__result--" + name,
+              status === name,
+            );
+          });
+        }
+
+        function clearMessage() {
+          resultMsg.textContent = "";
+          resultMsg.hidden = true;
+          applyStatus(null);
+        }
+
+        function showMessage(message, status) {
+          if (!message) {
+            clearMessage();
+            return;
+          }
+          resultMsg.textContent = message;
+          resultMsg.hidden = false;
+          applyStatus(status);
+        }
+
+        function setFormDisabled(disabled) {
+          Array.prototype.forEach.call(form.elements, function (el) {
+            el.disabled = disabled;
+          });
+        }
+
+        function toLocalDate(isoString) {
+          var d = new Date(isoString);
+          if (isNaN(d.getTime())) {
+            return null;
+          }
+          return d;
+        }
+
+        function dateKeyFromDate(date) {
+          return (
+            date.getFullYear() +
+            "-" +
+            pad(date.getMonth() + 1) +
+            "-" +
+            pad(date.getDate())
+          );
+        }
+
+        function parseDateKey(key) {
+          var parts = key.split("-");
+          return new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2]),
+          );
+        }
+
+        function formatTimeRange(startISO, endISO) {
+          var start = toLocalDate(startISO);
+          var end = toLocalDate(endISO);
+          if (!start || !end) return "";
+          return (
+            pad(start.getHours()) +
+            ":" +
+            pad(start.getMinutes()) +
+            " - " +
+            pad(end.getHours()) +
+            ":" +
+            pad(end.getMinutes())
+          );
+        }
+
+        function findSlotInfo(slotISO, weeksOverride) {
+          var weeks = weeksOverride || slotState.weeks;
+          for (var w = 0; w < weeks.length; w++) {
+            var week = weeks[w];
+            for (var d = 0; d < week.days.length; d++) {
+              var day = week.days[d];
+              for (var s = 0; s < day.slots.length; s++) {
+                if (day.slots[s].startISO === slotISO) {
+                  return {
+                    weekIndex: w,
+                    day: day,
+                    slot: day.slots[s],
+                  };
+                }
+              }
+            }
+          }
+          return null;
+        }
+
+        function updateSelectionStatus() {
+          if (!slotSelectionStatus) return;
+
+          if (!slotState.selectedSlotISO) {
+            slotSelectionStatus.textContent = "";
+            slotSelectionStatus.classList.remove("is-visible");
+            return;
+          }
+
+          var info = findSlotInfo(slotState.selectedSlotISO);
+          if (!info) {
+            slotSelectionStatus.textContent = "";
+            slotSelectionStatus.classList.remove("is-visible");
+            return;
+          }
+
+          slotSelectionStatus.textContent =
+            info.day.labelFull +
+            " " +
+            (info.slot.timeLabel || info.slot.label) +
+            " を選択中です";
+          slotSelectionStatus.classList.add("is-visible");
+        }
+
+        function setLoadingUI() {
+          slotWeekLabel.textContent = "読み込み中…";
+          slotPickerBody.innerHTML =
+            '<p class="slotPicker__empty">読み込み中です…</p>';
+          prevWeekBtn.disabled = true;
+          nextWeekBtn.disabled = true;
+          submitBtn.disabled = true;
+          slotSelectionStatus.textContent = "";
+          slotSelectionStatus.classList.remove("is-visible");
+        }
+
+        function setNoSlotsUI() {
+          slotWeekLabel.textContent = "現在予約可能な枠はありません";
+          slotPickerBody.innerHTML =
+            '<p class="slotPicker__empty">現在ご案内できる枠がありません。別日程の公開をお待ちください。</p>';
+          prevWeekBtn.disabled = true;
+          nextWeekBtn.disabled = true;
+          submitBtn.disabled = true;
+          slotHiddenInput.value = "";
+          slotState.selectedSlotISO = "";
+          updateSelectionStatus();
+        }
+
+        function setEndpointMissingUI() {
+          slotWeekLabel.textContent = "デプロイURLを設定してください";
+          slotPickerBody.innerHTML =
+            '<p class="slotPicker__empty">GASのデプロイURLが未設定のため枠を表示できません。</p>';
+          prevWeekBtn.disabled = true;
+          nextWeekBtn.disabled = true;
+          submitBtn.disabled = true;
+          slotHiddenInput.value = "";
+          slotState.selectedSlotISO = "";
+          updateSelectionStatus();
+        }
+
+        function setErrorUI() {
+          slotWeekLabel.textContent = "取得エラー";
+          slotPickerBody.innerHTML =
+            '<p class="slotPicker__empty">空き枠を取得できませんでした。</p>';
+          prevWeekBtn.disabled = true;
+          nextWeekBtn.disabled = true;
+          submitBtn.disabled = true;
+          slotHiddenInput.value = "";
+          updateSelectionStatus();
+        }
+
+        function buildWeeks(slots) {
+          var map = {};
+
+          slots.forEach(function (slot) {
+            if (!slot || !slot.startISO) return;
+            var start = toLocalDate(slot.startISO);
+            if (!start) return;
+            start.setHours(0, 0, 0, 0);
+            var key = dateKeyFromDate(start);
+            if (!map[key]) {
+              map[key] = [];
+            }
+            map[key].push({
+              startISO: slot.startISO,
+              endISO: slot.endISO || slot.startISO,
+              label: slot.label || "",
+              timeLabel: formatTimeRange(slot.startISO, slot.endISO || slot.startISO),
+            });
+          });
+
+          Object.keys(map).forEach(function (key) {
+            map[key].sort(function (a, b) {
+              return new Date(a.startISO) - new Date(b.startISO);
+            });
+          });
+
+          var mapKeys = Object.keys(map).sort();
+          var now = new Date();
+          now.setHours(0, 0, 0, 0);
+          var defaultStart = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
+
+          var startDate =
+            mapKeys.length > 0 ? parseDateKey(mapKeys[0]) : new Date(defaultStart);
+          if (startDate.getTime() > defaultStart.getTime()) {
+            startDate = new Date(defaultStart);
+          }
+
+          var latestDate =
+            mapKeys.length > 0
+              ? parseDateKey(mapKeys[mapKeys.length - 1])
+              : new Date(startDate);
+
+          var diffDays = Math.floor(
+            (latestDate.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000),
+          );
+          var totalDays = Math.min(14, Math.max(7, diffDays + 1));
+          if (diffDays + 1 > 14) {
+            totalDays = diffDays + 1;
+          }
+
+          var days = [];
+          for (var i = 0; i < totalDays; i++) {
+            var date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
+            var key = dateKeyFromDate(date);
+            var slotsForDay = map[key] || [];
+            days.push({
+              key: key,
+              date: date,
+              slots: slotsForDay,
+              labelShort: date.getMonth() + 1 + "/" + pad(date.getDate()),
+              labelDow: DOW[date.getDay()],
+              labelFull:
+                date.getMonth() +
+                1 +
+                "月" +
+                date.getDate() +
+                "日(" +
+                DOW[date.getDay()] +
+                ")",
+            });
+          }
+
+          if (mapKeys.length > totalDays) {
+            for (var j = totalDays; j < mapKeys.length; j++) {
+              var extraDate = parseDateKey(mapKeys[j]);
+              days.push({
+                key: mapKeys[j],
+                date: extraDate,
+                slots: map[mapKeys[j]] || [],
+                labelShort: extraDate.getMonth() + 1 + "/" + pad(extraDate.getDate()),
+                labelDow: DOW[extraDate.getDay()],
+                labelFull:
+                  extraDate.getMonth() +
+                  1 +
+                  "月" +
+                  extraDate.getDate() +
+                  "日(" +
+                  DOW[extraDate.getDay()] +
+                  ")",
+              });
+            }
+          }
+
+          var weeks = [];
+          for (var idx = 0; idx < days.length; idx += 7) {
+            weeks.push({
+              index: weeks.length,
+              days: days.slice(idx, idx + 7),
+            });
+          }
+
+          return weeks;
+        }
+
+        function formatWeekLabel(week) {
+          if (!week || week.days.length === 0) return "";
+          var first = week.days[0];
+          var last = week.days[week.days.length - 1];
+          return (
+            first.labelShort +
+            "(" +
+            first.labelDow +
+            ") 〜 " +
+            last.labelShort +
+            "(" +
+            last.labelDow +
+            ")"
+          );
+        }
+
+        function renderWeek() {
+          if (!slotState.weeks.length) {
+            setNoSlotsUI();
+            return;
+          }
+
+          if (slotState.currentWeek < 0) {
+            slotState.currentWeek = 0;
+          }
+          if (slotState.currentWeek >= slotState.weeks.length) {
+            slotState.currentWeek = slotState.weeks.length - 1;
+          }
+
+          var week = slotState.weeks[slotState.currentWeek];
+          slotWeekLabel.textContent = formatWeekLabel(week);
+          prevWeekBtn.disabled = slotState.currentWeek === 0;
+          nextWeekBtn.disabled = slotState.currentWeek >= slotState.weeks.length - 1;
+
+          slotPickerBody.innerHTML = "";
+          var hasAvailableSlot = false;
+
+          week.days.forEach(function (day) {
+            var dayEl = document.createElement("article");
+            dayEl.className = "slotDay";
+            dayEl.setAttribute("data-date", day.key);
+            dayEl.setAttribute("aria-label", day.labelFull);
+
+            if (day.slots.length === 0) {
+              dayEl.classList.add("slotDay--empty");
+            }
+
+            var hasSelected =
+              day.slots.filter(function (slot) {
+                return slot.startISO === slotState.selectedSlotISO;
+              }).length > 0;
+            if (hasSelected) {
+              dayEl.classList.add("slotDay--selected");
+            }
+
+            var head = document.createElement("header");
+            head.className = "slotDay__head";
+
+            var dow = document.createElement("span");
+            dow.className = "slotDay__dow";
+            dow.textContent = day.labelDow;
+
+            var date = document.createElement("span");
+            date.className = "slotDay__date";
+            date.textContent = day.labelShort;
+
+            head.appendChild(dow);
+            head.appendChild(date);
+
+            var body = document.createElement("div");
+            body.className = "slotDay__slots";
+
+            if (!day.slots.length) {
+              var empty = document.createElement("p");
+              empty.className = "slotDay__noSlot";
+              empty.textContent = "満席";
+              body.appendChild(empty);
+            } else {
+              hasAvailableSlot = true;
+              day.slots.forEach(function (slot) {
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "slotDay__slot";
+                btn.dataset.slotIso = slot.startISO;
+                btn.textContent = slot.timeLabel || slot.label;
+                btn.setAttribute(
+                  "aria-label",
+                  day.labelFull + " " + (slot.timeLabel || slot.label),
+                );
+                var isSelected = slot.startISO === slotState.selectedSlotISO;
+                btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+                if (isSelected) {
+                  btn.classList.add("is-selected");
+                }
+                btn.addEventListener("click", function () {
+                  selectSlot(slot.startISO);
+                });
+                body.appendChild(btn);
+              });
+            }
+
+            dayEl.appendChild(head);
+            dayEl.appendChild(body);
+            slotPickerBody.appendChild(dayEl);
+          });
+
+          if (!hasAvailableSlot) {
+            submitBtn.disabled = true;
+          } else if (slotState.selectedSlotISO) {
+            submitBtn.disabled = false;
+          }
+
+          updateSelectionStatus();
+        }
+
+        function selectSlot(slotISO, options) {
+          slotState.selectedSlotISO = slotISO;
+          slotHiddenInput.value = slotISO || "";
+          submitBtn.disabled = !slotISO;
+
+          if (!options || !options.silent) {
+            renderWeek();
+          } else {
+            updateSelectionStatus();
+          }
+        }
+
+        function ensureSelectedWeekVisible() {
+          if (!slotState.selectedSlotISO) return;
+          var info = findSlotInfo(slotState.selectedSlotISO);
+          if (info && info.weekIndex !== slotState.currentWeek) {
+            slotState.currentWeek = info.weekIndex;
+          }
+        }
+
+        function autoSelectFirstAvailable() {
+          for (var w = 0; w < slotState.weeks.length; w++) {
+            var week = slotState.weeks[w];
+            for (var d = 0; d < week.days.length; d++) {
+              var day = week.days[d];
+              if (day.slots.length > 0) {
+                slotState.currentWeek = w;
+                selectSlot(day.slots[0].startISO, { silent: true });
+                renderWeek();
+                return;
+              }
+            }
+          }
+          slotHiddenInput.value = "";
+          submitBtn.disabled = true;
+          updateSelectionStatus();
+        }
+
+        function changeWeek(delta) {
+          if (!slotState.weeks.length) return;
+          var nextIndex = slotState.currentWeek + delta;
+          if (nextIndex < 0 || nextIndex >= slotState.weeks.length) return;
+          slotState.currentWeek = nextIndex;
+          renderWeek();
+        }
+
+        prevWeekBtn.addEventListener("click", function () {
+          changeWeek(-1);
+        });
+        nextWeekBtn.addEventListener("click", function () {
+          changeWeek(1);
+        });
+
+        async function loadSlots(options) {
+          var keepMessage = options && options.keepMessage;
+          if (!keepMessage) {
+            clearMessage();
+          }
+
+          setLoadingUI();
+
+          try {
+            var response = await fetch(endpoint + "?mode=slots", {
+              method: "GET",
+              cache: "no-store",
+            });
+
+            if (!response.ok) {
+              throw new Error("HTTP " + response.status);
+            }
+
+            var slots = await response.json();
+
+            if (!Array.isArray(slots) || slots.length === 0) {
+              slotState.weeks = [];
+              slotState.selectedSlotISO = "";
+              slotHiddenInput.value = "";
+              setNoSlotsUI();
+              showMessage(
+                "現在ご案内できる枠がありません。別日程の公開をお待ちください。",
+                "warning",
+              );
+              return;
+            }
+
+            var weeks = buildWeeks(slots);
+            var previousSelection = slotState.selectedSlotISO;
+            slotState.weeks = weeks;
+            slotState.currentWeek = 0;
+
+            if (previousSelection) {
+              var existing = findSlotInfo(previousSelection, weeks);
+              if (existing) {
+                slotState.currentWeek = existing.weekIndex;
+                slotState.selectedSlotISO = previousSelection;
+                renderWeek();
+                ensureSelectedWeekVisible();
+                renderWeek();
+              } else {
+                slotState.selectedSlotISO = "";
+                renderWeek();
+                autoSelectFirstAvailable();
+              }
+            } else {
+              renderWeek();
+              autoSelectFirstAvailable();
+            }
+          } catch (err) {
+            console.error("Failed to load slots", err);
+            setErrorUI();
+            showMessage(
+              "空き枠の取得に失敗しました。時間を置いて再度お試しください。",
+              "error",
+            );
+          }
+        }
+
+        if (!endpoint || endpoint.indexOf("YOUR_DEPLOYMENT_ID_HERE") !== -1) {
+          setEndpointMissingUI();
+          showMessage(
+            "GASのデプロイURLを設定後にご利用いただけます。",
+            "warning",
+          );
+          return;
+        }
+
+        loadSlots();
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          clearMessage();
+
+          var contactField = form.elements.namedItem("contactMethod");
+
+          var payload = {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            tel: form.tel.value.trim(),
+            slotISO: slotHiddenInput.value,
+            contactMethod:
+              (contactField && contactField.value) || "meet",
+          };
+
+          if (!payload.name || !payload.email || !payload.tel) {
+            showMessage("未入力の項目があります。", "error");
+            return;
+          }
+
+          if (!payload.slotISO) {
+            showMessage("希望日時を選択してください。", "error");
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-busy", "true");
+
+          try {
+            var response = await fetch(endpoint + "?mode=book", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+              throw new Error("HTTP " + response.status);
+            }
+
+            var data = await response.json();
+
+            var status = data && data.status;
+            var message = data && data.message;
+
+            if (status === "ok") {
+              showMessage(
+                message ||
+                  "ご予約が確定しました。確認メールをご確認ください。",
+                "success",
+              );
+              setFormDisabled(true);
+              submitBtn.removeAttribute("aria-busy");
+              submitBtn.setAttribute("aria-disabled", "true");
+            } else {
+              showMessage(
+                message ||
+                  "申し訳ありません。他の方が先にこの枠を確保しました。別の時間帯をお選びください。",
+                "error",
+              );
+              submitBtn.disabled = false;
+              submitBtn.removeAttribute("aria-busy");
+              loadSlots({ keepMessage: true });
+            }
+          } catch (err) {
+            console.error("Reservation request failed", err);
+            showMessage(
+              "通信エラーが発生しました。時間を置いて再度お試しください。",
+              "error",
+            );
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute("aria-busy");
+          }
+        });
       })();
 
       // CRITICAL: Remove all accordion event listeners from common.js
