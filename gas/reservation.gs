@@ -15,6 +15,13 @@ const AVAIL_CAL_ID = "f2b7f80f922816e3fc37245607d5816163575a8426691a8a70436bde3c
 const BOOK_CAL_ID = "litable.official@gmail.com";
 const RESP_SHEET_ID = "1Xn145JXyBmFoj9yMXMkOCmoAh-OLN8IhQ5uT1VBebU8";
 const PRODUCTION_ORIGIN = "https://lp.careercoaching.litable-edu.com";
+const PREVIEW_ORIGIN = "https://ksk432.com/lit-web.github.io";
+const ALLOWED_ORIGINS = Object.freeze([
+  PRODUCTION_ORIGIN,
+  PREVIEW_ORIGIN,
+  "http://127.0.0.1:5501",
+  "http://localhost:5501",
+]);
 const TIMEZONE = "Asia/Tokyo";
 const MEETING_LENGTH_MIN = 30;
 
@@ -31,10 +38,38 @@ const CONTACT_METHODS = Object.freeze({
   PHONE: "phone",
 });
 
-function jsonResponse(obj) {
-  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
-    ContentService.MimeType.JSON,
-  );
+const JSON_CONTENT_TYPE = "application/json; charset=utf-8";
+const TEXT_CONTENT_TYPE = "text/plain; charset=utf-8";
+
+function resolveAllowedOrigin(origin) {
+  if (!origin) return PRODUCTION_ORIGIN;
+  if (ALLOWED_ORIGINS.indexOf(origin) !== -1) return origin;
+  return PRODUCTION_ORIGIN;
+}
+
+function withCors(body, options) {
+  options = options || {};
+  var originHeader = options.origin || "";
+  var allowedOrigin = resolveAllowedOrigin(originHeader);
+
+  return {
+    statusCode: options.statusCode || 200,
+    headers: Object.assign(
+      {
+        "Access-Control-Allow-Origin": allowedOrigin,
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+        "Vary": "Origin",
+        "Content-Type": options.contentType || JSON_CONTENT_TYPE,
+      },
+      options.headers || {},
+    ),
+    body: body || "",
+  };
+}
+
+function jsonResponse(obj, origin) {
+  return withCors(JSON.stringify(obj), { origin: origin, contentType: JSON_CONTENT_TYPE });
 }
 
 function formatSlotLabel(startDate, endDate) {
@@ -454,20 +489,38 @@ function handleBooking(data) {
   }
 }
 
+function doOptions(e) {
+  var origin =
+    (e && e.headers && (e.headers.Origin || e.headers.origin)) ||
+    (e && e.parameter && e.parameter.origin) ||
+    "";
+  return withCors("", {
+    origin: origin,
+    statusCode: 204,
+    contentType: TEXT_CONTENT_TYPE,
+  });
+}
+
 function doGet(e) {
   try {
     const params = (e && e.parameter) || {};
     const mode = (params.mode || "").toLowerCase();
+    const origin =
+      (e && e.headers && (e.headers.Origin || e.headers.origin)) ||
+      params.origin ||
+      "";
 
     if (mode === "slots") {
       const slots = getCandidateSlots(false);
-      return jsonResponse(slots);
+      return jsonResponse(slots, origin);
     }
 
-    return jsonResponse({ status: "ok", message: "alive" });
+    return jsonResponse({ status: "ok", message: "alive" }, origin);
   } catch (err) {
     console.error("doGet error", err);
-    return jsonResponse({ status: "error", message: "internal error" });
+    const origin =
+      (e && e.headers && (e.headers.Origin || e.headers.origin)) || "";
+    return jsonResponse({ status: "error", message: "internal error" }, origin);
   }
 }
 
@@ -475,6 +528,10 @@ function doPost(e) {
   try {
     const params = (e && e.parameter) || {};
     const mode = (params.mode || "").toLowerCase();
+    const origin =
+      (e && e.headers && (e.headers.Origin || e.headers.origin)) ||
+      (e && e.postData && e.postData.type && e.parameter && e.parameter.origin) ||
+      "";
 
     if (mode === "book") {
       let payload = {};
@@ -483,19 +540,24 @@ function doPost(e) {
           payload = JSON.parse(e.postData.contents);
         } catch (parseErr) {
           console.error("JSON parse error", parseErr);
-          return jsonResponse({
-            status: "error",
-            message: "リクエスト形式が不正です。",
-          });
+          return jsonResponse(
+            {
+              status: "error",
+              message: "リクエスト形式が不正です。",
+            },
+            origin,
+          );
         }
       }
       const result = handleBooking(payload);
-      return jsonResponse(result);
+      return jsonResponse(result, origin);
     }
 
-    return jsonResponse({ status: "error", message: "unknown mode" });
+    return jsonResponse({ status: "error", message: "unknown mode" }, origin);
   } catch (err) {
     console.error("doPost error", err);
-    return jsonResponse({ status: "error", message: "internal error" });
+    const origin =
+      (e && e.headers && (e.headers.Origin || e.headers.origin)) || "";
+    return jsonResponse({ status: "error", message: "internal error" }, origin);
   }
 }
