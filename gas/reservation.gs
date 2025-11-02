@@ -15,7 +15,7 @@ const AVAIL_CAL_ID = "f2b7f80f922816e3fc37245607d5816163575a8426691a8a70436bde3c
 const BOOK_CAL_ID = "litable.official@gmail.com";
 const RESP_SHEET_ID = "1Xn145JXyBmFoj9yMXMkOCmoAh-OLN8IhQ5uT1VBebU8";
 const PRODUCTION_ORIGIN = "https://lp.careercoaching.litable-edu.com";
-const PREVIEW_ORIGIN = "https://ksk432.com/lit-web.github.io";
+const PREVIEW_ORIGIN = "https://ksk432.com";
 const ALLOWED_ORIGINS = Object.freeze([
   PRODUCTION_ORIGIN,
   PREVIEW_ORIGIN,
