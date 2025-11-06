@@ -43,7 +43,13 @@ const TEXT_CONTENT_TYPE = "text/plain; charset=utf-8";
 
 function resolveAllowedOrigin(origin) {
   if (!origin) return PRODUCTION_ORIGIN;
-  if (ALLOWED_ORIGINS.indexOf(origin) !== -1) return origin;
+
+  // Normalize to pure origin (scheme + host [+ port]) so paths or trailing slashes do not break comparison.
+  var match = String(origin).match(/^https?:\/\/[^/]+/i);
+  var normalized = match ? match[0] : origin;
+  normalized = normalized.replace(/\/+$/, "");
+
+  if (ALLOWED_ORIGINS.indexOf(normalized) !== -1) return normalized;
   return PRODUCTION_ORIGIN;
 }
 
@@ -51,21 +57,30 @@ function withCors(body, options) {
   options = options || {};
   var originHeader = options.origin || "";
   var allowedOrigin = resolveAllowedOrigin(originHeader);
+  var contentType = options.contentType || JSON_CONTENT_TYPE;
 
-  return {
-    statusCode: options.statusCode || 200,
-    headers: Object.assign(
-      {
-        "Access-Control-Allow-Origin": allowedOrigin,
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-        "Vary": "Origin",
-        "Content-Type": options.contentType || JSON_CONTENT_TYPE,
-      },
-      options.headers || {},
-    ),
-    body: body || "",
-  };
+  var output = ContentService.createTextOutput(body || "");
+  var mimeType = ContentService.MimeType.TEXT;
+  if (/json/i.test(contentType)) {
+    mimeType = ContentService.MimeType.JSON;
+  }
+  output.setMimeType(mimeType);
+
+  output.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+  output.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  output.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  output.setHeader("Vary", "Origin");
+
+  var extraHeaders = options.headers || {};
+  Object.keys(extraHeaders).forEach(function (key) {
+    output.setHeader(key, extraHeaders[key]);
+  });
+
+  if (options.statusCode && typeof output.setStatusCode === "function") {
+    output.setStatusCode(options.statusCode);
+  }
+
+  return output;
 }
 
 function jsonResponse(obj, origin) {
