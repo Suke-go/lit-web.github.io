@@ -430,38 +430,6 @@ body.is-header-solid #header {
 
 }
 
-.heroSection__words {
-
-  position: absolute;
-
-  top: 50%;
-
-  right: calc(clamp(24px, 7vw, 120px) + 30px);
-
-  transform: translateY(calc(-50% - 40px));
-
-  width: clamp(120px, 14.4vw, 224px);
-
-  max-width: 100%;
-
-  height: auto;
-
-  z-index: 2;
-
-  pointer-events: none;
-
-}
-
-@media (max-width: 767px) {
-  .heroSection__words {
-    right: calc(clamp(12px, 5vw, 32px) + 10px);
-    width: clamp(40px, 10.8vw, 224px);
-    max-width: none;
-    min-width: 0;
-    top: 42%;
-    transform: translateY(-50%);
-  }
-}
 
 
 
@@ -1186,100 +1154,6 @@ p,
 
 }
 
-.heroSection__inner {
-
-  position: sticky;
-
-  top: 0;
-
-  left: 0;
-
-  right: 0;
-
-  z-index: 1;
-
-  max-width: 1120px;
-
-  margin: 0 auto;
-
-  padding: 64px 80px 0px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 48px;
-
-}
-
-.heroSection__visual {
-
-  flex: 1 1 auto;
-
-  display: flex;
-
-  justify-content: center;
-
-}
-
-.heroSection__visual::before,
-
-.heroSection__visual::after {
-
-  content: none;
-
-}
-
-.heroSection__frame {
-
-  position: sticky;
-
-  top: 0;
-
-  left: 0;
-
-  right: 0;
-
-  display: inline-flex;
-
-  padding: 24px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(47, 25, 9, 0.12);
-
-  border-radius: 24px;
-
-  box-shadow: 0 28px 42px rgba(47, 25, 9, 0.12);
-
-}
-
-.heroSection__frame::before,
-
-.heroSection__frame::after {
-
-  content: none;
-
-}
-
-.heroSection__visual img {
-
-  display: block;
-
-  width: clamp(320px, 60vw, 880px);
-
-  height: auto;
-
-  border-radius: 16px;
-
-  border: 0;
-
-  filter: none;
-
-}
-
 .heroSection__badge {
 
   flex: 0 0 auto;
@@ -1334,13 +1208,6 @@ p,
 
   }
 
-  .heroSection__inner {
-
-    padding: 52px 56px 48px;
-
-    gap: 40px;
-
-  }
 
 }
 
@@ -1362,23 +1229,6 @@ p,
 
   }
 
-  .heroSection__inner {
-
-    padding: 44px 32px 40px;
-
-    gap: 32px;
-
-  }
-
-  .heroSection__frame {
-
-    padding: 20px;
-
-    border-radius: 20px;
-
-    box-shadow: 0 20px 32px rgba(47, 25, 9, 0.1);
-
-  }
 
   .heroSection__badge {
 
@@ -1410,43 +1260,6 @@ p,
 
   }
 
-  .heroSection__inner {
-
-    flex-direction: column;
-
-    padding: 32px 20px 36px;
-
-    gap: 24px;
-
-  }
-
-  .heroSection__visual {
-
-    width: 100%;
-
-  }
-
-  .heroSection__frame {
-
-    padding: 12px;
-
-    width: 100%;
-
-    border-radius: 16px;
-
-    box-shadow: 0 16px 28px rgba(47, 25, 9, 0.12);
-
-  }
-
-  .heroSection__visual img {
-
-    width: 100%;
-
-    max-width: 520px;
-
-    border-radius: 12px;
-
-  }
 
   .heroSection__badge {
 
@@ -1912,151 +1725,6 @@ body.theme-palette-3 {
   --LP-yellow: #f0a554;
 
 }
-
-
-
-/* Approach Section ------------------------------------------------------- */
-
-.approachSection {
-
-  background: var(--background-4);
-
-  padding: clamp(40px, 6vw, 96px) 20px;
-
-}
-
-
-
-.approachSection__inner {
-
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-}
-
-
-
-.approachSection .sectionTitle {
-
-  text-align: center;
-
-  margin-bottom: clamp(20px, 3vw, 36px);
-
-}
-
-
-
-.approachSection__grid {
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: clamp(16px, 3vw, 40px);
-
-  align-items: end;
-
-}
-
-
-
-.approachSection__icon {
-
-  color: var(--grayscale-100);
-
-  opacity: 0.9;
-
-  margin-bottom: 12px;
-
-}
-
-
-
-.approachSection__steps {
-
-  list-style: none;
-
-  margin: 0;
-
-  padding: 0;
-
-}
-
-
-
-.approachSection__steps li {
-
-  background: var(--LP-light-blue);
-
-  color: var(--text);
-
-  border-radius: var(--border-radius-3);
-
-  padding: 14px 16px;
-
-  box-shadow: 0 2px 0 0 var(--white-alpha-40) inset, 0 2px 6px var(--sub-alpha-10);
-
-  font-weight: 600;
-
-}
-
-
-
-.approachSection__steps li + li { margin-top: 10px; }
-
-.approachSection__steps li.-strong { font-weight: 800; }
-
-
-
-/* staircase effect */
-
-.approachSection__steps.-left li:nth-child(1) { width: 66%; margin-left: 16px; }
-
-.approachSection__steps.-left li:nth-child(2) { width: 82%; margin-left: 8px; }
-
-.approachSection__steps.-left li:nth-child(3) { width: 100%; margin-left: 0; }
-
-
-
-.approachSection__steps.-right li:nth-child(1) { width: 100%; margin-right: 0; }
-
-.approachSection__steps.-right li:nth-child(2) { width: 82%; margin-left: auto; margin-right: 8px; }
-
-.approachSection__steps.-right li:nth-child(3) { width: 66%; margin-left: auto; margin-right: 16px; }
-
-
-
-.approachSection__note {
-
-  text-align: center;
-
-  margin-top: clamp(20px, 3vw, 40px);
-
-}
-
-.approachSection__note .-lead {
-
-  font-size: var(--font-size-2xl);
-
-  font-weight: 800;
-
-}
-
-
-
-@media (max-width: 767px) {
-
-  .approachSection__grid { grid-template-columns: 1fr; }
-
-  .approachSection__icon { text-align: center; }
-
-  .approachSection__steps.-left li,
-
-  .approachSection__steps.-right li { width: 100%; margin-left: 0; margin-right: 0; }
-
-}
-
 
 
 /* Coaching Overview: description paragraph sizing */
@@ -2910,24 +2578,6 @@ body.theme-palette-3 {
 .pointItem.-navy .pointItem__headLabel { border-color: var(--LP-blue, #4F6D8A); }
 
 .pointItem.-navy .pointItem__lead { background-color: var(--LP-blue, #4F6D8A); }
-
-
-
-.approachSection {
-
-  background: var(--background-4);
-
-  padding: clamp(40px, 6vw, 96px) 20px;
-
-}
-
-.approachSection__inner {
-
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-}
 
 
 
