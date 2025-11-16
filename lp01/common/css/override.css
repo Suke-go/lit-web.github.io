@@ -27,7 +27,19 @@ body.is-header-solid #header {
 }
 
 .ctaYokoBanner {
-  display: none;
+  position: fixed;
+  bottom: clamp(16px, 4vw, 24px);
+  right: clamp(16px, 4vw, 24px);
+  width: clamp(200px, 40vw, 280px);
+  z-index: 150;
+  pointer-events: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.ctaYokoBanner__link {
+  pointer-events: auto;
 }
 
 .ctaYokoBanner__link {
@@ -116,8 +128,14 @@ body.is-header-solid #header {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  column-gap: clamp(20px, 6vw, 72px);
+  column-gap: clamp(24px, 3vw, 40px);
   color: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .header__inner {
+    column-gap: clamp(32px, 4vw, 48px);
+  }
 }
 
 .header__logo {
@@ -144,8 +162,14 @@ body.is-header-solid #header {
   justify-content: flex-end;
 }
 
+@media screen and (min-width: 768px) {
+  .header__nav {
+    margin-right: clamp(16px, 2vw, 24px);
+  }
+}
+
 .headerNav {
-  gap: clamp(20px, 4vw, 48px);
+  gap: clamp(16px, 2.5vw, 32px);
 }
 
 .headerNav__link {
@@ -219,7 +243,8 @@ body.is-header-solid #header {
   background: #ffffff;
   color: #0a81b3;
   box-shadow: 0 18px 34px rgba(10, 129, 179, 0.18);
-  padding: clamp(7px, 1.12vw, 9.8px) clamp(20px, 2.6vw, 30px);
+  padding: clamp(10px, 1.5vw, 14px) clamp(20px, 2.6vw, 30px);
+  min-height: 44px;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   font-weight: 700;
@@ -280,11 +305,15 @@ body.is-header-solid #header {
 @media (max-width: 1024px) {
   .header__inner {
     padding: clamp(16px, 2.4vw, 22px) clamp(24px, 4vw, 40px);
-    column-gap: clamp(16px, 4vw, 48px);
+    column-gap: clamp(24px, 3.5vw, 40px);
   }
 
   .headerNav {
-    gap: clamp(12px, 2vw, 24px);
+    gap: clamp(12px, 2vw, 20px);
+  }
+  
+  .header__nav {
+    margin-right: clamp(12px, 1.5vw, 20px);
   }
 
   .headerCta__badge {
@@ -484,6 +513,16 @@ body.is-header-solid #header {
   opacity: 0;
 
   cursor: pointer;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 0;
+
+  font: inherit;
+
+  color: inherit;
 
 }
 
@@ -3019,23 +3058,11 @@ body.theme-palette-3 {
 
   .ctaYokoBanner {
 
-    position: fixed;
-
     bottom: clamp(28px, 6vh, 64px);
 
     right: clamp(8px, 2vw, 24px);
 
     width: clamp(240px, 24vw, 320px);
-
-    z-index: 150;
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    align-items: flex-end;
-
-    pointer-events: none;
 
   }
 
@@ -3043,6 +3070,18 @@ body.theme-palette-3 {
     display: none;
   }
 
+}
+
+@media (max-width: 767px) {
+  .ctaYokoBanner {
+    bottom: clamp(80px, 12vw, 96px);
+    right: clamp(12px, 3vw, 20px);
+    width: clamp(180px, 45vw, 240px);
+  }
+  
+  .pagetop {
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* Trial reservation section */

@@ -265,21 +265,22 @@
                 <a class="headerNav__link" href="#sectionVoices">参加者の声</a>
               </li>
               <li class="headerNav__item">
-                <a class="headerNav__link" href="#trialReserveSection">無料体験予約</a>
+                <a class="headerNav__link" href="#seqFaq">よくある質問</a>
               </li>
             </ul>
           </nav>
 
-          <button
-            type="button"
-            class="header__button js-dialogOpen"
-            data-modalId="dialogCampus"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="header__button"
           >
             <span class="headerCta">
               <span class="headerCta__badge">&#x7121;&#x6599;</span>
               <span class="headerCta__label">&#x8AAC;&#x660E;&#x4F1A;&#x30FB;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span>
             </span>
-          </button>
+          </a>
         </div>
       </header>
 
@@ -293,10 +294,10 @@
               height="880"
               alt="高校生キャリアコーチングのヒーロービジュアル"
             />
-            <div class="heroScrollIndicator" aria-hidden="true" onclick="document.getElementById('seqLead').scrollIntoView({behavior: 'smooth'})">
+            <button type="button" class="heroScrollIndicator" aria-label="次のセクションへスクロール">
               <span class="heroScrollIndicator__text">SCROLL</span>
               <span class="heroScrollIndicator__line"></span>
-            </div>
+            </button>
           </section>
 
           <div class="ctaYokoBanner">
@@ -408,9 +409,9 @@
 
           <div class="buttonBox anchorLink">
             <a
-              href="#dialogCampus"
-              class="js-dialogOpen"
-              data-modalId="dialogCampus"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="保護者説明会 実施中"
             >
               <picture class="buttonBox__media">
@@ -729,9 +730,9 @@
           
           <div class="buttonBox anchorLink">
             <a
-              href="#dialogCampus"
-              class="js-dialogOpen"
-              data-modalId="dialogCampus"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="保護者説明会 実施中"
             >
               <picture class="buttonBox__media">
@@ -1015,9 +1016,10 @@
     <script src="lp01/common/js/common.js"></script>
 
     <script>
-      // Fast-safe image fallback to placeholder
+      // Fast-safe image fallback
       (function () {
-        var placeholder = "lp01/common/img/placeholder.svg";
+        // Use existing logo as fallback instead of non-existent placeholder.svg
+        var fallbackImage = "lp01/common/img/logo.svg";
         document.addEventListener(
           "error",
           function (e) {
@@ -1025,8 +1027,7 @@
 
             if (t && t.tagName === "IMG" && !t.dataset.fallback) {
               t.dataset.fallback = "1";
-
-              t.src = placeholder;
+              t.src = fallbackImage;
             }
           },
           true,
@@ -1664,92 +1665,43 @@
         });
       })();
 
-      // CRITICAL: Remove all accordion event listeners from common.js
-      (function() {
-        window.addEventListener('load', function() {
-          setTimeout(function() {
-            console.log("=== REMOVING COMMON.JS ACCORDION HANDLERS ===");
-            var toggles = document.querySelectorAll(".accordion__toggle[aria-controls]");
-            toggles.forEach(function(oldBtn) {
-              var newBtn = oldBtn.cloneNode(true);
-              if (oldBtn.parentNode) {
-                oldBtn.parentNode.replaceChild(newBtn, oldBtn);
-              }
-            });
-            console.log("Removed handlers from", toggles.length, "buttons");
-          }, 10);
-        });
-      })();
-
       // Accessible accordion: robust fallback to ensure panels open/close
-
-      // Works even if site JS doesn't manage the hidden attribute.
-
       (function () {
         function setPanelVisibility(panel, show) {
           if (!panel) return;
 
-          console.log("setPanelVisibility:", panel.id, "show:", show, "current hidden:", panel.hasAttribute("hidden"));
-
           if (show) {
             panel.removeAttribute("hidden");
-
-            // Clear all inline styles to let CSS take over
-
             panel.style.display = "";
-
             panel.style.visibility = "";
-
             panel.style.maxHeight = "";
-
             panel.style.height = "";
-
             panel.style.overflow = "";
-
-            console.log("After showing:", panel.id, "hidden attr:", panel.hasAttribute("hidden"), "computed display:", window.getComputedStyle(panel).display);
           } else {
-            // Hide via hidden attribute only
-
             panel.setAttribute("hidden", "");
-
-            // Clear inline styles
-
             panel.style.display = "";
-
             panel.style.visibility = "";
-
             panel.style.maxHeight = "";
-
             panel.style.height = "";
-
             panel.style.overflow = "";
-
-            console.log("After hiding:", panel.id, "hidden attr:", panel.hasAttribute("hidden"));
           }
         }
 
         function toggle(ev) {
           var btn = ev.currentTarget;
-
           var id = btn.getAttribute("aria-controls");
-
           var panel = id && document.getElementById(id);
 
           if (!panel) {
-            console.log("Accordion: Panel not found for", id);
             return;
           }
 
           var expanded = btn.getAttribute("aria-expanded") === "true";
-
           var next = !expanded;
-
-          console.log("Accordion: Toggling", id, "from", expanded, "to", next);
 
           btn.setAttribute("aria-expanded", String(next));
 
           var root = btn.closest && btn.closest(".accordion");
-
           if (root) {
             root.classList.toggle("is-open", next);
           }
@@ -1757,25 +1709,20 @@
           setPanelVisibility(panel, next);
         }
 
-        // Initialize default state from aria-expanded
-
         function init() {
           var toggles = document.querySelectorAll(
             ".accordion__toggle[aria-controls]",
           );
 
-          console.log("Accordion: Initializing", toggles.length, "accordions");
-
           toggles.forEach(function (btn) {
             var id = btn.getAttribute("aria-controls");
-
             var panel = id && document.getElementById(id);
 
-            // FORCE: Read from HTML attribute, default to false if not set
+            // Read from HTML attribute, default to false if not set
             var expandedAttr = btn.getAttribute("aria-expanded");
             var expanded = expandedAttr === "true";
 
-            // FORCE: Reset to false if something changed it
+            // Reset to false if something changed it
             if (expandedAttr !== "false" && expandedAttr !== "true") {
               btn.setAttribute("aria-expanded", "false");
               expanded = false;
@@ -1783,24 +1730,17 @@
 
             var root = btn.closest && btn.closest(".accordion");
 
-            console.log("Accordion: Setting up", id, "aria-expanded attr:", expandedAttr, "expanded:", expanded, "panel hidden:", panel && panel.hasAttribute("hidden"));
-
             // Detect empty answers and add a placeholder
-
             if (panel) {
               var inner =
                 panel.querySelector(".accordion__panelInner") || panel;
-
               var text = (inner.textContent || "").replace(/\s+/g, "");
 
               if (!text) {
                 if (!inner.querySelector(".accordion__placeholder")) {
                   var p = document.createElement("p");
-
                   p.className = "accordion__placeholder";
-
                   p.textContent = "回答は準備中です。しばらくお待ちください。";
-
                   inner.appendChild(p);
                 }
 
@@ -1822,8 +1762,7 @@
             // Always set panel visibility based on aria-expanded
             setPanelVisibility(panel, expanded);
 
-            // Add a direct click handler to avoid stopPropagation conflicts
-
+            // Add a direct click handler
             btn.addEventListener("click", function (ev) {
               ev.stopPropagation();
               toggle({ currentTarget: btn });
@@ -1833,45 +1772,33 @@
           });
         }
 
+        // Fallback click handler for any unbound toggles
         document.addEventListener("click", function (e) {
           var el = e.target.closest && e.target.closest(".accordion__toggle");
-
           if (!el) return;
-
           if (el.dataset && el.dataset.seqAccordionBound === "1") return;
-
           toggle({ currentTarget: el });
         });
 
-        // Initialize AFTER common.js and cleanup script
-        window.addEventListener('load', function() {
-          setTimeout(function() {
-            console.log("=== INITIALIZING CUSTOM ACCORDION ===");
-            init();
+        // Initialize after DOM is ready
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", init);
+        } else {
+          init();
+        }
+      })();
 
-            // FORCE: Reset all accordions to closed state
-            setTimeout(function() {
-              console.log("FORCE: Resetting all accordions to closed state");
-              var toggles = document.querySelectorAll(".accordion__toggle[aria-controls]");
-              toggles.forEach(function(btn) {
-                var id = btn.getAttribute("aria-controls");
-                var panel = id && document.getElementById(id);
-                var root = btn.closest && btn.closest(".accordion");
-
-                // Force closed state
-                btn.setAttribute("aria-expanded", "false");
-                if (root) {
-                  root.classList.remove("is-open");
-                }
-                if (panel) {
-                  panel.setAttribute("hidden", "");
-                  panel.style.display = "";
-                }
-                console.log("FORCE: Reset", id, "to closed");
-              });
-            }, 50);
-          }, 20);
-        });
+      // Hero scroll indicator button handler
+      (function() {
+        var indicator = document.querySelector('.heroScrollIndicator');
+        if (indicator) {
+          indicator.addEventListener('click', function() {
+            var target = document.getElementById('seqLead');
+            if (target) {
+              target.scrollIntoView({behavior: 'smooth'});
+            }
+          });
+        }
       })();
     </script>
 
@@ -1961,7 +1888,7 @@
     <footer id="footer">
       <div class="footer__inner">
         <div class="footer__logo">
-          <a href="#"
+          <a href="#wrapper" aria-label="CAREER COACHING トップに戻る"
             ><img
               src="lp01/common/img/logo.svg"
               width="320"
