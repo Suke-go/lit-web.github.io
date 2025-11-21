@@ -641,6 +641,8 @@
         setFormDisabled(true);
         submitBtn.removeAttribute("aria-busy");
         submitBtn.setAttribute("aria-disabled", "true");
+
+        window.location.href = "reservation-complete.html";
       } else {
         showMessage(
           message ||
