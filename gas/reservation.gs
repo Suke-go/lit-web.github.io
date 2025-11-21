@@ -14,11 +14,16 @@
 const AVAIL_CAL_ID = "f2b7f80f922816e3fc37245607d5816163575a8426691a8a70436bde3cd5e6cd@group.calendar.google.com";
 const BOOK_CAL_ID = "litable.official@gmail.com";
 const RESP_SHEET_ID = "1Xn145JXyBmFoj9yMXMkOCmoAh-OLN8IhQ5uT1VBebU8";
-const PRODUCTION_ORIGIN = "https://lp.careercoaching.litable-edu.com";
+const PRODUCTION_ORIGIN = "https://careercoaching.litable-edu.com";
 const PREVIEW_ORIGIN = "https://ksk432.com";
 const ALLOWED_ORIGINS = Object.freeze([
   PRODUCTION_ORIGIN,
   PREVIEW_ORIGIN,
+  "https://lp.careercoaching.litable-edu.com", // 旧ドメインも念のため維持
+  "https://ksk432.github.io",                // GitHub Pagesのオリジン
+  "https://lit-web.github.io",               // リポジトリ名由来の可能性も考慮
+  "http://127.0.0.1:5500",
+  "http://localhost:5500",
   "http://127.0.0.1:5501",
   "http://localhost:5501",
 ]);
@@ -58,7 +63,6 @@ function withCors(body, options) {
   var originHeader = options.origin || "";
   var allowedOrigin = resolveAllowedOrigin(originHeader);
   var contentType = options.contentType || JSON_CONTENT_TYPE;
-
   var output = ContentService.createTextOutput(body || "");
   var mimeType = ContentService.MimeType.TEXT;
   if (/json/i.test(contentType)) {
@@ -66,15 +70,19 @@ function withCors(body, options) {
   }
   output.setMimeType(mimeType);
 
-  output.setHeader("Access-Control-Allow-Origin", allowedOrigin);
-  output.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  output.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-  output.setHeader("Vary", "Origin");
+  if (typeof output.setHeader === "function") {
+    output.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+    output.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    output.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+    output.setHeader("Vary", "Origin");
 
-  var extraHeaders = options.headers || {};
-  Object.keys(extraHeaders).forEach(function (key) {
-    output.setHeader(key, extraHeaders[key]);
-  });
+    var extraHeaders = options.headers || {};
+    Object.keys(extraHeaders).forEach(function (key) {
+      output.setHeader(key, extraHeaders[key]);
+    });
+  } else {
+    console.warn("setHeader API is unavailable in this runtime; falling back to default headers.");
+  }
 
   if (options.statusCode && typeof output.setStatusCode === "function") {
     output.setStatusCode(options.statusCode);
@@ -306,34 +314,68 @@ function createBookedEventWithStaff(options) {
 }
 
 function sendConfirmMail(name, email, start, end, meetLink, contactMethod) {
-  const subject = "【予約確定】無料体験のご案内";
+  const subject = "【予約確定】高校生キャリアコーチング保護者説明会";
 
-  const contactText =
-    contactMethod === CONTACT_METHODS.PHONE
-      ? `連絡方法: お電話（担当よりご連絡します）`
-      : `オンライン（Google Meet）:
-${meetLink || "別途ご案内いたします"}`;
-
-  const guideText =
-    contactMethod === CONTACT_METHODS.PHONE
-      ? "当日は担当コーチからお電話差し上げます。"
-      : "当日は上記リンクからご入室ください。";
+  const isMeet = contactMethod !== CONTACT_METHODS.PHONE;
+  const contactLine = isMeet
+    ? `■ 実施形式：個別（1対1）オンライン（Google Meetを利用いたします）`
+    : `■ 実施形式：個別（1対1）お電話`;
+  const accessLine = isMeet
+    ? `■ ご参加用URL：${meetLink || "日程確定後、別途ご案内いたします"}`
+    : `■ ご連絡方法：担当コーチよりお電話いたします`;
+  const guideLine = isMeet
+    ? "本説明会はGoogle Meetを使用して実施いたします。開始時刻になりましたら、上記URLよりご入室ください。"
+    : "当日はご指定のお電話番号宛に担当コーチよりご連絡いたします。";
 
   const body = `${name} 様
 
-無料体験の日時が確定しました。
+この度は、高校生キャリアコーチング保護者説明会にお申込みいただき、誠にありがとうございます。
 
-日時: ${formatSlotLabel(start, end)}
-所要時間: 約${MEETING_LENGTH_MIN}分
-${contactText}
+説明会は、個別（1対1）のオンライン形式で、45分程度を予定しております。
+当日はGoogle Meetを使用して実施いたします。
 
-${guideText}
-ご都合が悪い場合はこのメールにご返信ください。
+■ 日時：${formatSlotLabel(start, end)}
+■ 所要時間：約${MEETING_LENGTH_MIN}分
+${contactLine}
+${accessLine}
 
-よろしくお願いいたします。
+${guideLine}
+ご都合が悪い場合や日程変更をご希望の際は、お手数ですが下記までご連絡ください。
+TEL：050-8890-0466
+Email：litable.official@gmail.com
+
+お忙しいところ恐れ入りますが、ご確認のうえご返信をお待ちしております。
+
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+株式会社Litable
+室谷 駿
+TEL：050-8890-0466
+Email：shun.muroya@litable-edu.com
+WEB：https://litable-edu.com/
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 `;
 
-  GmailApp.sendEmail(email, subject, body);
+  GmailApp.sendEmail(email, subject, body, {
+    bcc: "litable.official@gmail.com",
+    name: "株式会社Litable",
+  });
+}
+
+function sendInternalNotification(params) {
+  const subject = "【新規予約】高校生キャリアコーチング保護者説明会";
+  const body = `以下の内容で予約が確定しました。
+
+氏名：${params.name}
+メール：${params.email}
+電話番号：${params.tel}
+連絡方法：${params.contactMethod === CONTACT_METHODS.PHONE ? "電話" : "Google Meet"}
+日時：${formatSlotLabel(params.start, params.end)}
+担当候補：${params.staffAlias || "DEFAULT"} (${params.staffEmail})
+Google Meet：${params.meetLink || "-"}
+
+※このメールはシステムより自動送信されています。`;
+
+  GmailApp.sendEmail("litable.official@gmail.com", subject, body);
 }
 
 function sendSorryMail(name, email) {
@@ -467,6 +509,17 @@ function handleBooking(data) {
     });
 
     sendConfirmMail(name, email, start, end, bookedInfo.meetLink, contactMethod);
+    sendInternalNotification({
+      name,
+      email,
+      tel,
+      start,
+      end,
+      contactMethod,
+      staffAlias: assigned.alias,
+      staffEmail: assigned.email,
+      meetLink: bookedInfo.meetLink,
+    });
 
     logReservation({
       name,
@@ -551,19 +604,29 @@ function doPost(e) {
     if (mode === "book") {
       let payload = {};
       if (e && e.postData && e.postData.contents) {
-        try {
-          payload = JSON.parse(e.postData.contents);
-        } catch (parseErr) {
-          console.error("JSON parse error", parseErr);
-          return jsonResponse(
-            {
-              status: "error",
-              message: "リクエスト形式が不正です。",
-            },
-            origin,
-          );
+        const postType = String(e.postData.type || "").toLowerCase();
+        if (postType.indexOf("application/json") === 0) {
+          try {
+            payload = JSON.parse(e.postData.contents);
+          } catch (parseErr) {
+            console.error("JSON parse error", parseErr);
+            return jsonResponse(
+              {
+                status: "error",
+                message: "リクエスト形式が不正です。",
+              },
+              origin,
+            );
+          }
+        } else if (postType.indexOf("application/x-www-form-urlencoded") === 0) {
+          payload = Object.assign({}, params);
         }
       }
+
+      if (!payload || Object.keys(payload).length === 0) {
+        payload = Object.assign({}, params);
+      }
+
       const result = handleBooking(payload);
       return jsonResponse(result, origin);
     }

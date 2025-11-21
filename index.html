@@ -20,7 +20,7 @@
     <meta property="og:title" content="CAREER COACHING - 高校生向けオンラインコーチング" />
     <meta property="og:description" content="高校生向けオンラインコーチング。全8回・2〜3ヶ月で、自己理解から進路決定まで伴走します。無料体験あり。" />
     <meta property="og:url" content="https://careercoaching.litable-edu.com/" />
-    <meta property="og:image" content="https://careercoaching.litable-edu.com/lp01/common/img/hero.png" />
+    <meta property="og:image" content="https://careercoaching.litable-edu.com/lp01/common/img/hero.jpg" />
     <meta property="og:site_name" content="CAREER COACHING" />
     <meta property="og:locale" content="ja_JP" />
 
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="CAREER COACHING - 高校生向けオンラインコーチング" />
     <meta name="twitter:description" content="高校生向けオンラインコーチング。全8回・2〜3ヶ月で、自己理解から進路決定まで伴走します。無料体験あり。" />
-    <meta name="twitter:image" content="https://careercoaching.litable-edu.com/lp01/common/img/hero.png" />
+    <meta name="twitter:image" content="https://careercoaching.litable-edu.com/lp01/common/img/hero.jpg" />
 
     <!-- icon start -->
     <link rel="shortcut icon" href="common/img/favicon.ico" />
@@ -79,92 +79,6 @@
       }
     </script>
 
-    <script>
-      // FAQ content injection: overwrite questions and answers with finalized copy.
-
-      (function () {
-        function run() {
-          // Fix heading text if encoding broke it
-          var h = document.querySelector("#seqFaq .sectionTitle__inner span");
-          if (h) h.textContent = "よくあるご質問";
-          var items = [
-            {
-              id: "accordionFaq01",
-              q: "キャリアコーチングではどんなことをしますか？",
-              a: [
-                "<p>対話と質問を通じて考えを深め、本人の中にある答えを引き出す支援です。自己理解 → 将来像 → 行動計画の順で伴走し、主体的な進路選択を後押しします。</p>",
-                "<p>面談では、LPS（ライフ・プランニング・シート）を用いて過去の経験・価値観・得意／苦手を整理し、志望理由書や面接で語れる言葉に落とし込みます。</p>",
-              ],
-            },
-
-            {
-              id: "accordionFaq02",
-              q: "料金はいくらですか？",
-              a: [
-                "<p>1回あたり 12,500円（税込）。1回は50〜60分です。</p>",
-                "<p>標準プランの目安は全8回（2〜3ヶ月）で、合計 100,000円（税込）。日程は部活・行事に合わせて柔軟に調整します。初回はオンラインの無料相談（15分）をご利用いただけます。</p>",
-              ],
-            },
-
-            {
-              id: "accordionFaq03",
-              q: "どのように受講しますか？",
-              a: [
-                "<p>Zoom を使用した1対1のオンラインセッションです。ネット環境があれば全国どこからでも参加できます（PC／タブレット／スマホ可）。</p>",
-                "<p>カメラとマイクのご用意を推奨します。対面をご希望の場合は一部地域で個別にご相談ください。</p>",
-              ],
-            },
-
-            {
-              id: "accordionFaq04",
-              q: "保護者の同席はできますか？",
-              a: [
-                "<p>可能です。初回面談や節目の回のみ同席いただく形を推奨しています。</p>",
-                "<p>必要に応じて面談の要点や次回までの宿題を保護者さまにも共有しますが、あくまでご本人の主体性を最優先に進めます。</p>",
-              ],
-            },
-
-            {
-              id: "accordionFaq05",
-              q: "どんな人が対象ですか？",
-              a: [
-                "<p>主な対象は高校生・高専生・既卒の受験生です。中学生や大学生のキャリア相談にも対応可能です。</p>",
-                "<p>オンライン実施のため居住地は問いません（海外在住の方も可）。まずはお気軽にご相談ください。</p>",
-              ],
-            },
-          ];
-
-          items.forEach(function (item) {
-            var panel = document.getElementById(item.id);
-            if (!panel) return;
-            var btn = document.querySelector(
-              '.accordion__toggle[aria-controls="' + item.id + '"]',
-            );
-
-            if (btn) {
-              var span = btn.querySelector("span");
-              if (span) span.textContent = item.q;
-              var root = btn.closest && btn.closest(".accordion");
-              if (root) {
-                root.classList.remove("-empty");
-              }
-            }
-
-            var inner = panel.querySelector(".accordion__panelInner") || panel;
-            inner.innerHTML = item.a.join("");
-          });
-
-          // Trigger accordion re-initialization after content is loaded
-          window.dispatchEvent(new Event('faqContentLoaded'));
-        }
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", run);
-        } else {
-          run();
-        }
-      })();
-    </script>
 
     <!-- removed bad text-fix script -->
   </head>
@@ -172,70 +86,6 @@
   <body>
     <p class="skipItem anchorLink skip-link"><a href="#main">本文へ移動</a></p>
 
-    <dialog
-      class="modalDialog searchCampusModal"
-      id="dialogCampus"
-      aria-label="CTA"
-      aria-modal="true"
-    >
-      <div class="modalDialog__inner">
-        <div class="modalDialog__content">
-          <div class="modalDialog__contentInner">
-            <button type="button" class="modalDialogClose js-dialogClose">
-              <span>閉じる</span>
-            </button>
-            <p class="searchCampusModal__head">
-              <span class="-label">高校生キャリアコーチング</span
-              ><span class="-title">無料体験申込み</span>
-            </p>
-
-            <div class="searchCampusModal__body">
-              <div class="searchCampusModal__areaBlock">
-                <div class="searchCampusModal__area">
-                  <p class="searchCampusModal__areaTitle">無料体験の流れ</p>
-                  <ul class="searchCampusModal__areaList">
-                    <li class="searchCampusModal__areaItem">
-                      <p>Step1: お申込み</p>
-                      <p class="-name">フォームで希望を送信</p>
-                    </li>
-                    <li class="searchCampusModal__areaItem">
-                      <p>Step2: 説明会の実施</p>
-                      <p class="-name">サービス内容をご説明</p>
-                    </li>
-                    <li class="searchCampusModal__areaItem">
-                      <p>Step3: 無料体験</p>
-                      <p class="-name">コーチと面談日を決定</p>
-                    </li>
-                  </ul>
-                </div>
-                <div class="searchCampusModal__area">
-                  <p class="searchCampusModal__areaTitle">体験内容</p>
-                  <ul class="searchCampusModal__areaList">
-                    <li class="searchCampusModal__areaItem">
-                      <p>60分のコーチング</p>
-                      <p class="-name">進路の悩みを言語化</p>
-                    </li>
-                    <li class="searchCampusModal__areaItem">
-                      <p>サービス説明</p>
-                      <p class="-name">全8回プログラムの案内</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="buttonBox anchorLink">
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform?usp=sf_link"
-                  target="_blank"
-                  class="buttonA -anchorLink -white -sizeM -hoverBlack js-dialogClose"
-                  ><span>お申込みフォーム</span></a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </dialog>
 
     <div id="wrapper">
       <header id="header" role="banner">
@@ -289,7 +139,7 @@
           <section class="heroSection heroSection--fullscreen">
             <img
               class="heroSection__bg"
-              src="lp01/common/img/hero.png"
+              src="lp01/common/img/hero.jpg"
               width="1440"
               height="880"
               alt="高校生キャリアコーチングのヒーロービジュアル"
@@ -473,7 +323,7 @@
                           alt="価値観の言語化（プレースホルダー）"
                           height="361"
                           loading="lazy"
-                          src="lp01/common/img/first.png"
+                          src="lp01/common/img/first.jpg"
                           width="360"
                         />
                       </figure>
@@ -652,6 +502,22 @@
             </div>
           </section>
 
+          <div class="buttonBox anchorLink">
+            <a
+              href="#trialReserveSection"
+              aria-label="無料体験予約"
+            >
+              <picture class="buttonBox__media">
+                <source media="(max-width: 767px)" srcset="lp01/common/img/cta1.svg" />
+                <img
+                  class="buttonBox__image"
+                  src="lp01/common/img/cta1.svg"
+                  alt="無料体験予約"
+                />
+              </picture>
+            </a>
+          </div>
+
           <section class="seqVoice" id="sectionVoices">
             <div class="seqVoice__inner">
               <h2 class="sectionTitle">
@@ -754,145 +620,140 @@
                 >
               </h2>
 
-              <div class="accordion__wrap -qaType">
-                <div class="accordion inview -fadeInUp">
-                  <h3>
-                    <button
-                      type="button"
-                      class="accordion__toggle"
-                      aria-controls="accordionFaq01"
-                      aria-expanded="false"
-                    >
-                      <span>キャリアコーチングって何ですか？</span>
-                    </button>
-                  </h3>
-
-                  <div
-                    id="accordionFaq01"
-                    class="accordion__panel"
-                    hidden="until-found"
+            <div class="accordion__wrap -qaType">
+              <div class="accordion inview -fadeInUp">
+                <h3>
+                  <button
+                    type="button"
+                    class="accordion__toggle"
+                    aria-controls="accordionFaq01"
+                    aria-expanded="false"
                   >
-                    <div class="accordion__panelInner">
-                      <p>
-                        対話と質問で考えを深め、本人の中にある答えを引き出す支援です。キャリアコーチングは、自己理解→将来像→行動計画をつなぎ、主体的な進路選択を後押しします。
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                    <span>キャリアコーチングではどんなことをしますか？</span>
+                  </button>
+                </h3>
 
-                <div class="accordion inview -fadeInUp">
-                  <h3>
-                    <button
-                      type="button"
-                      class="accordion__toggle"
-                      aria-controls="accordionFaq02"
-                      aria-expanded="false"
-                    >
-                      <span>料金はいくらですか？</span>
-                    </button>
-                  </h3>
-
-                  <div
-                    id="accordionFaq02"
-                    class="accordion__panel"
-                    hidden="until-found"
-                  >
-                    <div class="accordion__panelInner">
-                      <p>
-                        1回あたり12,500円（税抜）。全8回で2〜3ヶ月かけて、週1回50〜60分のセッションを行います。別途入会費あり。詳細は無料体験時にご案内します。
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion inview -fadeInUp">
-                  <h3>
-                    <button
-                      type="button"
-                      class="accordion__toggle"
-                      aria-controls="accordionFaq03"
-                      aria-expanded="false"
-                    >
-                      <span>オンラインで大丈夫ですか？</span>
-                    </button>
-                  </h3>
-
-                  <div
-                    id="accordionFaq03"
-                    class="accordion__panel"
-                    hidden="until-found"
-                  >
-                    <div class="accordion__panelInner">
-                      <p>
-                        はい。Zoomを使用した1対1のオンラインセッションです。ネット環境があればどこからでも参加でき、接続方法もご案内します。
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion inview -fadeInUp">
-                  <h3>
-                    <button
-                      type="button"
-                      class="accordion__toggle"
-                      aria-controls="accordionFaq04"
-                      aria-expanded="false"
-                    >
-                      <span>進路が決まっていません。大丈夫？</span>
-                    </button>
-                  </h3>
-
-                  <div
-                    id="accordionFaq04"
-                    class="accordion__panel"
-                    hidden="until-found"
-                  >
-                    <div class="accordion__panelInner">
-                      <p>
-                        大丈夫です。むしろ未確定だからこそ効果的です。モヤモヤを分解し、言葉にし、今日からできる行動に落とし込みます。
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion inview -fadeInUp">
-                  <h3>
-                    <button
-                      type="button"
-                      class="accordion__toggle"
-                      aria-controls="accordionFaq05"
-                      aria-expanded="false"
-                    >
-                      <span>保護者は参加できますか？</span>
-                    </button>
-                  </h3>
-
-                  <div
-                    id="accordionFaq05"
-                    class="accordion__panel"
-                    hidden="until-found"
-                  >
-                    <div class="accordion__panelInner">
-                      <p>
-                        基本は生徒との1対1ですが、初回や節目での同席やご相談も可能です。ご家庭での対話がスムーズになるよう情報共有も行います。
-                      </p>
-                    </div>
+                <div
+                  id="accordionFaq01"
+                  class="accordion__panel"
+                  hidden="until-found"
+                >
+                  <div class="accordion__panelInner">
+                    <p>対話と質問を通じて考えを深め、本人の中にある答えを引き出す支援です。自己理解 → 将来像 → 行動計画の順で伴走し、主体的な進路選択を後押しします。</p>
+                    <p>面談では、LPS（ライフ・プランニング・シート）を用いて過去の経験・価値観・得意／苦手を整理し、志望理由書や面接で語れる言葉に落とし込みます。</p>
                   </div>
                 </div>
               </div>
+
+              <div class="accordion inview -fadeInUp">
+                <h3>
+                  <button
+                    type="button"
+                    class="accordion__toggle"
+                    aria-controls="accordionFaq02"
+                    aria-expanded="false"
+                  >
+                    <span>料金はいくらですか？</span>
+                  </button>
+                </h3>
+
+                <div
+                  id="accordionFaq02"
+                  class="accordion__panel"
+                  hidden="until-found"
+                >
+                  <div class="accordion__panelInner">
+                    <p>1回あたり 12,500円（税込）。1回は50〜60分です。</p>
+                    <p>標準プランの目安は全8回（2〜3ヶ月）で、合計 100,000円（税込）。日程は部活・行事に合わせて柔軟に調整します。初回はオンラインの無料相談（15分）をご利用いただけます。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion inview -fadeInUp">
+                <h3>
+                  <button
+                    type="button"
+                    class="accordion__toggle"
+                    aria-controls="accordionFaq03"
+                    aria-expanded="false"
+                  >
+                    <span>どのように受講しますか？</span>
+                  </button>
+                </h3>
+
+                <div
+                  id="accordionFaq03"
+                  class="accordion__panel"
+                  hidden="until-found"
+                >
+                  <div class="accordion__panelInner">
+                    <p>Zoom を使用した1対1のオンラインセッションです。ネット環境があれば全国どこからでも参加できます（PC／タブレット／スマホ可）。</p>
+                    <p>カメラとマイクのご用意を推奨します。対面をご希望の場合は一部地域で個別にご相談ください。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion inview -fadeInUp">
+                <h3>
+                  <button
+                    type="button"
+                    class="accordion__toggle"
+                    aria-controls="accordionFaq04"
+                    aria-expanded="false"
+                  >
+                    <span>保護者の同席はできますか？</span>
+                  </button>
+                </h3>
+
+                <div
+                  id="accordionFaq04"
+                  class="accordion__panel"
+                  hidden="until-found"
+                >
+                  <div class="accordion__panelInner">
+                    <p>可能です。初回面談や節目の回のみ同席いただく形を推奨しています。</p>
+                    <p>必要に応じて面談の要点や次回までの宿題を保護者さまにも共有しますが、あくまでご本人の主体性を最優先に進めます。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion inview -fadeInUp">
+                <h3>
+                  <button
+                    type="button"
+                    class="accordion__toggle"
+                    aria-controls="accordionFaq05"
+                    aria-expanded="false"
+                  >
+                    <span>どんな人が対象ですか？</span>
+                  </button>
+                </h3>
+
+                <div
+                  id="accordionFaq05"
+                  class="accordion__panel"
+                  hidden="until-found"
+                >
+                  <div class="accordion__panelInner">
+                    <p>主な対象は高校生・高専生・既卒の受験生です。中学生や大学生のキャリア相談にも対応可能です。</p>
+                    <p>オンライン実施のため居住地は問いません（海外在住の方も可）。まずはお気軽にご相談ください。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             </div>
           </section>
 
           <section
             class="trialReserve"
             id="trialReserveSection"
-            data-gas-endpoint="https://script.google.com/macros/s/AKfycbwK5PhDYauS-URl0Ms3MAbCt8M67eI3Tutwu9qvDri3a7FAg3pJYID-Pvja7mBfMbgx/exec"
+            data-gas-endpoint="https://script.google.com/macros/s/AKfycbyDcL5AbeHVb_CwgI_OoPw48w0lJmUW8Edm28ZQZ2nT7R-Ghw1b0b8kLENBv_bwwqfg/exec"
           >
             <div class="trialReserve__inner">
               <div class="trialReserve__head">
                 <h2 class="sectionTitle">
                   <span class="sectionTitle__inner">
-                    <span>無料体験予約（30分オンライン）</span>
+                    <span>保護者説明会予約</span>
                   </span>
                 </h2>
                 <p class="trialReserve__lead">
@@ -1014,1004 +875,7 @@
     </div>
 
     <script src="lp01/common/js/common.js"></script>
-
-    <script>
-      // Fast-safe image fallback
-      (function () {
-        // Use existing logo as fallback instead of non-existent placeholder.svg
-        var fallbackImage = "lp01/common/img/logo.svg";
-        document.addEventListener(
-          "error",
-          function (e) {
-            var t = e.target;
-
-            if (t && t.tagName === "IMG" && !t.dataset.fallback) {
-              t.dataset.fallback = "1";
-              t.src = fallbackImage;
-            }
-          },
-          true,
-        );
-      })();
-
-      // Trial reservation form logic
-      (function () {
-        var section = document.getElementById("trialReserveSection");
-        if (!section) return;
-
-        var endpoint =
-          (section.dataset && section.dataset.gasEndpoint) || "";
-        var form = document.getElementById("trialForm");
-        var slotPickerBody = document.getElementById("slotPickerBody");
-        var slotWeekLabel = document.getElementById("slotWeekLabel");
-        var slotSelectionStatus = document.getElementById(
-          "slotSelectionStatus",
-        );
-        var prevWeekBtn = document.getElementById("slotPrevWeek");
-        var nextWeekBtn = document.getElementById("slotNextWeek");
-        var slotHiddenInput = document.getElementById("slotISO");
-        var submitBtn = document.getElementById("submitBtn");
-        var resultMsg = document.getElementById("resultMsg");
-        var STATUS_MODIFIERS = ["success", "error", "warning"];
-        var DOW = ["日", "月", "火", "水", "木", "金", "土"];
-
-        if (
-          !form ||
-          !slotPickerBody ||
-          !slotWeekLabel ||
-          !slotSelectionStatus ||
-          !prevWeekBtn ||
-          !nextWeekBtn ||
-          !slotHiddenInput ||
-          !submitBtn ||
-          !resultMsg
-        ) {
-          return;
-        }
-
-        var slotState = {
-          weeks: [],
-          currentWeek: 0,
-          selectedSlotISO: "",
-        };
-
-        function pad(num) {
-          return num < 10 ? "0" + num : "" + num;
-        }
-
-        function applyStatus(status) {
-          STATUS_MODIFIERS.forEach(function (name) {
-            resultMsg.classList.toggle(
-              "trialReserve__result--" + name,
-              status === name,
-            );
-          });
-        }
-
-        function clearMessage() {
-          resultMsg.textContent = "";
-          resultMsg.hidden = true;
-          applyStatus(null);
-        }
-
-        function showMessage(message, status) {
-          if (!message) {
-            clearMessage();
-            return;
-          }
-          resultMsg.textContent = message;
-          resultMsg.hidden = false;
-          applyStatus(status);
-        }
-
-        function setFormDisabled(disabled) {
-          Array.prototype.forEach.call(form.elements, function (el) {
-            el.disabled = disabled;
-          });
-        }
-
-        function toLocalDate(isoString) {
-          var d = new Date(isoString);
-          if (isNaN(d.getTime())) {
-            return null;
-          }
-          return d;
-        }
-
-        function dateKeyFromDate(date) {
-          return (
-            date.getFullYear() +
-            "-" +
-            pad(date.getMonth() + 1) +
-            "-" +
-            pad(date.getDate())
-          );
-        }
-
-        function parseDateKey(key) {
-          var parts = key.split("-");
-          return new Date(
-            Number(parts[0]),
-            Number(parts[1]) - 1,
-            Number(parts[2]),
-          );
-        }
-
-        function formatTimeRange(startISO, endISO) {
-          var start = toLocalDate(startISO);
-          var end = toLocalDate(endISO);
-          if (!start || !end) return "";
-          return (
-            pad(start.getHours()) +
-            ":" +
-            pad(start.getMinutes()) +
-            " - " +
-            pad(end.getHours()) +
-            ":" +
-            pad(end.getMinutes())
-          );
-        }
-
-        function findSlotInfo(slotISO, weeksOverride) {
-          var weeks = weeksOverride || slotState.weeks;
-          for (var w = 0; w < weeks.length; w++) {
-            var week = weeks[w];
-            for (var d = 0; d < week.days.length; d++) {
-              var day = week.days[d];
-              for (var s = 0; s < day.slots.length; s++) {
-                if (day.slots[s].startISO === slotISO) {
-                  return {
-                    weekIndex: w,
-                    day: day,
-                    slot: day.slots[s],
-                  };
-                }
-              }
-            }
-          }
-          return null;
-        }
-
-        function updateSelectionStatus() {
-          if (!slotSelectionStatus) return;
-
-          if (!slotState.selectedSlotISO) {
-            slotSelectionStatus.textContent = "";
-            slotSelectionStatus.classList.remove("is-visible");
-            return;
-          }
-
-          var info = findSlotInfo(slotState.selectedSlotISO);
-          if (!info) {
-            slotSelectionStatus.textContent = "";
-            slotSelectionStatus.classList.remove("is-visible");
-            return;
-          }
-
-          slotSelectionStatus.textContent =
-            info.day.labelFull +
-            " " +
-            (info.slot.timeLabel || info.slot.label) +
-            " を選択中です";
-          slotSelectionStatus.classList.add("is-visible");
-        }
-
-        function setLoadingUI() {
-          slotWeekLabel.textContent = "読み込み中…";
-          slotPickerBody.innerHTML =
-            '<p class="slotPicker__empty">読み込み中です…</p>';
-          prevWeekBtn.disabled = true;
-          nextWeekBtn.disabled = true;
-          submitBtn.disabled = true;
-          slotSelectionStatus.textContent = "";
-          slotSelectionStatus.classList.remove("is-visible");
-        }
-
-        function setNoSlotsUI() {
-          slotWeekLabel.textContent = "現在予約可能な枠はありません";
-          slotPickerBody.innerHTML =
-            '<p class="slotPicker__empty">現在ご案内できる枠がありません。別日程の公開をお待ちください。</p>';
-          prevWeekBtn.disabled = true;
-          nextWeekBtn.disabled = true;
-          submitBtn.disabled = true;
-          slotHiddenInput.value = "";
-          slotState.selectedSlotISO = "";
-          updateSelectionStatus();
-        }
-
-        function setEndpointMissingUI() {
-          slotWeekLabel.textContent = "デプロイURLを設定してください";
-          slotPickerBody.innerHTML =
-            '<p class="slotPicker__empty">GASのデプロイURLが未設定のため枠を表示できません。</p>';
-          prevWeekBtn.disabled = true;
-          nextWeekBtn.disabled = true;
-          submitBtn.disabled = true;
-          slotHiddenInput.value = "";
-          slotState.selectedSlotISO = "";
-          updateSelectionStatus();
-        }
-
-        function setErrorUI() {
-          slotWeekLabel.textContent = "取得エラー";
-          slotPickerBody.innerHTML =
-            '<p class="slotPicker__empty">空き枠を取得できませんでした。</p>';
-          prevWeekBtn.disabled = true;
-          nextWeekBtn.disabled = true;
-          submitBtn.disabled = true;
-          slotHiddenInput.value = "";
-          updateSelectionStatus();
-        }
-
-        function buildWeeks(slots) {
-          var map = {};
-
-          slots.forEach(function (slot) {
-            if (!slot || !slot.startISO) return;
-            var start = toLocalDate(slot.startISO);
-            if (!start) return;
-            start.setHours(0, 0, 0, 0);
-            var key = dateKeyFromDate(start);
-            if (!map[key]) {
-              map[key] = [];
-            }
-            map[key].push({
-              startISO: slot.startISO,
-              endISO: slot.endISO || slot.startISO,
-              label: slot.label || "",
-              timeLabel: formatTimeRange(slot.startISO, slot.endISO || slot.startISO),
-            });
-          });
-
-          Object.keys(map).forEach(function (key) {
-            map[key].sort(function (a, b) {
-              return new Date(a.startISO) - new Date(b.startISO);
-            });
-          });
-
-          var mapKeys = Object.keys(map).sort();
-          var now = new Date();
-          now.setHours(0, 0, 0, 0);
-          var defaultStart = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
-
-          var startDate =
-            mapKeys.length > 0 ? parseDateKey(mapKeys[0]) : new Date(defaultStart);
-          if (startDate.getTime() > defaultStart.getTime()) {
-            startDate = new Date(defaultStart);
-          }
-
-          var latestDate =
-            mapKeys.length > 0
-              ? parseDateKey(mapKeys[mapKeys.length - 1])
-              : new Date(startDate);
-
-          var diffDays = Math.floor(
-            (latestDate.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000),
-          );
-          var totalDays = Math.min(14, Math.max(7, diffDays + 1));
-          if (diffDays + 1 > 14) {
-            totalDays = diffDays + 1;
-          }
-
-          var days = [];
-          for (var i = 0; i < totalDays; i++) {
-            var date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
-            var key = dateKeyFromDate(date);
-            var slotsForDay = map[key] || [];
-            days.push({
-              key: key,
-              date: date,
-              slots: slotsForDay,
-              labelShort: date.getMonth() + 1 + "/" + pad(date.getDate()),
-              labelDow: DOW[date.getDay()],
-              labelFull:
-                date.getMonth() +
-                1 +
-                "月" +
-                date.getDate() +
-                "日(" +
-                DOW[date.getDay()] +
-                ")",
-            });
-          }
-
-          if (mapKeys.length > totalDays) {
-            for (var j = totalDays; j < mapKeys.length; j++) {
-              var extraDate = parseDateKey(mapKeys[j]);
-              days.push({
-                key: mapKeys[j],
-                date: extraDate,
-                slots: map[mapKeys[j]] || [],
-                labelShort: extraDate.getMonth() + 1 + "/" + pad(extraDate.getDate()),
-                labelDow: DOW[extraDate.getDay()],
-                labelFull:
-                  extraDate.getMonth() +
-                  1 +
-                  "月" +
-                  extraDate.getDate() +
-                  "日(" +
-                  DOW[extraDate.getDay()] +
-                  ")",
-              });
-            }
-          }
-
-          var weeks = [];
-          for (var idx = 0; idx < days.length; idx += 7) {
-            weeks.push({
-              index: weeks.length,
-              days: days.slice(idx, idx + 7),
-            });
-          }
-
-          return weeks;
-        }
-
-        function formatWeekLabel(week) {
-          if (!week || week.days.length === 0) return "";
-          var first = week.days[0];
-          var last = week.days[week.days.length - 1];
-          return (
-            first.labelShort +
-            "(" +
-            first.labelDow +
-            ") 〜 " +
-            last.labelShort +
-            "(" +
-            last.labelDow +
-            ")"
-          );
-        }
-
-        function renderWeek() {
-          if (!slotState.weeks.length) {
-            setNoSlotsUI();
-            return;
-          }
-
-          if (slotState.currentWeek < 0) {
-            slotState.currentWeek = 0;
-          }
-          if (slotState.currentWeek >= slotState.weeks.length) {
-            slotState.currentWeek = slotState.weeks.length - 1;
-          }
-
-          var week = slotState.weeks[slotState.currentWeek];
-          slotWeekLabel.textContent = formatWeekLabel(week);
-          prevWeekBtn.disabled = slotState.currentWeek === 0;
-          nextWeekBtn.disabled = slotState.currentWeek >= slotState.weeks.length - 1;
-
-          slotPickerBody.innerHTML = "";
-          var hasAvailableSlot = false;
-
-          week.days.forEach(function (day) {
-            var dayEl = document.createElement("article");
-            dayEl.className = "slotDay";
-            dayEl.setAttribute("data-date", day.key);
-            dayEl.setAttribute("aria-label", day.labelFull);
-
-            if (day.slots.length === 0) {
-              dayEl.classList.add("slotDay--empty");
-            }
-
-            var hasSelected =
-              day.slots.filter(function (slot) {
-                return slot.startISO === slotState.selectedSlotISO;
-              }).length > 0;
-            if (hasSelected) {
-              dayEl.classList.add("slotDay--selected");
-            }
-
-            var head = document.createElement("header");
-            head.className = "slotDay__head";
-
-            var dow = document.createElement("span");
-            dow.className = "slotDay__dow";
-            dow.textContent = day.labelDow;
-
-            var date = document.createElement("span");
-            date.className = "slotDay__date";
-            date.textContent = day.labelShort;
-
-            head.appendChild(dow);
-            head.appendChild(date);
-
-            var body = document.createElement("div");
-            body.className = "slotDay__slots";
-
-            if (!day.slots.length) {
-              var empty = document.createElement("p");
-              empty.className = "slotDay__noSlot";
-              empty.textContent = "満席";
-              body.appendChild(empty);
-            } else {
-              hasAvailableSlot = true;
-              day.slots.forEach(function (slot) {
-                var btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "slotDay__slot";
-                btn.dataset.slotIso = slot.startISO;
-                btn.textContent = slot.timeLabel || slot.label;
-                btn.setAttribute(
-                  "aria-label",
-                  day.labelFull + " " + (slot.timeLabel || slot.label),
-                );
-                var isSelected = slot.startISO === slotState.selectedSlotISO;
-                btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
-                if (isSelected) {
-                  btn.classList.add("is-selected");
-                }
-                btn.addEventListener("click", function () {
-                  selectSlot(slot.startISO);
-                });
-                body.appendChild(btn);
-              });
-            }
-
-            dayEl.appendChild(head);
-            dayEl.appendChild(body);
-            slotPickerBody.appendChild(dayEl);
-          });
-
-          if (!hasAvailableSlot) {
-            submitBtn.disabled = true;
-          } else if (slotState.selectedSlotISO) {
-            submitBtn.disabled = false;
-          }
-
-          updateSelectionStatus();
-        }
-
-        function selectSlot(slotISO, options) {
-          slotState.selectedSlotISO = slotISO;
-          slotHiddenInput.value = slotISO || "";
-          submitBtn.disabled = !slotISO;
-
-          if (!options || !options.silent) {
-            renderWeek();
-          } else {
-            updateSelectionStatus();
-          }
-        }
-
-        function ensureSelectedWeekVisible() {
-          if (!slotState.selectedSlotISO) return;
-          var info = findSlotInfo(slotState.selectedSlotISO);
-          if (info && info.weekIndex !== slotState.currentWeek) {
-            slotState.currentWeek = info.weekIndex;
-          }
-        }
-
-        function autoSelectFirstAvailable() {
-          for (var w = 0; w < slotState.weeks.length; w++) {
-            var week = slotState.weeks[w];
-            for (var d = 0; d < week.days.length; d++) {
-              var day = week.days[d];
-              if (day.slots.length > 0) {
-                slotState.currentWeek = w;
-                selectSlot(day.slots[0].startISO, { silent: true });
-                renderWeek();
-                return;
-              }
-            }
-          }
-          slotHiddenInput.value = "";
-          submitBtn.disabled = true;
-          updateSelectionStatus();
-        }
-
-        function changeWeek(delta) {
-          if (!slotState.weeks.length) return;
-          var nextIndex = slotState.currentWeek + delta;
-          if (nextIndex < 0 || nextIndex >= slotState.weeks.length) return;
-          slotState.currentWeek = nextIndex;
-          renderWeek();
-        }
-
-        prevWeekBtn.addEventListener("click", function () {
-          changeWeek(-1);
-        });
-        nextWeekBtn.addEventListener("click", function () {
-          changeWeek(1);
-        });
-
-        async function loadSlots(options) {
-          var keepMessage = options && options.keepMessage;
-          if (!keepMessage) {
-            clearMessage();
-          }
-
-          setLoadingUI();
-
-          try {
-            var response = await fetch(endpoint + "?mode=slots", {
-              method: "GET",
-              cache: "no-store",
-            });
-
-            if (!response.ok) {
-              throw new Error("HTTP " + response.status);
-            }
-
-            var slots = await response.json();
-
-            if (!Array.isArray(slots) || slots.length === 0) {
-              slotState.weeks = [];
-              slotState.selectedSlotISO = "";
-              slotHiddenInput.value = "";
-              setNoSlotsUI();
-              showMessage(
-                "現在ご案内できる枠がありません。別日程の公開をお待ちください。",
-                "warning",
-              );
-              return;
-            }
-
-            var weeks = buildWeeks(slots);
-            var previousSelection = slotState.selectedSlotISO;
-            slotState.weeks = weeks;
-            slotState.currentWeek = 0;
-
-            if (previousSelection) {
-              var existing = findSlotInfo(previousSelection, weeks);
-              if (existing) {
-                slotState.currentWeek = existing.weekIndex;
-                slotState.selectedSlotISO = previousSelection;
-                renderWeek();
-                ensureSelectedWeekVisible();
-                renderWeek();
-              } else {
-                slotState.selectedSlotISO = "";
-                renderWeek();
-                autoSelectFirstAvailable();
-              }
-            } else {
-              renderWeek();
-              autoSelectFirstAvailable();
-            }
-          } catch (err) {
-            console.error("Failed to load slots", err);
-            setErrorUI();
-            showMessage(
-              "空き枠の取得に失敗しました。時間を置いて再度お試しください。",
-              "error",
-            );
-          }
-        }
-
-        if (!endpoint || endpoint.indexOf("YOUR_DEPLOYMENT_ID_HERE") !== -1) {
-          setEndpointMissingUI();
-          showMessage(
-            "GASのデプロイURLを設定後にご利用いただけます。",
-            "warning",
-          );
-          return;
-        }
-
-        loadSlots();
-
-        form.addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          clearMessage();
-
-          var contactField = form.elements.namedItem("contactMethod");
-
-          var payload = {
-            name: form.name.value.trim(),
-            email: form.email.value.trim(),
-            tel: form.tel.value.trim(),
-            slotISO: slotHiddenInput.value,
-            contactMethod:
-              (contactField && contactField.value) || "meet",
-          };
-
-          if (!payload.name || !payload.email || !payload.tel) {
-            showMessage("未入力の項目があります。", "error");
-            return;
-          }
-
-          if (!payload.slotISO) {
-            showMessage("希望日時を選択してください。", "error");
-            return;
-          }
-
-          submitBtn.disabled = true;
-          submitBtn.setAttribute("aria-busy", "true");
-
-          try {
-            var response = await fetch(endpoint + "?mode=book", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-              throw new Error("HTTP " + response.status);
-            }
-
-            var data = await response.json();
-
-            var status = data && data.status;
-            var message = data && data.message;
-
-            if (status === "ok") {
-              showMessage(
-                message ||
-                  "ご予約が確定しました。確認メールをご確認ください。",
-                "success",
-              );
-              setFormDisabled(true);
-              submitBtn.removeAttribute("aria-busy");
-              submitBtn.setAttribute("aria-disabled", "true");
-            } else {
-              showMessage(
-                message ||
-                  "申し訳ありません。他の方が先にこの枠を確保しました。別の時間帯をお選びください。",
-                "error",
-              );
-              submitBtn.disabled = false;
-              submitBtn.removeAttribute("aria-busy");
-              loadSlots({ keepMessage: true });
-            }
-          } catch (err) {
-            console.error("Reservation request failed", err);
-            showMessage(
-              "通信エラーが発生しました。時間を置いて再度お試しください。",
-              "error",
-            );
-            submitBtn.disabled = false;
-            submitBtn.removeAttribute("aria-busy");
-          }
-        });
-      })();
-
-      // Accessible accordion: robust fallback to ensure panels open/close
-      (function () {
-        function setPanelVisibility(panel, show) {
-          if (!panel) return;
-
-          if (show) {
-            panel.removeAttribute("hidden");
-            panel.style.display = "";
-            panel.style.visibility = "";
-            panel.style.maxHeight = "";
-            panel.style.height = "";
-            panel.style.overflow = "";
-          } else {
-            panel.setAttribute("hidden", "");
-            panel.style.display = "";
-            panel.style.visibility = "";
-            panel.style.maxHeight = "";
-            panel.style.height = "";
-            panel.style.overflow = "";
-          }
-        }
-
-        function toggle(ev) {
-          var btn = ev.currentTarget;
-          var id = btn.getAttribute("aria-controls");
-          var panel = id && document.getElementById(id);
-
-          if (!panel) {
-            return;
-          }
-
-          var expanded = btn.getAttribute("aria-expanded") === "true";
-          var next = !expanded;
-
-          btn.setAttribute("aria-expanded", String(next));
-
-          var root = btn.closest && btn.closest(".accordion");
-          if (root) {
-            root.classList.toggle("is-open", next);
-          }
-
-          setPanelVisibility(panel, next);
-        }
-
-        function init() {
-          var toggles = document.querySelectorAll(
-            ".accordion__toggle[aria-controls]",
-          );
-
-          toggles.forEach(function (btn) {
-            var id = btn.getAttribute("aria-controls");
-            var panel = id && document.getElementById(id);
-
-            // Read from HTML attribute, default to false if not set
-            var expandedAttr = btn.getAttribute("aria-expanded");
-            var expanded = expandedAttr === "true";
-
-            // Reset to false if something changed it
-            if (expandedAttr !== "false" && expandedAttr !== "true") {
-              btn.setAttribute("aria-expanded", "false");
-              expanded = false;
-            }
-
-            var root = btn.closest && btn.closest(".accordion");
-
-            // Detect empty answers and add a placeholder
-            if (panel) {
-              var inner =
-                panel.querySelector(".accordion__panelInner") || panel;
-              var text = (inner.textContent || "").replace(/\s+/g, "");
-
-              if (!text) {
-                if (!inner.querySelector(".accordion__placeholder")) {
-                  var p = document.createElement("p");
-                  p.className = "accordion__placeholder";
-                  p.textContent = "回答は準備中です。しばらくお待ちください。";
-                  inner.appendChild(p);
-                }
-
-                if (root) {
-                  root.classList.add("-empty");
-                }
-              }
-            }
-
-            // Force initial state: closed by default
-            if (root) {
-              if (expanded) {
-                root.classList.add("is-open");
-              } else {
-                root.classList.remove("is-open");
-              }
-            }
-
-            // Always set panel visibility based on aria-expanded
-            setPanelVisibility(panel, expanded);
-
-            // Add a direct click handler
-            btn.addEventListener("click", function (ev) {
-              ev.stopPropagation();
-              toggle({ currentTarget: btn });
-            });
-
-            btn.dataset.seqAccordionBound = "1";
-          });
-        }
-
-        // Fallback click handler for any unbound toggles
-        document.addEventListener("click", function (e) {
-          var el = e.target.closest && e.target.closest(".accordion__toggle");
-          if (!el) return;
-          if (el.dataset && el.dataset.seqAccordionBound === "1") return;
-          toggle({ currentTarget: el });
-        });
-
-        // Initialize after DOM is ready
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", init);
-        } else {
-          init();
-        }
-      })();
-
-      // Hero scroll indicator button handler
-      (function() {
-        var indicator = document.querySelector('.heroScrollIndicator');
-        if (indicator) {
-          indicator.addEventListener('click', function() {
-            var target = document.getElementById('seqLead');
-            if (target) {
-              target.scrollIntoView({behavior: 'smooth'});
-            }
-          });
-        }
-      })();
-    </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-
-    <script>
-      (function () {
-        var baseSelector = ".seqLead__title .-strong.-orange";
-        var target = document.querySelector(baseSelector);
-        if (!target || typeof anime === "undefined") return;
-        if (target.querySelector(".heroTitle__char")) return;
-
-        var text = (target.textContent || "").trim();
-        if (!text) return;
-
-        var fragment = document.createDocumentFragment();
-        Array.from(text).forEach(function (char) {
-          var span = document.createElement("span");
-          span.className = "heroTitle__char";
-          span.textContent = char;
-          span.style.display = "inline-block";
-          span.style.opacity = "0";
-          span.style.transform = "translateY(0.75em)";
-          fragment.appendChild(span);
-        });
-
-        target.textContent = "";
-        target.appendChild(fragment);
-
-        anime.timeline({ loop: false }).add({
-          targets: baseSelector + " .heroTitle__char",
-          translateY: ["0.75em", "0em"],
-          opacity: [0, 1],
-          easing: "easeOutQuad",
-          duration: 200,
-          delay: function (el, i) {
-            return 40 * i;
-          },
-        });
-      })();
-    </script>
-
-    <section class="seqSiteLinks" id="seqSiteLinks">
-      <div class="seqSiteLinks__inner">
-        <div class="seqSiteLinks__head">
-          <h2 class="seqSiteLinks__title">関連ページ</h2>
-          <p class="seqSiteLinks__text">高校生キャリアコーチングの詳細情報や会社概要を、それぞれの公式サイトでご確認いただけます。</p>
-        </div>
-        <div class="seqSiteLinks__grid">
-          <a class="seqSiteLinks__card -service" href="https://careercoaching.litable-edu.com/" target="_blank" rel="noopener noreferrer">
-            <div class="seqSiteLinks__cardBody">
-              <p class="seqSiteLinks__label">サービスページ</p>
-              <h3 class="seqSiteLinks__cardTitle">高校生キャリアコーチング</h3>
-              <p class="seqSiteLinks__cardText">プログラム内容や導入事例、サポート体制などを詳しくご紹介しています。</p>
-            </div>
-            <span class="seqSiteLinks__cta">詳しくみる</span>
-          </a>
-          <a class="seqSiteLinks__card -corporate" href="https://litable-edu.com/" target="_blank" rel="noopener noreferrer">
-            <div class="seqSiteLinks__cardBody">
-              <p class="seqSiteLinks__label">コーポレートサイト</p>
-              <h3 class="seqSiteLinks__cardTitle">株式会社Litable</h3>
-              <p class="seqSiteLinks__cardText">会社情報やニュースリリース、採用情報などを掲載しています。</p>
-            </div>
-            <span class="seqSiteLinks__cta">企業情報を見る</span>
-          </a>
-        </div>
-      </div>
-    </section>
-    <section class="ctaBanner">
-      <a
-        class="ctaBanner__button"
-        href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform?usp=sf_link"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="保護者説明会 実施中"
-      >
-        <picture class="ctaBanner__media">
-          <source media="(max-width: 767px)" srcset="lp01/common/img/cta2.svg" />
-          <img
-            class="ctaBanner__image"
-            src="lp01/common/img/cta2.svg"
-            alt="保護者説明会 実施中"
-          />
-        </picture>
-      </a>
-    </section>
-    <footer id="footer">
-      <div class="footer__inner">
-        <div class="footer__logo">
-          <a href="#wrapper" aria-label="CAREER COACHING トップに戻る"
-            ><img
-              src="lp01/common/img/logo.svg"
-              width="320"
-              height="64"
-              alt="CAREER COACHING ロゴ"
-          /></a>
-        </div>
-
-        <p class="footer__copyright">&copy; Litable Inc.</p>
-      </div>
-
-      <p class="pagetop">
-        <a href="#wrapper"><span>page top</span></a>
-      </p>
-    </footer>
-
-    <script>
-      (function () {
-        var root = document.body;
-        var header = document.getElementById("header");
-        if (!root || !header) return;
-
-        var hero = document.querySelector(".heroSection--fullscreen");
-        var threshold = 0;
-        var ticking = false;
-        var heroClass = "is-header-hero";
-        var solidClass = "is-header-solid";
-        var logo = header.querySelector(".header__logoImage");
-        var defaultLogo = logo ? logo.getAttribute("data-logo-default") : "";
-        var heroLogo = logo ? logo.getAttribute("data-logo-hero") : "";
-        var desktopMedia = window.matchMedia("(min-width: 768px)");
-
-        function applyState() {
-          var heroActive = window.scrollY <= threshold;
-
-          root.classList.toggle(heroClass, heroActive);
-          root.classList.toggle(solidClass, !heroActive);
-          updateLogo(heroActive);
-        }
-
-        function updateLogo(heroActive) {
-          if (!logo) return;
-
-          var isDesktop = desktopMedia.matches;
-          var targetSrc = heroActive && isDesktop ? heroLogo : defaultLogo;
-
-          if (targetSrc && logo.getAttribute("src") !== targetSrc) {
-            logo.setAttribute("src", targetSrc);
-          }
-        }
-
-        function recalc() {
-          var heroHeight = hero ? hero.offsetHeight : 0;
-          threshold =
-            heroHeight > 0
-              ? heroHeight * 0.55
-              : Math.max(window.innerHeight * 0.25, header.offsetHeight * 2);
-          applyState();
-        }
-
-        function onScroll() {
-          if (ticking) return;
-
-          ticking = true;
-          window.requestAnimationFrame(function () {
-            applyState();
-            ticking = false;
-          });
-        }
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", recalc);
-        if (desktopMedia.addEventListener) {
-          desktopMedia.addEventListener("change", function () {
-            updateLogo(window.scrollY <= threshold);
-          });
-        } else if (desktopMedia.addListener) {
-          desktopMedia.addListener(function () {
-            updateLogo(window.scrollY <= threshold);
-          });
-        }
-
-        root.classList.add(heroClass);
-        updateLogo(true);
-        recalc();
-      })();
-    </script>
-
-    <script>
-      (function () {
-        const themeSwitcher = document.querySelector(".theme-switcher");
-
-        if (!themeSwitcher) return;
-
-        const body = document.body;
-
-        const buttons = themeSwitcher.querySelectorAll("button");
-        const themeClasses = ["theme-palette-1", "theme-palette-2"];
-
-        const savedTheme = localStorage.getItem("theme");
-
-        function applyTheme(theme) {
-          themeClasses.forEach((themeClass) => body.classList.remove(themeClass));
-
-          if (theme && theme !== "original" && themeClasses.includes(theme)) {
-            body.classList.add(theme);
-          }
-
-          localStorage.setItem("theme", theme || "original");
-        }
-
-        if (savedTheme) {
-          applyTheme(savedTheme);
-        }
-
-        buttons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const theme = button.dataset.theme;
-
-            applyTheme(theme);
-          });
-        });
-      })();
-    </script>
+    <script src="lp01/common/js/app.js"></script>
   </body>
 </html>
