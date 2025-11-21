@@ -262,6 +262,7 @@ function createBookedEventWithStaff(options) {
   var start = options.start;
   var end = options.end;
   var name = options.name;
+  var furigana = options.furigana || "";
   var email = options.email;
   var tel = options.tel;
   var staffEmail = options.staffEmail;
@@ -273,15 +274,15 @@ function createBookedEventWithStaff(options) {
 
   const event = {
     summary: `無料体験／${name}さん`,
-    description: `電話番号: ${tel}
-この予約はWebフォームから自動登録されました。`,
     start: { dateTime: start.toISOString(), timeZone: TIMEZONE },
     end: { dateTime: end.toISOString(), timeZone: TIMEZONE },
     attendees: [
       { email: email },
       { email: staffEmail },
     ],
-    description: `電話番号: ${tel}
+    description: `氏名: ${name}
+フリガナ: ${furigana || "-"}
+電話番号: ${tel}
 連絡方法: ${contactMethod === CONTACT_METHODS.PHONE ? "電話（フォーム指定）" : "Google Meet"}
 この予約はWebフォームから自動登録されました。`,
   };
@@ -366,6 +367,7 @@ function sendInternalNotification(params) {
   const body = `以下の内容で予約が確定しました。
 
 氏名：${params.name}
+フリガナ：${params.furigana || "-"}
 メール：${params.email}
 電話番号：${params.tel}
 連絡方法：${params.contactMethod === CONTACT_METHODS.PHONE ? "電話" : "Google Meet"}
@@ -402,6 +404,7 @@ function logReservation(params) {
     sheet.appendRow([
       "timestamp",
       "name",
+      "furigana",
       "email",
       "tel",
       "contactMethod",
@@ -416,6 +419,7 @@ function logReservation(params) {
   sheet.appendRow([
     new Date(),
     params.name,
+    params.furigana || "",
     params.email,
     params.tel,
     params.contactMethod,
@@ -429,13 +433,20 @@ function logReservation(params) {
 
 function handleBooking(data) {
   const name = (data.name || "").trim();
+  const furigana =
+    (data.furigana ||
+      data.kana ||
+      data.nameKana ||
+      data.furi ||
+      data.ruby ||
+      "").trim();
   const email = (data.email || "").trim();
   const tel = (data.tel || "").trim();
   const slotISO = (data.slotISO || "").trim();
   const rawContactMethod = (data.contactMethod || "").toLowerCase();
   const contactMethod = rawContactMethod === CONTACT_METHODS.PHONE ? CONTACT_METHODS.PHONE : CONTACT_METHODS.MEET;
 
-  if (!name || !email || !tel || !slotISO) {
+  if (!name || !furigana || !email || !tel || !slotISO) {
     return {
       status: "error",
       message: "必須項目が未入力です。",
@@ -458,16 +469,17 @@ function handleBooking(data) {
 
     if (!slotObj) {
       sendSorryMail(name, email);
-    logReservation({
-      name,
-      email,
-      tel,
-      contactMethod,
-      startISO: start.toISOString(),
-      endISO: end.toISOString(),
-      meetLink: "",
-      status: "failed",
-      notes: "slot_no_longer_available",
+      logReservation({
+        name,
+        furigana,
+        email,
+        tel,
+        contactMethod,
+        startISO: start.toISOString(),
+        endISO: end.toISOString(),
+        meetLink: "",
+        status: "failed",
+        notes: "slot_no_longer_available",
       });
       return {
         status: "error",
@@ -478,16 +490,17 @@ function handleBooking(data) {
 
     if (!isSlotStillFreeForBooking(start, end)) {
       sendSorryMail(name, email);
-    logReservation({
-      name,
-      email,
-      tel,
-      contactMethod,
-      startISO: start.toISOString(),
-      endISO: end.toISOString(),
-      meetLink: "",
-      status: "failed",
-      notes: "slot_conflict",
+      logReservation({
+        name,
+        furigana,
+        email,
+        tel,
+        contactMethod,
+        startISO: start.toISOString(),
+        endISO: end.toISOString(),
+        meetLink: "",
+        status: "failed",
+        notes: "slot_conflict",
       });
       return {
         status: "error",
@@ -502,6 +515,7 @@ function handleBooking(data) {
       start,
       end,
       name,
+      furigana,
       email,
       tel,
       staffEmail: assigned.email,
@@ -511,6 +525,7 @@ function handleBooking(data) {
     sendConfirmMail(name, email, start, end, bookedInfo.meetLink, contactMethod);
     sendInternalNotification({
       name,
+      furigana,
       email,
       tel,
       start,
@@ -523,6 +538,7 @@ function handleBooking(data) {
 
     logReservation({
       name,
+      furigana,
       email,
       tel,
       contactMethod,
@@ -541,6 +557,7 @@ function handleBooking(data) {
     console.error("handleBooking error", err);
     logReservation({
       name,
+      furigana,
       email,
       tel,
       contactMethod,

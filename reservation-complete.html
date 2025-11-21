@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no,address=no,email=no" />
+    <meta
+      name="description"
+      content="高校生キャリアコーチングの予約完了ページです。面談のご案内や今後の流れをご確認ください。"
+    />
+    <meta name="robots" content="noindex" />
+    <title>予約完了 - CAREER COACHING</title>
+    <link rel="shortcut icon" href="common/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="common/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="common/img/android-chrome.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@100..900&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@100..900&display=swap"
+    />
+    <link rel="stylesheet" href="lp01/common/css/common.css" />
+    <link rel="stylesheet" href="lp01/common/css/override.css" />
+    <style>
+      /* 完了ページ専用の追加スタイル */
+      .thanksHero__icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 24px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0a81b3;
+        box-shadow: 0 8px 24px rgba(10, 129, 179, 0.15);
+      }
+      .thanksHero__icon svg {
+        width: 32px;
+        height: 32px;
+      }
+      
+      /* コンタクトセクション */
+      .contact-support {
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(10, 129, 179, 0.1);
+        text-align: center;
+      }
+      .contact-support__title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #0a81b3;
+        margin-bottom: 12px;
+      }
+      .contact-support__text {
+        font-size: 0.95rem;
+        color: #4a5d68;
+      }
+      
+      /* アニメーション */
+      .fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.2s; }
+      .delay-3 { animation-delay: 0.3s; }
+      
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="thanksPage is-header-solid">
+    <p class="skipItem anchorLink skip-link">
+      <a href="#main">本文へ移動</a>
+    </p>
+
+    <div id="wrapper">
+      <header id="header" role="banner">
+        <div class="header__inner">
+          <div class="header__logo">
+            <a class="header__logoLink" href="index.html" aria-label="CAREER COACHING トップに戻る">
+              <img
+                class="header__logoImage"
+                src="lp01/common/img/logo.svg"
+                width="320"
+                height="64"
+                alt="CAREER COACHING ロゴ"
+              />
+            </a>
+          </div>
+
+          <nav class="header__nav" aria-label="サイト内ナビゲーション">
+            <ul class="headerNav">
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="index.html#sectionCoaching">コーチングとは</a>
+              </li>
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="index.html#sectionPoints">４つのポイント</a>
+              </li>
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="index.html#sectionVoices">参加者の声</a>
+              </li>
+              <li class="headerNav__item">
+                <a class="headerNav__link" href="index.html#seqFaq">よくある質問</a>
+              </li>
+            </ul>
+          </nav>
+
+          <a href="index.html#trialReserveSection" class="header__button">
+            <span class="headerCta">
+              <span class="headerCta__badge">&#x7121;&#x6599;</span>
+              <span class="headerCta__label">&#x8AAC;&#x660E;&#x4F1A;&#x30FB;&#x4F53;&#x9A13;&#x7533;&#x8FBC;</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main id="main" role="main">
+        <article>
+          <section class="thanksHero">
+            <div class="thanksHero__inner fade-in-up">
+              <div class="thanksHero__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <p class="thanksHero__eyebrow">Reservation Complete</p>
+              <h1 class="thanksHero__title">ご予約ありがとうございます</h1>
+              <p class="thanksHero__message">
+                受付が完了し、ご入力いただいたメールアドレスへ<br class="-pcItem">
+                <strong>「ご予約内容の確認メール」</strong>を送信しました。<br>
+                面談当日までの流れを下記でご案内していますので、ご確認ください。
+              </p>
+            </div>
+          </section>
+
+          <section class="thanksSection" id="reservation">
+            <div class="thanksSection__inner thanksSection__inner--split">
+              <div class="thanksCard fade-in-up delay-1">
+                <h2 class="thanksCard__title">次のご案内</h2>
+                <ol class="thanksSteps">
+                  <li class="thanksSteps__item">
+                    <h3>1. メールを確認</h3>
+                    <p>
+                      「予約確認メール」をお送りします。日程・担当コーチ・参加用リンクをご確認ください。<br>
+                      <small style="color: #666;">※メールが届かない場合は、迷惑メールフォルダもご確認ください。</small>
+                    </p>
+                  </li>
+                  <li class="thanksSteps__item">
+                    <h3>2. 面談の準備</h3>
+                    <p>
+                      ご家族で共有したいトピックや、事前に相談したいことがあればメモしておくとスムーズです。<br>
+                      Google Meetをご利用の場合は通信環境の確認もお願いします。
+                    </p>
+                  </li>
+                  <li class="thanksSteps__item">
+                    <h3>3. 事前ヒアリング（任意）</h3>
+                    <p>
+                      追加のご要望があれば、確認メールへ返信する形でお気軽にお知らせください。担当より折り返しご連絡いたします。
+                    </p>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="thanksCard thanksCard--sub fade-in-up delay-2">
+                <div>
+                  <h2 class="thanksCard__title">変更・キャンセルについて</h2>
+                  <p>
+                    日程変更やキャンセルが必要になった場合は、<strong>予約確認メールにそのまま返信</strong>いただくか、公式フォームよりご連絡ください。<br>
+                    できる限り柔軟に調整いたします。
+                  </p>
+                </div>
+                
+                <div class="contact-support">
+                  <p class="contact-support__title">メールが届かない場合</p>
+                  <p class="contact-support__text">
+                    10分以上経過してもメールが届かない場合は、メールアドレスの入力ミスの可能性があります。お手数ですが、再度お申し込みいただくか、下記よりお問い合わせください。
+                  </p>
+                </div>
+
+                <div class="thanksCard__actions">
+                  <a class="thanksButton" href="index.html#trialReserveSection">予約フォームへ</a>
+                  <a class="thanksButton thanksButton--ghost" href="index.html">トップページへ</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="thanksSection thanksSection--check fade-in-up delay-3">
+            <div class="thanksSection__inner">
+              <div class="thanksChecklist">
+                <h2>当日までにご確認ください</h2>
+                <ul>
+                  <li>開始5分前にはオンライン会議室へアクセスできる状態でお待ちください。</li>
+                  <li>カメラ・マイクの動作確認を事前に済ませておくと安心です。</li>
+                  <li>保護者さま・生徒さま双方で一緒に参加される場合は、共有スペースからご参加ください。</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="thanksSection thanksSection--cta fade-in-up delay-3">
+            <div class="thanksSection__inner">
+              <p class="thanksSection__lead">他の情報もご覧になりますか？</p>
+              <div class="thanksCard__actions">
+                <a class="thanksButton" href="index.html#sectionPoints">特徴を確認する</a>
+                <a class="thanksButton thanksButton--ghost" href="index.html">トップページへ戻る</a>
+              </div>
+            </div>
+          </section>
+        </article>
+      </main>
+
+      <footer id="footer">
+        <div class="footer__inner">
+          <div class="footer__logo">
+             <a href="index.html">
+              <img src="lp01/common/img/logo.svg" alt="CAREER COACHING" width="180" height="36">
+             </a>
+          </div>
+          <p class="footer__copyright">&copy; CAREER COACHING All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "reservation_complete",
+        page_type: "reservation_complete",
+      });
+    </script>
+  </body>
+</html>

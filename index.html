@@ -121,9 +121,7 @@
           </nav>
 
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#reservation"
             class="header__button"
           >
             <span class="headerCta">
@@ -153,9 +151,7 @@
           <div class="ctaYokoBanner">
             <a
               class="ctaYokoBanner__link"
-              href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
-              target="_blank"
-              rel="noopener"
+              href="#reservation"
             >
               <span class="ctaYokoBanner__card">
                 <span class="ctaYokoBanner__top">
@@ -259,9 +255,7 @@
 
           <div class="buttonBox anchorLink">
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#reservation"
               aria-label="保護者説明会 実施中"
             >
               <picture class="buttonBox__media">
@@ -504,7 +498,7 @@
 
           <div class="buttonBox anchorLink">
             <a
-              href="#trialReserveSection"
+              href="#reservation"
               aria-label="無料体験予約"
             >
               <picture class="buttonBox__media">
@@ -596,9 +590,7 @@
           
           <div class="buttonBox anchorLink">
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScCNDmaD2hMq-ABoHaq9t6RchqntEutti3XuO2lqV4V7hel_w/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#reservation"
               aria-label="保護者説明会 実施中"
             >
               <picture class="buttonBox__media">
@@ -744,6 +736,7 @@
             </div>
           </section>
 
+          <span id="reservation" class="anchorTarget" aria-hidden="true"></span>
           <section
             class="trialReserve"
             id="trialReserveSection"
@@ -770,6 +763,20 @@
                     name="name"
                     type="text"
                     autocomplete="name"
+                    required
+                  />
+                </div>
+
+                <div class="trialReserve__field">
+                  <label class="trialReserve__label" for="trialFurigana">お名前（フリガナ）</label>
+                  <input
+                    id="trialFurigana"
+                    class="trialReserve__input"
+                    name="furigana"
+                    type="text"
+                    inputmode="katakana"
+                    autocomplete="additional-name"
+                    placeholder="ヤマダ ハナコ"
                     required
                   />
                 </div>
@@ -807,7 +814,7 @@
                         type="button"
                         class="slotPicker__navBtn slotPicker__navBtn--prev"
                         id="slotPrevWeek"
-                        aria-label="前の週を表示"
+                        aria-label="前の3日間を表示"
                         disabled
                       >
                         <span aria-hidden="true">‹</span>
@@ -819,7 +826,7 @@
                         type="button"
                         class="slotPicker__navBtn slotPicker__navBtn--next"
                         id="slotNextWeek"
-                        aria-label="次の週を表示"
+                        aria-label="次の3日間を表示"
                         disabled
                       >
                         <span aria-hidden="true">›</span>

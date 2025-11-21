@@ -36,6 +36,7 @@
   var resultMsg = document.getElementById("resultMsg");
   var STATUS_MODIFIERS = ["success", "error", "warning"];
   var DOW = ["日", "月", "火", "水", "木", "金", "土"];
+  var DAYS_PER_PAGE = 3;
 
   if (
     !form ||
@@ -319,10 +320,10 @@
     }
 
     var weeks = [];
-    for (var idx = 0; idx < days.length; idx += 7) {
+    for (var idx = 0; idx < days.length; idx += DAYS_PER_PAGE) {
       weeks.push({
         index: weeks.length,
-        days: days.slice(idx, idx + 7),
+        days: days.slice(idx, idx + DAYS_PER_PAGE),
       });
     }
 
@@ -581,6 +582,10 @@
 
     var payload = {
       name: form.name.value.trim(),
+      furigana:
+        (form.elements.namedItem("furigana") &&
+          form.elements.namedItem("furigana").value.trim()) ||
+        "",
       email: form.email.value.trim(),
       tel: form.tel.value.trim(),
       slotISO: slotHiddenInput.value,
@@ -588,7 +593,7 @@
         (contactField && contactField.value) || "meet",
     };
 
-    if (!payload.name || !payload.email || !payload.tel) {
+    if (!payload.name || !payload.furigana || !payload.email || !payload.tel) {
       showMessage("未入力の項目があります。", "error");
       return;
     }
@@ -604,6 +609,7 @@
     try {
       var formPayload = new URLSearchParams();
       formPayload.set("name", payload.name);
+      formPayload.set("furigana", payload.furigana);
       formPayload.set("email", payload.email);
       formPayload.set("tel", payload.tel);
       formPayload.set("slotISO", payload.slotISO);

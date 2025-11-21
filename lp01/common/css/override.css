@@ -26,6 +26,22 @@ body.is-header-solid #header {
   border-bottom: 1px solid rgba(10, 129, 179, 0.12);
 }
 
+/* PC copy readability */
+@media screen and (min-width: 768px) {
+  body {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    word-wrap: normal;
+  }
+}
+
+/* Remove decorative arrows around section headings */
+.sectionTitle::before,
+.sectionTitle::after {
+  content: none !important;
+  display: none !important;
+}
+
 .ctaYokoBanner {
   position: fixed;
   bottom: clamp(16px, 4vw, 24px);
@@ -371,6 +387,239 @@ body.is-header-solid #header {
 
   .heroSection__bg {
     object-position: center 18%;
+  }
+}
+
+.anchorTarget {
+  position: relative;
+  top: -140px;
+  display: block;
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+}
+
+@media (max-width: 767px) {
+  .anchorTarget {
+    top: -100px;
+  }
+}
+
+
+/* Reservation Complete Page
+   --------------------------------------------- */
+
+.thanksPage {
+  background: #f4f7fb;
+}
+
+.thanksHero {
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.9), rgba(244, 247, 251, 0.9)),
+    linear-gradient(120deg, rgba(10, 129, 179, 0.12), rgba(255, 255, 255, 0));
+  padding: clamp(64px, 12vw, 140px) clamp(24px, 5vw, 80px);
+  text-align: center;
+}
+
+.thanksHero__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #0a81b3;
+}
+
+.thanksHero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.thanksHero__title {
+  font-size: clamp(32px, 4vw, 48px);
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.thanksHero__message {
+  color: #123042;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.8;
+}
+
+.thanksSection {
+  padding: clamp(48px, 8vw, 96px) clamp(20px, 4vw, 80px);
+}
+
+.thanksSection__inner {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 32px);
+}
+
+.thanksSection__inner--split {
+  gap: clamp(24px, 3vw, 40px);
+}
+
+.thanksSection__inner--split > .thanksCard {
+  width: 100%;
+}
+
+.thanksCard {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: clamp(28px, 4vw, 48px);
+  box-shadow: 0 20px 60px rgba(10, 129, 179, 0.12);
+}
+
+.thanksCard--sub {
+  border: 1px solid rgba(10, 129, 179, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.thanksCard__title {
+  margin-bottom: 24px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  color: #0a81b3;
+}
+
+.thanksSteps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 24px;
+}
+
+.thanksSteps__item {
+  border-left: 4px solid rgba(10, 129, 179, 0.2);
+  padding-left: 20px;
+}
+
+.thanksSteps__item h3 {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  margin-bottom: 8px;
+  color: #0a81b3;
+}
+
+.thanksSteps__item p {
+  margin: 0;
+  color: #16384a;
+  line-height: 1.7;
+  font-size: clamp(0.92rem, 1vw, 1rem);
+}
+
+.thanksCard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.thanksButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: #0a81b3;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 16px 30px rgba(10, 129, 179, 0.24);
+}
+
+.thanksButton--ghost {
+  background: #ffffff;
+  color: #0a81b3;
+  border: 1px solid rgba(10, 129, 179, 0.4);
+  box-shadow: none;
+}
+
+.thanksButton:hover,
+.thanksButton:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 36px rgba(10, 129, 179, 0.3);
+}
+
+.thanksChecklist {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: clamp(28px, 4vw, 40px);
+  box-shadow: 0 14px 40px rgba(10, 129, 179, 0.14);
+}
+
+.thanksChecklist h2 {
+  margin-bottom: 18px;
+  color: #0a81b3;
+}
+
+.thanksChecklist ul {
+  margin: 0;
+  padding-left: 1.2em;
+  color: #16384a;
+  line-height: 1.7;
+}
+
+.thanksSection--cta {
+  text-align: center;
+  background: linear-gradient(120deg, rgba(10, 129, 179, 0.08), rgba(255, 255, 255, 0));
+}
+
+.thanksSection__lead {
+  font-size: 1.2rem;
+  color: #0a81b3;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 767px) {
+  .thanksCard,
+  .thanksChecklist {
+    border-radius: 18px;
+  }
+
+  .thanksSteps__item {
+    border-left-width: 3px;
+    padding-left: 16px;
+  }
+
+  .thanksCard__actions {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 960px) {
+  .thanksSection__inner--split {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .thanksSection__inner--split > .thanksCard {
+    flex: 1 1 0;
+    height: 100%;
+  }
+
+  .thanksSection__inner {
+    gap: clamp(32px, 3.5vw, 48px);
+  }
+
+  .thanksSection--check .thanksSection__inner {
+    max-width: 880px;
+  }
+
+  .thanksCard__actions {
+    justify-content: center;
+  }
+
+  .thanksSection--cta .thanksCard__actions {
+    justify-content: center;
   }
 }
 
@@ -2353,6 +2602,21 @@ body.theme-palette-3 {
 
 .pointItem__bodyText ul li { margin: 0.2em 0; }
 
+@media (min-width: 768px) {
+  .seqPoint .pointItem.-green .pointItem__bodyText,
+  .seqPoint .pointItem.-green .pointItem__bodyText li,
+  .seqPoint .pointItem.-green .pointItem__bodyText p {
+    word-break: normal;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+  }
+
+  .seqPoint .pointItem.-green .pointItem__bodyText ul {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 
 
 @media (max-width: 767px) {
@@ -2537,15 +2801,27 @@ body.theme-palette-3 {
 
   width: 100%;
 
-  max-width: 64ch;
+  max-width: none;
 
 }
 
 .pointSteps li { display: grid; gap: clamp(6px, 1vw, 12px); }
 
-.pointSteps__label { font-weight: 800; margin: 0; }
+.pointSteps__label {
+  font-weight: 800;
+  margin: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
 
-.pointSteps__text { margin: 0; line-height: 1.9; }
+.pointSteps__text {
+  margin: 0;
+  line-height: 1.9;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
 
 
 
@@ -3746,17 +4022,7 @@ body.theme-palette-3 {
 
   .slotPicker__body {
 
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  }
-
-}
-
-@media (min-width: 1100px) {
-
-  .slotPicker__body {
-
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
   }
 
