@@ -4185,6 +4185,33 @@ body.theme-palette-3 {
 
 }
 
+.trialReserve__fallback {
+  text-align: center;
+  margin-top: clamp(8px, 1.5vw, 12px);
+  padding-top: clamp(12px, 2vw, 16px);
+  border-top: 1px dashed rgba(15, 70, 120, 0.15);
+}
+
+.trialReserve__fallbackText {
+  margin: 0;
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: rgba(17, 42, 59, 0.65);
+  line-height: 1.6;
+}
+
+.trialReserve__fallbackLink {
+  color: var(--main-100, #0883af);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.trialReserve__fallbackLink:hover {
+  color: #0f58a8;
+  border-bottom-color: currentColor;
+}
+
 @media (min-width: 680px) {
 
   .trialReserve__form {
