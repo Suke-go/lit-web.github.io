@@ -197,13 +197,101 @@
   function setNoSlotsUI() {
     slotWeekLabel.textContent = "現在予約可能な枠はありません";
     slotPickerBody.innerHTML =
-      '<p class="slotPicker__empty">現在ご案内できる枠がありません。別日程の公開をお待ちください。</p>';
+      '<div class="slotPicker__noSlots">' +
+      '<p class="slotPicker__empty">現在ご案内できる枠がありません。</p>' +
+      '<div class="slotPicker__dayRequest">' +
+      '<p class="slotPicker__dayRequestLabel">ご都合の良い曜日をお選びください。日程が空き次第ご連絡いたします。</p>' +
+      '<div class="slotPicker__dayChoices">' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="月"> 月</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="火"> 火</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="水"> 水</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="木"> 木</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="金"> 金</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="土"> 土</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="日"> 日</label>' +
+      '</div>' +
+      '<button type="button" class="slotPicker__daySubmit" id="dayRequestBtn">希望曜日を送信する</button>' +
+      '</div>' +
+      '</div>';
     prevWeekBtn.disabled = true;
     nextWeekBtn.disabled = true;
     submitBtn.disabled = true;
+    submitBtn.style.display = "none";
     slotHiddenInput.value = "";
     slotState.selectedSlotISO = "";
     updateSelectionStatus();
+
+    // Add event listener for day request button
+    var dayRequestBtn = document.getElementById("dayRequestBtn");
+    if (dayRequestBtn) {
+      dayRequestBtn.addEventListener("click", handleDayRequest);
+    }
+  }
+
+  async function handleDayRequest() {
+    var checkboxes = document.querySelectorAll('input[name="prefDay"]:checked');
+    var selectedDays = [];
+    checkboxes.forEach(function (cb) {
+      selectedDays.push(cb.value);
+    });
+
+    if (selectedDays.length === 0) {
+      showMessage("希望曜日を1つ以上選択してください。", "error");
+      return;
+    }
+
+    var dayRequestBtn = document.getElementById("dayRequestBtn");
+    if (dayRequestBtn) {
+      dayRequestBtn.disabled = true;
+      dayRequestBtn.textContent = "送信中...";
+    }
+
+    try {
+      var formPayload = new URLSearchParams();
+      formPayload.set("name", userData.name);
+      formPayload.set("furigana", userData.furigana || "");
+      formPayload.set("email", userData.email);
+      formPayload.set("tel", userData.tel);
+      formPayload.set("preferredDays", selectedDays.join(","));
+
+      var response = await fetch(endpoint + "?mode=request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: formPayload.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+
+      var data = await response.json();
+
+      if (data && data.status === "ok") {
+        showMessage("ご希望をお送りしました。日程が空き次第ご連絡いたします。", "success");
+        slotPickerBody.innerHTML =
+          '<div class="slotPicker__requestComplete">' +
+          '<p>✓ ご希望の曜日：' + selectedDays.join("・") + '</p>' +
+          '<p>日程が確定次第、メールでご連絡いたします。</p>' +
+          '</div>';
+        // Clear session storage
+        sessionStorage.removeItem("reservationFormData");
+      } else {
+        showMessage(data.message || "送信に失敗しました。", "error");
+        if (dayRequestBtn) {
+          dayRequestBtn.disabled = false;
+          dayRequestBtn.textContent = "希望曜日を送信する";
+        }
+      }
+    } catch (err) {
+      console.error("Day request failed", err);
+      showMessage("通信エラーが発生しました。", "error");
+      if (dayRequestBtn) {
+        dayRequestBtn.disabled = false;
+        dayRequestBtn.textContent = "希望曜日を送信する";
+      }
+    }
   }
 
   function setEndpointMissingUI() {
@@ -564,6 +652,66 @@
 
   loadSlots();
 
+  // Handler for "preferred day" link - show day selection UI
+  var showDayRequestLink = document.getElementById("showDayRequestLink");
+  if (showDayRequestLink) {
+    showDayRequestLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      showDayRequestUI();
+    });
+  }
+
+  function showDayRequestUI() {
+    slotWeekLabel.textContent = "ご希望の曜日をお知らせください";
+    slotPickerBody.innerHTML =
+      '<div class="slotPicker__noSlots">' +
+      '<div class="slotPicker__dayRequest">' +
+      '<p class="slotPicker__dayRequestLabel">ご都合の良い曜日をお選びください。日程が空き次第ご連絡いたします。</p>' +
+      '<div class="slotPicker__dayChoices">' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="月"> 月</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="火"> 火</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="水"> 水</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="木"> 木</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="金"> 金</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="土"> 土</label>' +
+      '<label class="slotPicker__dayChoice"><input type="checkbox" name="prefDay" value="日"> 日</label>' +
+      '</div>' +
+      '<button type="button" class="slotPicker__daySubmit" id="dayRequestBtn">希望曜日を送信する</button>' +
+      '<p class="slotPicker__backToSlots"><a href="#" id="backToSlotsLink">← スロット選択に戻る</a></p>' +
+      '</div>' +
+      '</div>';
+    prevWeekBtn.disabled = true;
+    nextWeekBtn.disabled = true;
+    submitBtn.disabled = true;
+    submitBtn.style.display = "none";
+    slotHiddenInput.value = "";
+    slotState.selectedSlotISO = "";
+    updateSelectionStatus();
+
+    // Hide the alt option link
+    var altOption = document.querySelector(".slotPicker__altOption");
+    if (altOption) altOption.style.display = "none";
+
+    // Add event listener for day request button
+    var dayRequestBtn = document.getElementById("dayRequestBtn");
+    if (dayRequestBtn) {
+      dayRequestBtn.addEventListener("click", handleDayRequest);
+    }
+
+    // Add event listener for back link
+    var backToSlotsLink = document.getElementById("backToSlotsLink");
+    if (backToSlotsLink) {
+      backToSlotsLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        submitBtn.style.display = "";
+        var altOption = document.querySelector(".slotPicker__altOption");
+        if (altOption) altOption.style.display = "";
+        loadSlots();
+      });
+    }
+  }
+
+
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -630,7 +778,7 @@
       } else {
         showMessage(
           message ||
-            "申し訳ありません。他の方が先にこの枠を確保しました。別の時間帯をお選びください。",
+          "申し訳ありません。他の方が先にこの枠を確保しました。別の時間帯をお選びください。",
           "error"
         );
         submitBtn.disabled = false;

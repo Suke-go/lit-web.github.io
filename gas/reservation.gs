@@ -682,6 +682,75 @@ function handleRegister(data) {
   }
 }
 
+/**
+ * 希望曜日リクエストの処理
+ * 空き枠がない場合に希望曜日を受け付ける
+ */
+function handleDayRequest(data) {
+  const name = (data.name || "").trim();
+  const furigana = (data.furigana || "").trim();
+  const email = (data.email || "").trim();
+  const tel = (data.tel || "").trim();
+  const preferredDays = (data.preferredDays || "").trim();
+
+  if (!name || !email || !tel || !preferredDays) {
+    return {
+      status: "error",
+      message: "必須項目が未入力です。",
+    };
+  }
+
+  try {
+    logReservation({
+      name,
+      furigana,
+      email,
+      tel,
+      contactMethod: "",
+      startISO: "",
+      endISO: "",
+      meetLink: "",
+      status: "day_request",
+      notes: "希望曜日: " + preferredDays,
+    });
+
+    // Send notification email
+    sendDayRequestNotification({ name, furigana, email, tel, preferredDays });
+
+    return {
+      status: "ok",
+      message: "ご希望をお送りしました。",
+    };
+  } catch (err) {
+    console.error("handleDayRequest error", err);
+    return {
+      status: "error",
+      message: "送信中にエラーが発生しました。",
+    };
+  }
+}
+
+/**
+ * 希望曜日リクエストの社内通知メール
+ */
+function sendDayRequestNotification(params) {
+  const subject = "【日程リクエスト】高校生キャリアコーチング - 希望曜日受付";
+  const body = `以下の方から希望曜日のリクエストがありました。
+
+氏名：${params.name}
+フリガナ：${params.furigana || "-"}
+メール：${params.email}
+電話番号：${params.tel}
+希望曜日：${params.preferredDays}
+
+※空き枠がなかったため、希望曜日のみの登録です。
+※日程が確定したらお客様へご連絡をお願いします。
+
+このメールはシステムより自動送信されています。`;
+
+  GmailApp.sendEmail("litable.official@gmail.com", subject, body);
+}
+
 function doPost(e) {
   try {
     const params = (e && e.parameter) || {};
@@ -720,6 +789,11 @@ function doPost(e) {
     // Route by mode
     if (mode === "register") {
       const result = handleRegister(payload);
+      return jsonResponse(result, origin);
+    }
+
+    if (mode === "request") {
+      const result = handleDayRequest(payload);
       return jsonResponse(result, origin);
     }
 
