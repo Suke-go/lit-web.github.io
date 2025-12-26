@@ -796,7 +796,7 @@
 
         <span id="reservation" class="anchorTarget" aria-hidden="true"></span>
         <section class="trialReserve" id="trialReserveSection"
-          data-gas-endpoint="https://script.google.com/macros/s/AKfycbyDcL5AbeHVb_CwgI_OoPw48w0lJmUW8Edm28ZQZ2nT7R-Ghw1b0b8kLENBv_bwwqfg/exec">
+          data-gas-endpoint="https://script.google.com/macros/s/AKfycbwYmOCxfV05AqtxVjTO1ybs031w6p8G5hGg-pSQebN1YdJDZ41IlZxi13goFJgK_R0/exec">
           <div class="trialReserve__inner">
             <div class="trialReserve__head">
               <h2 class="sectionTitle">
@@ -805,7 +805,7 @@
                 </span>
               </h2>
               <p class="trialReserve__lead">
-                ご希望の枠をお選びください。確定後すぐに参加用のGoogle Meetリンクをメールでお送りします。
+                まずはお客様情報をご入力ください。次のページで日時をお選びいただけます。
               </p>
             </div>
 
@@ -834,52 +834,8 @@
                   autocomplete="tel" required />
               </div>
 
-              <div class="trialReserve__field trialReserve__field--full">
-                <span class="trialReserve__label">希望日時（30分枠）</span>
-                <div class="slotPicker" id="slotPicker" aria-live="polite">
-                  <div class="slotPicker__nav" aria-hidden="true">
-                    <button type="button" class="slotPicker__navBtn slotPicker__navBtn--prev" id="slotPrevWeek"
-                      aria-label="前の3日間を表示" disabled>
-                      <span aria-hidden="true">‹</span>
-                    </button>
-                    <div class="slotPicker__navLabel" id="slotWeekLabel">
-                      読み込み中…
-                    </div>
-                    <button type="button" class="slotPicker__navBtn slotPicker__navBtn--next" id="slotNextWeek"
-                      aria-label="次の3日間を表示" disabled>
-                      <span aria-hidden="true">›</span>
-                    </button>
-                  </div>
-                  <div class="slotPicker__body" id="slotPickerBody">
-                    <p class="slotPicker__empty">読み込み中です…</p>
-                  </div>
-                  <p class="slotPicker__selection" id="slotSelectionStatus" aria-live="polite"></p>
-                </div>
-                <input type="hidden" name="slotISO" id="slotISO" />
-              </div>
-
-              <fieldset class="trialReserve__field trialReserve__field--contact">
-                <legend class="trialReserve__label">希望する説明形式</legend>
-                <div class="trialReserve__choices" role="radiogroup" aria-label="希望する説明形式">
-                  <label class="trialReserve__choice">
-                    <input type="radio" name="contactMethod" value="meet" checked />
-                    <span>
-                      <strong>オンライン（Google Meet）</strong>
-                      <small>画面共有を使って詳しくご案内します</small>
-                    </span>
-                  </label>
-                  <label class="trialReserve__choice">
-                    <input type="radio" name="contactMethod" value="phone" />
-                    <span>
-                      <strong>電話での説明を希望する</strong>
-                      <small>担当コーチからお電話差し上げます</small>
-                    </span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <button id="submitBtn" class="trialReserve__submit" type="submit">
-                この時間で予約する
+              <button id="submitBtn" class="trialReserve__submit trialReserve__submit--next" type="submit">
+                日時を選択する →
               </button>
             </form>
 

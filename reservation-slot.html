@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no,address=no,email=no" />
+    <meta name="description" content="高校生キャリアコーチングの保護者説明会の日程選択ページです。ご希望の日時を選択してください。" />
+    <meta name="robots" content="noindex" />
+    <title>日程選択 - CAREER COACHING</title>
+    <link rel="shortcut icon" href="common/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="common/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="common/img/android-chrome.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@100..900&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@100..900&display=swap" />
+    <link rel="stylesheet" href="lp01/common/css/common.css" />
+    <link rel="stylesheet" href="lp01/common/css/override.css" />
+</head>
+
+<body class="thanksPage slotPage is-header-solid">
+    <p class="skipItem anchorLink skip-link">
+        <a href="#main">本文へ移動</a>
+    </p>
+
+    <div id="wrapper">
+        <header id="header" role="banner">
+            <div class="header__inner">
+                <div class="header__logo">
+                    <a class="header__logoLink" href="index.html" aria-label="CAREER COACHING トップに戻る">
+                        <img class="header__logoImage" src="lp01/common/img/logo.svg" width="320" height="64"
+                            alt="CAREER COACHING ロゴ" />
+                    </a>
+                </div>
+
+                <nav class="header__nav" aria-label="サイト内ナビゲーション">
+                    <ul class="headerNav">
+                        <li class="headerNav__item">
+                            <a class="headerNav__link" href="index.html#sectionCoaching">コーチングとは</a>
+                        </li>
+                        <li class="headerNav__item">
+                            <a class="headerNav__link" href="index.html#sectionPoints">４つのポイント</a>
+                        </li>
+                        <li class="headerNav__item">
+                            <a class="headerNav__link" href="index.html#sectionVoices">参加者の声</a>
+                        </li>
+                        <li class="headerNav__item">
+                            <a class="headerNav__link" href="index.html#seqFaq">よくある質問</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main" role="main">
+            <article>
+                <!-- Progress Steps -->
+                <section class="slotProgress">
+                    <div class="slotProgress__inner">
+                        <ol class="slotProgress__steps">
+                            <li class="slotProgress__step slotProgress__step--done">
+                                <span class="slotProgress__num">1</span>
+                                <span class="slotProgress__label">お客様情報</span>
+                            </li>
+                            <li class="slotProgress__step slotProgress__step--active">
+                                <span class="slotProgress__num">2</span>
+                                <span class="slotProgress__label">日程選択</span>
+                            </li>
+                            <li class="slotProgress__step">
+                                <span class="slotProgress__num">3</span>
+                                <span class="slotProgress__label">完了</span>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="slotHero">
+                    <div class="slotHero__inner fade-in-up">
+                        <p class="slotHero__eyebrow">Step 2</p>
+                        <h1 class="slotHero__title">ご希望の日程を選択してください</h1>
+                        <div class="slotHero__userInfo" id="userInfoDisplay">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="slotSection" id="slotSection"
+                    data-gas-endpoint="https://script.google.com/macros/s/AKfycbwYmOCxfV05AqtxVjTO1ybs031w6p8G5hGg-pSQebN1YdJDZ41IlZxi13goFJgK_R0/exec">
+                    <div class="slotSection__inner">
+                        <form id="slotForm" class="slotForm">
+                            <div class="slotForm__field slotForm__field--full">
+                                <span class="slotForm__label">希望日時（30分枠）</span>
+                                <div class="slotPicker" id="slotPicker" aria-live="polite">
+                                    <div class="slotPicker__nav" aria-hidden="true">
+                                        <button type="button" class="slotPicker__navBtn slotPicker__navBtn--prev"
+                                            id="slotPrevWeek" aria-label="前の3日間を表示" disabled>
+                                            <span aria-hidden="true">‹</span>
+                                        </button>
+                                        <div class="slotPicker__navLabel" id="slotWeekLabel">
+                                            読み込み中…
+                                        </div>
+                                        <button type="button" class="slotPicker__navBtn slotPicker__navBtn--next"
+                                            id="slotNextWeek" aria-label="次の3日間を表示" disabled>
+                                            <span aria-hidden="true">›</span>
+                                        </button>
+                                    </div>
+                                    <div class="slotPicker__body" id="slotPickerBody">
+                                        <p class="slotPicker__empty">読み込み中です…</p>
+                                    </div>
+                                    <p class="slotPicker__selection" id="slotSelectionStatus" aria-live="polite"></p>
+                                </div>
+                                <input type="hidden" name="slotISO" id="slotISO" />
+                            </div>
+
+                            <fieldset class="slotForm__field slotForm__field--contact">
+                                <legend class="slotForm__label">希望する説明形式</legend>
+                                <div class="slotForm__choices" role="radiogroup" aria-label="希望する説明形式">
+                                    <label class="slotForm__choice">
+                                        <input type="radio" name="contactMethod" value="meet" checked />
+                                        <span>
+                                            <strong>オンライン（Google Meet）</strong>
+                                            <small>画面共有を使って詳しくご案内します</small>
+                                        </span>
+                                    </label>
+                                    <label class="slotForm__choice">
+                                        <input type="radio" name="contactMethod" value="phone" />
+                                        <span>
+                                            <strong>電話での説明を希望する</strong>
+                                            <small>担当コーチからお電話差し上げます</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <button id="submitBtn" class="slotForm__submit" type="submit">
+                                この時間で予約する
+                            </button>
+                        </form>
+
+                        <p id="resultMsg" class="slotForm__result" aria-live="polite" hidden></p>
+
+                        <p class="slotForm__privacy">
+                            入力いただいた情報は日程調整および当日のご案内以外の目的では利用しません。
+                        </p>
+
+                        <div class="slotForm__fallback">
+                            <p class="slotForm__fallbackText">
+                                予約がうまくいかない場合は、<a
+                                    href="https://docs.google.com/forms/d/e/1FAIpQLScE89Ce_J89wTA9sKQu_qyxi33p36rz8Npst6S1hME0EGiqEQ/viewform?usp=dialog"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="slotForm__fallbackLink">こちらのフォーム</a>からもお申し込みいただけます。
+                            </p>
+                        </div>
+
+                        <div class="slotForm__back">
+                            <a href="index.html#reservation" class="slotForm__backLink">← 入力内容を修正する</a>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+
+        <footer id="footer">
+            <div class="footer__inner">
+                <div class="footer__logo">
+                    <a href="index.html">
+                        <img src="lp01/common/img/logo.svg" alt="CAREER COACHING" width="180" height="36">
+                    </a>
+                </div>
+                <p class="footer__copyright">&copy; CAREER COACHING All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="lp01/common/js/common.js"></script>
+    <script src="lp01/common/js/slot-page.js"></script>
+</body>
+
+</html>

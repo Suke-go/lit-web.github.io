@@ -609,6 +609,79 @@ function doGet(e) {
   }
 }
 
+/**
+ * Step1仮登録時の社内通知メール
+ */
+function sendPendingNotification(params) {
+  const subject = "【仮登録】高校生キャリアコーチング - 日時選択待ち";
+  const body = `以下の方が仮登録しました（日時選択ページへ移動中）。
+
+氏名：${params.name}
+フリガナ：${params.furigana || "-"}
+メール：${params.email}
+電話番号：${params.tel}
+
+※日時を選択せずに離脱した場合、フォローアップが必要です。
+※予約が完了すると別途【新規予約】メールが届きます。
+
+このメールはシステムより自動送信されています。`;
+
+  GmailApp.sendEmail("litable.official@gmail.com", subject, body);
+}
+
+/**
+ * Step1での仮登録（pending）を保存する
+ * 途中離脱者を追跡するため
+ */
+function handleRegister(data) {
+  const name = (data.name || "").trim();
+  const furigana =
+    (data.furigana ||
+      data.kana ||
+      data.nameKana ||
+      data.furi ||
+      data.ruby ||
+      "").trim();
+  const email = (data.email || "").trim();
+  const tel = (data.tel || "").trim();
+
+  if (!name || !email || !tel) {
+    return {
+      status: "error",
+      message: "必須項目が未入力です。",
+    };
+  }
+
+  try {
+    logReservation({
+      name,
+      furigana,
+      email,
+      tel,
+      contactMethod: "",
+      startISO: "",
+      endISO: "",
+      meetLink: "",
+      status: "pending",
+      notes: "step1_registration",
+    });
+
+    // 社内へ通知メール送信
+    sendPendingNotification({ name, furigana, email, tel });
+
+    return {
+      status: "ok",
+      message: "仮登録が完了しました。",
+    };
+  } catch (err) {
+    console.error("handleRegister error", err);
+    return {
+      status: "error",
+      message: "登録中にエラーが発生しました。",
+    };
+  }
+}
+
 function doPost(e) {
   try {
     const params = (e && e.parameter) || {};
@@ -618,32 +691,39 @@ function doPost(e) {
       (e && e.postData && e.postData.type && e.parameter && e.parameter.origin) ||
       "";
 
-    if (mode === "book") {
-      let payload = {};
-      if (e && e.postData && e.postData.contents) {
-        const postType = String(e.postData.type || "").toLowerCase();
-        if (postType.indexOf("application/json") === 0) {
-          try {
-            payload = JSON.parse(e.postData.contents);
-          } catch (parseErr) {
-            console.error("JSON parse error", parseErr);
-            return jsonResponse(
-              {
-                status: "error",
-                message: "リクエスト形式が不正です。",
-              },
-              origin,
-            );
-          }
-        } else if (postType.indexOf("application/x-www-form-urlencoded") === 0) {
-          payload = Object.assign({}, params);
+    // Parse payload
+    let payload = {};
+    if (e && e.postData && e.postData.contents) {
+      const postType = String(e.postData.type || "").toLowerCase();
+      if (postType.indexOf("application/json") === 0) {
+        try {
+          payload = JSON.parse(e.postData.contents);
+        } catch (parseErr) {
+          console.error("JSON parse error", parseErr);
+          return jsonResponse(
+            {
+              status: "error",
+              message: "リクエスト形式が不正です。",
+            },
+            origin,
+          );
         }
-      }
-
-      if (!payload || Object.keys(payload).length === 0) {
+      } else if (postType.indexOf("application/x-www-form-urlencoded") === 0) {
         payload = Object.assign({}, params);
       }
+    }
 
+    if (!payload || Object.keys(payload).length === 0) {
+      payload = Object.assign({}, params);
+    }
+
+    // Route by mode
+    if (mode === "register") {
+      const result = handleRegister(payload);
+      return jsonResponse(result, origin);
+    }
+
+    if (mode === "book") {
       const result = handleBooking(payload);
       return jsonResponse(result, origin);
     }
@@ -656,3 +736,4 @@ function doPost(e) {
     return jsonResponse({ status: "error", message: "internal error" }, origin);
   }
 }
+
